@@ -1,4 +1,10 @@
 {% extends "layout.html" %}
+{% from "macros/_menubar.html" import render_menubar %}
+
+{%- block menubar %}
+    {{ render_menubar() }}
+{%- endblock %}
 
 {% block body %}
+    <p>Hello, this is index.html</p>
 {% endblock %}
