@@ -1,1 +1,1 @@
-#!/usr/bin/env pythonfrom .account import LoginForm, UserForm
+#! /usr/bin/env python#coding=utf-8from .account import LoginForm, UserForm, UserEditFormfrom .hr import EmployeeForm, DepartmentForm, JobFormfrom .base import ItemForm, ItemGroupForm

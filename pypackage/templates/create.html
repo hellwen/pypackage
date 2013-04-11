@@ -1,5 +1,5 @@
-{% extends formadmin.blueprint.name + '/main.html' %}
-{% import 'lib.html' as lib with context %}
+{% extends admin_view.blueprint.name + '/main.html' %}
+{% import 'macros/_forms.html' as lib with context %}
 
 {% block head %}
     <link href="/static/select2/select2.css" rel="stylesheet">
@@ -9,7 +9,7 @@
 {% block body %}
     <ul class="nav nav-pills">
         <li>
-            <a href="{{ formadmin.return_url }}">{{ _('List') }}</a>
+            <a href="{{ url_for('.' + admin_view.endpoint + '_list') }}">{{ _('List') }}</a>
         </li>
         <li class="active">
             <a href="#">{{ _('Create') }}</a>
@@ -21,8 +21,7 @@
     {% endmacro %}
 
     {% call lib.form_tag() %}
-        {{ lib.render_form_fields(formadmin.form) }}
-        {{ lib.render_form_buttons(formadmin.return_url, extra()) }}
+        {{ lib.render_form(form, return_url, extra()) }}
     {% endcall %}
 {% endblock %}
 

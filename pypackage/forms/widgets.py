@@ -1,11 +1,9 @@
-import time
-import datetime
+#! /usr/bin/env python
+#coding=utf-8
 
-from wtforms import fields, widgets
 from flask.globals import _request_ctx_stack
-from flask.ext import wtf
-from flask_admin.babel import gettext, ngettext
-from flask_admin import helpers as h
+from flask.ext.babel import gettext, ngettext
+import helpers as h
 
 
 class RenderTemplateWidget(object):
@@ -38,9 +36,11 @@ class RenderTemplateWidget(object):
 
 class InlineFieldListWidget(RenderTemplateWidget):
     def __init__(self):
-        super(InlineFieldListWidget, self).__init__('admin/model/inline_field_list.html')
+        super(InlineFieldListWidget, self).__init__(
+            'widgets/inline_field_list.html')
 
 
 class InlineFormWidget(RenderTemplateWidget):
     def __init__(self):
-        super(InlineFormWidget, self).__init__('admin/model/inline_form.html')
+        super(InlineFormWidget, self).__init__(
+            'widgets/inline_form.html')

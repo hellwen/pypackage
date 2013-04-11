@@ -1,11 +1,15 @@
+#! /usr/bin/env python
+#coding=utf-8
+
 from flask import Blueprint, render_template
 from flask.ext.babel import gettext as _
 
-from .models import Employee, Department, Job
-from .forms import EmployeeForm, DepartmentForm, JobForm
+from pypackage.models import Employee, Department, Job
+from pypackage.forms import EmployeeForm, DepartmentForm, JobForm
 
 from pypackage.extensions import db
-from pypackage.base import FormBase
+from pypackage.formbase import FormBase
+
 
 hr = Blueprint('hr', __name__,
     url_prefix="/hr",
@@ -26,8 +30,8 @@ class JobAdmin(FormBase):
 jobadmin = JobAdmin(hr, db.session, Job, JobForm)
 
 
-@hr.route("/job/", methods=("GET", "POST"))
-def job():
+@hr.route("/job/list/", methods=("GET", "POST"))
+def job_list():
     return jobadmin.list_view()
 
 
@@ -61,8 +65,8 @@ class DeptAdmin(FormBase):
 deptadmin = DeptAdmin(hr, db.session, Department, DepartmentForm)
 
 
-@hr.route("/department/", methods=("GET", "POST"))
-def department():
+@hr.route("/department/list/", methods=("GET", "POST"))
+def department_list():
     return deptadmin.list_view()
 
 
@@ -110,8 +114,8 @@ class EmployeeAdmin(FormBase):
 employeeadmin = EmployeeAdmin(hr, db.session, Employee, EmployeeForm)
 
 
-@hr.route("/employee/", methods=("GET", "POST"))
-def employee():
+@hr.route("/employee/list/", methods=("GET", "POST"))
+def employee_list():
     return employeeadmin.list_view()
 
 

@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% from "macros/_forms.html" import render_errors %}
+
+{%- block body %}
+    <h2 class="title">{{ _('Login to pypackage') }}</h2>
+    <form method="POST" action=".">
+        {{ form.hidden_tag() }}
+        <div class="control-group">
+            {{ form.login.label }}
+            <div class="controls">
+                {{ form.login(size=30) }} {{ render_errors(form.login) }}
+            </div>
+        </div>
+        <div class="control-group">
+            {{ form.password.label }}
+            <div class="controls">
+                {{ form.password(size=30) }} {{ render_errors(form.password) }}
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox"> Remember me
+              </label>        
+              <button type="submit" class="btn">Sign in</button>
+            </div>
+        </div>
+    </form>  
+
+
+{%- endblock %}

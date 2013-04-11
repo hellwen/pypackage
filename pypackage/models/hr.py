@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+#coding=utf-8
+
 from flask.ext.login import UserMixin
 from pypackage.extensions import db
 

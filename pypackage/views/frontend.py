@@ -8,13 +8,11 @@
 
 from flask import Blueprint, render_template
 
-frontend = Blueprint("frontend", __name__,
-    url_prefix="/",
-    static_url_path='static')
+frontend = Blueprint("frontend", __name__, url_prefix="/")
 
 
-@frontend.route("/", methods=("GET", "POST"))
 @frontend.route("/index/", methods=("GET", "POST"))
+@frontend.route("/", methods=("GET", "POST"))
 def index():
     return render_template("index.html")
 

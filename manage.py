@@ -93,8 +93,10 @@ def populate(default_data=False, sample_data=False):
 @manager.command
 def createadmin():
     "Create admin and password is admin"
-    admin = User("admin", "admin", "admin@example.com", User.ADMIN)
+    admin = User()
+    admin.username = "admin"
     admin.password = "admin"
+    admin.supperuser = True
     db.session.add(admin)
     db.session.commit()
 

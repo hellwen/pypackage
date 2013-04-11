@@ -1,13 +1,14 @@
+#! /usr/bin/env python
+#coding=utf-8
+
 from flask import Flask, request, flash, redirect, jsonify, url_for, g,\
     render_template
 
 from flask.ext.babel import Babel, gettext as _
 
-from pypackage.extensions import db
-from pypackage.views import frontend
-from hr.views import hr
-from account.views import account
-# from base.views import bases
+from pypackage.extensions import db, login_manager
+from pypackage.views import frontend, account, hr, base
+from pypackage.models import User
 
 
 DEFAULT_APP_NAME = 'pypackage'
@@ -26,12 +27,19 @@ def create_app(config=None, blueprints=None):
 
     configure_blueprints(app)
 
+    # configure_modules(app, DEFAULT_MODULES)
+
     return app
 
 
 def configure_extensions(app):
 
     db.init_app(app)
+    login_manager.setup_app(app)
+
+    @login_manager.user_loader
+    def load_user(userid):
+        return User.query.get(userid)
 
 
 def configure_i18n(app):
@@ -89,6 +97,10 @@ def configure_blueprints(app):
 
     app.register_blueprint(frontend)
     app.register_blueprint(account)
+    app.register_blueprint(base)
     app.register_blueprint(hr)
-    # app.register_blueprint(bases)
-    # print app.url_map
+
+
+def configure_modules(app, modules):
+    for module, url_prefix in modules:
+        app.register_module(module, url_prefix=url_prefix)
