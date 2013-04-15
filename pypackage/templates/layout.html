@@ -28,8 +28,8 @@
                     {% endblock %}
                     <ul class="nav">
                         <li><a href="{{ url_for('frontend.index') }}">{{ _("Home") }}</a></li>
-                        <li><a href="{{ url_for('hr.main') }}">{{ _("HR") }}</a></li>
-
+                        <li><a href="{{ url_for('hr.main') }}">{{ _("Human Resources") }}</a></li>
+                        <li><a href="{{ url_for('im.main') }}">{{ _("Warehouse") }}</a></li>
                         <li><a href="{{ url_for('account.main') }}">{{ _("Account") }}</a></li>
                         <li><a href="{{ url_for('base.main') }}">{{ _("Base") }}</a></li>
                         {#
@@ -73,10 +73,8 @@
             </div>
         </div>
     {% endblock %}
-    <script src="/static/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-    <script src="/static/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/static/select2/select2.min.js" type="text/javascript"></script>
 
+    {#
     <div class="navbar">
         <div class="navbar-inner">
             <ul class="nav">
@@ -84,7 +82,10 @@
             </ul>
         </div>
     </div>
+    #}
 
+    <script src="/static/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     {% block tail %}
     {% endblock %}
 </body>

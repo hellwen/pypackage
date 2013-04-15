@@ -35,7 +35,7 @@
                 <td>
                     {% block list_row_actions scoped %}
                         <a class="icon" href="{{ url_for('.' + admin_view.endpoint + '_edit', id=row.id, url=return_url) }}">
-                            <i class="icon-share-alt"></i>
+                            <i class="icon-pencil"></i>
                         </a>
                         <form class="icon" method="POST" action="{{ url_for('.' + admin_view.endpoint + '_delete', id=row.id, url=return_url) }}">
                             <button onclick="return confirm('{{ _('You sure you want to delete this item?') }}');">

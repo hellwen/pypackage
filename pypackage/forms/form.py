@@ -8,7 +8,7 @@ from wtforms import fields, widgets
 from flask.globals import _request_ctx_stack
 from flask.ext import wtf
 from flask.ext.babel import gettext, ngettext
-from .helpers import helpers as h
+import helpers as h
 
 
 def _resolve_prop(prop):

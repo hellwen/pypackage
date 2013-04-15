@@ -9,9 +9,6 @@
 
 import hashlib
 
-from datetime import datetime
-
-from flask import abort, current_app
 from flask.ext.sqlalchemy import BaseQuery
 
 from pypackage.extensions import db

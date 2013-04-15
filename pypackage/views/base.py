@@ -7,7 +7,8 @@ from flask.ext.babel import gettext as _
 from pypackage.extensions import db
 from pypackage.models import ItemGroup, Item
 from pypackage.forms import ItemGroupForm, ItemForm
-from pypackage.formbase import FormBase, InlineFormBase
+from pypackage.formbase import FormBase
+# from pypackage.formbase import FormBase, InlineFormBase
 
 
 base = Blueprint('base', __name__, url_prefix="/base")
@@ -29,11 +30,12 @@ def main():
 class ItemGroupAdmin(FormBase):
     # inline_models = (ItemInlineAdmin(Item, ItemForm),)
 
-    list_columns = ("group_name", 'items')
+    list_columns = ("id", "group_name", 'items')
     fieldsets = [
-        (None, {'fields': ("group_name", 'items')}),
+        (None, {'fields': (("id", "group_name"), "items")}),
     ]
-    column_labels = dict(group_name=_("Group Name"),
+    column_labels = dict(id=_("Group ID"),
+        group_name=_("Group Name"),
         items=_("Items"))
 
 itemgroupadmin = ItemGroupAdmin(base, db.session, ItemGroup, ItemGroupForm)
@@ -62,3 +64,42 @@ def itemgroup_edit(id):
 @base.route("/itemgroup/delete/id=<int:id>/", methods=("GET", "POST"))
 def itemgroup_delete(id):
     return itemgroupadmin.delete_view(id)
+
+
+class ItemAdmin(FormBase):
+    # inline_models = (ItemInlineAdmin(Item, ItemForm),)
+
+    list_columns = ("item_id", "item_order", "item_name")
+    fieldsets = [
+        (None, {'fields': ("item_id", "item_order", "item_name")}),
+    ]
+    column_labels = dict(item_id=_("Item ID"),
+        item_order=_("Item Order"),
+        item_name=_("Item Name"))
+
+itemadmin = ItemAdmin(base, db.session, Item, ItemForm)
+
+
+@base.route("/item/list/", methods=("GET", "POST"))
+def item_list():
+    return itemadmin.list_view()
+
+
+@base.route("/item/view/id=<int:id>", methods=("GET", "POST"))
+def item_view(id):
+    return itemadmin.show_view(id)
+
+
+@base.route("/item/create/", methods=("GET", "POST"))
+def item_create():
+    return itemadmin.create_view()
+
+
+@base.route("/item/edit/id=<int:id>/", methods=("GET", "POST"))
+def item_edit(id):
+    return itemadmin.edit_view(id)
+
+
+@base.route("/item/delete/id=<int:id>/", methods=("GET", "POST"))
+def item_delete(id):
+    return itemadmin.delete_view(id)

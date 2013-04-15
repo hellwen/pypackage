@@ -23,6 +23,8 @@ class ItemForm(Form):
 class ItemGroupForm(Form):
     next = HiddenField()
 
+    id = TextField(_("Group ID"), validators=[
+        required(message=_("You must provide"))])
     group_name = TextField(_("Group Name"), validators=[
         required(message=_("You must provide"))])
     items = InlineModelFormList(ItemForm, db.session, Item, min_entries=1)

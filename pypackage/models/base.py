@@ -1,10 +1,15 @@
-#! /usr/bin/env python
-#coding=utf-8
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import sys
 
 from pypackage.extensions import db
 
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 
 class ItemGroup(db.Model):
+
     __tablename__ = "item_group"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +23,7 @@ class ItemGroup(db.Model):
 
 
 class Item(db.Model):
+
     __tablename__ = "item"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -29,5 +35,4 @@ class Item(db.Model):
     active = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
-        return self.item_name
-
+        return "<%s, %s>" % (str(self.item_id), self.item_name)

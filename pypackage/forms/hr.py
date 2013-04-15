@@ -7,10 +7,12 @@
 
     :license: BSD, see LICENSE for more details.
 """
-from flask.ext.wtf import Form, HiddenField, TextAreaField, SelectField,\
+from flask.ext.wtf import Form, HiddenField, TextAreaField,\
     DateField, TextField, required, optional
 
 from flask.ext.babel import lazy_gettext as _
+
+from .form import Select2Field
 
 
 class DepartmentForm(Form):
@@ -40,20 +42,15 @@ class EmployeeForm(Form):
     work_phone = TextField(_("Work Phone"))
     work_mobile = TextField(_("Work Mobile"))
     office_location = TextField(_("Office Location"))
-
-    # # postion
-    department_id = SelectField(_("Department"), default=0, coerce=int,
-        validators=[
-            required(message=_("You must choices a department"))])
-    job_id = SelectField(_("Job"), default=0, coerce=int,
-        validators=[
-            required(message=_("You must choices a job"))])
-    # ## personal info
-    gender_id = SelectField(_("Gender"), coerce=int, validators=[
-        required(message=_("You must choices a Gender"))])
+    department_id = Select2Field(_("Department"), default=0, coerce=int,
+        validators=[required(message=_("You must choices a Department"))])
+    job_id = Select2Field(_("Job"), default=0, coerce=int,
+        validators=[required(message=_("You must choices a Job"))])
+    gender_id = Select2Field(_("Gender"), default=0, coerce=int,
+        validators=[required(message=_("You must choices a Gender"))])
     id_card = TextField(_("ID Card"))
     home_addr = TextField(_("Home Address"))
-    date_of_birth = DateField(_("Date of Birth"), validators=[optional()],
-        description=_("2013-01-01"))
+    date_of_birth = DateField(_("Date of Birth (eg:2012-01-01)"),
+        validators=[optional()])
 
     remark = TextAreaField(_("Reamrk"))

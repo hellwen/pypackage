@@ -68,6 +68,7 @@ class FormBase(object):
         kwargs['_'] = _
         kwargs['_ngettext'] = ngettext
         kwargs['h'] = h
+        kwargs['unicode'] = unicode
 
         # Contribute extra arguments
         # kwargs.update(self._template_args)
