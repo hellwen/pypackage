@@ -9,7 +9,6 @@ sys.setdefaultencoding("utf-8")
 
 
 class ItemGroup(db.Model):
-
     __tablename__ = "item_group"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +22,6 @@ class ItemGroup(db.Model):
 
 
 class Item(db.Model):
-
     __tablename__ = "item"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -34,5 +32,8 @@ class Item(db.Model):
     item_name = db.Column(db.String(50), nullable=False)
     active = db.Column(db.Boolean, default=True)
 
+    # def __repr__(self):
+    #     return "<%s, %s>" % (str(self.item_id), self.item_name)
+
     def __repr__(self):
-        return "<%s, %s>" % (str(self.item_id), self.item_name)
+        return self.item_name

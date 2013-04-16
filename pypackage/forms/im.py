@@ -1,38 +1,14 @@
 #!/usr/bin/env python
 #coding=utf-8
-
-"""
-    forms: employee.py
-    ~~~~~~~~~~~~~
-
-    :license: BSD, see LICENSE for more details.
-"""
 from flask.ext.wtf import Form, HiddenField, required,\
-    TextAreaField, TextField, IntegerField
-
+    TextAreaField, TextField, IntegerField, DateField
 
 from flask.ext.babel import lazy_gettext as _
 
+from pypackage.extensions import db
+from pypackage.models import WarehouseVoucherProduct
+from .fields import InlineModelFormList
 from .form import Select2Field
-
-
-class CustomerForm(Form):
-    next = HiddenField()
-
-    customer_code = TextField(_("Customer Code"), validators=[required()])
-    customer_code = TextField(_("Customer Name"), validators=[required()])
-    remark = TextAreaField(_("Remark"))
-
-
-class ProductForm(Form):
-    next = HiddenField()
-
-    product_code = TextField(_("Product Code"), validators=[required()])
-    product_name = TextField(_("Product Name"), validators=[required()])
-    customer_id = Select2Field(_("Customer"), default=0, coerce=int,
-        validators=[required()])
-    type_desc = TextField(_("Type Desc"), validators=[required()])
-    remark = TextAreaField(_("Remark"))
 
 
 class InventoryLocationForm(Form):
@@ -40,7 +16,26 @@ class InventoryLocationForm(Form):
 
     building = IntegerField(_("Building#"), validators=[required()])
     floor = IntegerField(_("Floor#"), validators=[required()])
-    inventory_type_id = Select2Field(_("Inventory Type"), default=0, coerce=int,
-        validators=[required()])
+    inventory_type_id = Select2Field(_("Inventory Type"), default=0,
+        coerce=int, validators=[required()])
     location_name = TextField(_("Location Name"), validators=[required()])
     remark = TextAreaField(_("Remark"))
+
+
+class WarehouseVoucherProductForm(Form):
+    next = HiddenField()
+
+    product_id = Select2Field(_("Product"), default=0,
+        coerce=int, validators=[required()])
+    inventory_location_id = Select2Field(_("Inventory Location"), default=0,
+        coerce=int, validators=[required()])
+    quantity = IntegerField(_("Quantity"))
+
+
+class WarehouseVoucherForm(Form):
+    next = HiddenField()
+
+    bill_no = TextField(_("Bill No"), validators=[required()])
+    storage_date = DateField(_("Storage Date"), validators=[required()])
+    products = InlineModelFormList(WarehouseVoucherProductForm,
+        db.session, WarehouseVoucherProduct, min_entries=1)

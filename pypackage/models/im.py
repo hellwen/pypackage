@@ -1,40 +1,11 @@
 #! /usr/bin/env python
 #coding=utf-8
-from datetime import datetime
+from datetime import datetime, date
 
 from pypackage.extensions import db
 
 from .base import Item
-
-
-class Customer(db.Model):
-    __tablename__ = "customers"
-
-    id = db.Column(db.Integer, primary_key=True)
-    customer_code = db.Column(db.String(50), nullable=False, unique=True)
-    customer_name = db.Column(db.String(50), nullable=False, unique=True)
-    remark = db.Column(db.String(300))
-    active = db.Column(db.Boolean, default=True, nullable=False)
-
-    def __repr__(self):
-        return self.customer_name
-
-
-class Product(db.Model):
-    __tablename__ = "products"
-
-    id = db.Column(db.Integer, primary_key=True)
-    product_code = db.Column(db.String(50), nullable=False, unique=True)
-    product_name = db.Column(db.String(50), nullable=False, unique=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey(Customer.id))
-    customer = db.relationship(Customer, foreign_keys=customer_id)
-    # 类型描述，用于描述该产品的特性，如：外贸、女款等
-    type_desc = db.Column(db.String(50))
-    remark = db.Column(db.String(300))
-    active = db.Column(db.Boolean, default=True, nullable=False)
-
-    def __repr__(self):
-        return self.product_name
+from .mm import Product
 
 
 class InventoryLocation(db.Model):
@@ -43,7 +14,7 @@ class InventoryLocation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     building = db.Column(db.Integer, default=0, nullable=False)
     floor = db.Column(db.Integer, default=0, nullable=False)
-    inventory_type_id = db.Column(db.Integer, db.ForeignKey(Item.id))
+    inventory_type_id = db.Column(db.Integer, db.ForeignKey(Item.item_id))
     inventory_type = db.relationship(Item, foreign_keys=inventory_type_id)
     location_name = db.Column(db.String(50), nullable=False)
     remark = db.Column(db.String(300))
@@ -58,34 +29,44 @@ class WarehouseVoucher(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     bill_no = db.Column(db.String(30), nullable=False, unique=True)
-    opt_datetime = db.Column(db.Datetime, nullable=False,
-        default=datetime.utcnow)
+    storage_date = db.Column(db.Date, nullable=False,
+        default=date.today())
     status = db.Column(db.Integer, default=0, nullable=False)
+    products = db.relationship("WarehouseVoucherProduct",
+        order_by="WarehouseVoucherProduct.id",
+        cascade="all, delete-orphan")
+    opt_datetime = db.Column(db.DateTime, nullable=False,
+        default=datetime.now)
+    opt_userid = db.Column(db.String(30), nullable=False)
     remark = db.Column(db.String(300))
 
     def __repr__(self):
         return self.bill_no
 
 
-class WarehouseVoucherDtl(db.Model):
-    __tablename__ = "warehouse_voucher_dtl"
+class WarehouseVoucherProduct(db.Model):
+    __tablename__ = "warehouse_voucher_product"
 
     id = db.Column(db.Integer, primary_key=True)
-    bill_no = db.Column(db.String(30), nullable=False, unique=True)
-    status = db.Column(db.Integer, default=0, nullable=False)
-    remark = db.Column(db.String(300))
+    master_id = db.Column(db.Integer, db.ForeignKey(WarehouseVoucher.id))
+    product_id = db.Column(db.Integer, db.ForeignKey(Product.id))
+    product = db.relationship(Product, foreign_keys=product_id)
+    inventory_location_id = db.Column(db.Integer,
+        db.ForeignKey(InventoryLocation.id))
+    inventory_location = db.relationship(InventoryLocation,
+        foreign_keys=inventory_location_id)
+    quantity = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):
-        return self.bill_no
+        return self.product
 
+# class DeliveryVoucher(db.Model):
+#     __tablename__ = "delivery_voucher"
 
-class DeliveryVoucher(db.Model):
-    __tablename__ = "delivery_voucher"
+#     id = db.Column(db.Integer, primary_key=True)
+#     bill_no = db.Column(db.String(30), nullable=False, unique=True)
+#     status = db.Column(db.Integer, default=0, nullable=False)
+#     remark = db.Column(db.String(300))
 
-    id = db.Column(db.Integer, primary_key=True)
-    bill_no = db.Column(db.String(30), nullable=False, unique=True)
-    status = db.Column(db.Integer, default=0, nullable=False)
-    remark = db.Column(db.String(300))
-
-    def __repr__(self):
-        return self.bill_no
+#     def __repr__(self):
+#         return self.bill_no

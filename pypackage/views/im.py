@@ -4,8 +4,8 @@
 from flask import Blueprint, render_template
 from flask.ext.babel import gettext as _
 
-from pypackage.models import Employee, Department, Job, Item
-from pypackage.forms import EmployeeForm, DepartmentForm, JobForm
+from pypackage.models import InventoryLocation, Item, WarehouseVoucher, WarehouseVoucherProduct
+from pypackage.forms import InventoryLocationForm, WarehouseVoucherForm, WarehouseVoucherProductForm
 
 from pypackage.extensions import db
 from pypackage.formbase import FormBase
@@ -21,55 +21,88 @@ def main():
     return render_template("im/main.html")
 
 
-class EmployeeAdmin(FormBase):
-    list_columns = ("emp_code", "emp_name", "gender", "id_card",
-        "department", "job")
-    column_labels = dict(emp_code=_("Employee Code"),
-        emp_name=_("Employee Name"), gender=_("Gender"), id_card=_("ID Card"),
-        department=_("Department"), job=_("Job"))
+class InventoryLocationAdmin(FormBase):
+    list_columns = ("building", "floor", "inventory_type", "location_name",
+        "remark")
+    column_labels = dict(building=_("Building"),
+        floor=_("Floor"),
+        inventory_type=_("Inventory Type"),
+        location_name=_("Location Name"),
+        remark=_("Remark"))
     fieldsets = [
-        (None, {'fields': (('emp_code', 'emp_name'),
-            ('department_id', 'job_id'), ("remark"))}),
-        ("Personal", {'fields': (('gender_id', 'home_addr'),
-            ('id_card', 'date_of_birth'))}),
-        ("Office", {'fields': (('work_email', 'work_phone'),
-            ('work_mobile', 'office_location'))}),
+        (None, {'fields': (("building", "floor"),
+            ("inventory_type_id", "location_name"),
+            ("remark"))}),
     ]
 
     def after_create_form(self, form):
-        form.department_id.choices = [(g.id, g.dept_name) for g in
-            Department.query.filter_by(active=True).
-            order_by('dept_name')]
-        form.job_id.choices = [(g.id, g.job_name) for g in
-            Job.query.filter_by(active=True).
-            order_by('job_name')]
-        form.gender_id.choices = [(g.item_id, g.item_name) for g in
-            Item.query.filter_by(active=True).filter_by(group_id=100).
+        form.inventory_type_id.choices = [(g.item_id, g.item_name) for g in
+            Item.query.filter_by(active=True).filter_by(group_id=2).
             order_by('item_order')]
 
-employeeadmin = EmployeeAdmin(hr, db.session, Employee, EmployeeForm)
+inventorylocationadmin = InventoryLocationAdmin(im, db.session,
+    InventoryLocation, InventoryLocationForm)
 
 
-@im.route("/employee/list/", methods=("GET", "POST"))
-def employee_list():
-    return employeeadmin.list_view()
+@im.route("/inventorylocation/list/", methods=("GET", "POST"))
+def inventorylocation_list():
+    return inventorylocationadmin.list_view()
 
 
-@im.route("/employee/view/<int:id>/", methods=("GET", "POST"))
-def employee_view(id):
-    return employeeadmin.show_view(id)
+@im.route("/inventorylocation/view/<int:id>/", methods=("GET", "POST"))
+def inventorylocation_view(id):
+    return inventorylocationadmin.show_view(id)
 
 
-@im.route("/employee/create/", methods=("GET", "POST"))
-def employee_create():
-    return employeeadmin.create_view()
+@im.route("/inventorylocation/create/", methods=("GET", "POST"))
+def inventorylocation_create():
+    return inventorylocationadmin.create_view()
 
 
-@im.route("/employee/edit/<int:id>/", methods=("GET", "POST"))
-def employee_edit(id):
-    return employeeadmin.edit_view(id)
+@im.route("/inventorylocation/edit/<int:id>/", methods=("GET", "POST"))
+def inventorylocation_edit(id):
+    return inventorylocationadmin.edit_view(id)
 
 
-@im.route("/employee/delete/<int:id>/", methods=("GET", "POST"))
-def employee_delete(id):
-    return employeeadmin.delete_view(id)
+@im.route("/inventorylocation/delete/<int:id>/", methods=("GET", "POST"))
+def inventorylocation_delete(id):
+    return inventorylocationadmin.delete_view(id)
+
+
+class WarehouseVoucherAdmin(FormBase):
+    list_columns = ("bill_no", "storage_date", "status", "products")
+    column_labels = dict(bill_no=_("Bill No"),
+        storage_date=_("Storage Date"),
+        products=_("Products"),
+        status=_("Status"))
+    fieldsets = [
+        (None, {'fields': (("bill_no", "storage_date"), "products")}),
+    ]
+
+warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
+    WarehouseVoucher, WarehouseVoucherForm)
+
+
+@im.route("/warehousevoucher/list/", methods=("GET", "POST"))
+def warehousevoucher_list():
+    return warehousevoucheradmin.list_view()
+
+
+@im.route("/warehousevoucher/view/<int:id>/", methods=("GET", "POST"))
+def warehousevoucher_view(id):
+    return warehousevoucheradmin.show_view(id)
+
+
+@im.route("/warehousevoucher/create/", methods=("GET", "POST"))
+def warehousevoucher_create():
+    return warehousevoucheradmin.create_view()
+
+
+@im.route("/warehousevoucher/edit/<int:id>/", methods=("GET", "POST"))
+def warehousevoucher_edit(id):
+    return warehousevoucheradmin.edit_view(id)
+
+
+@im.route("/warehousevoucher/delete/<int:id>/", methods=("GET", "POST"))
+def warehousevoucher_delete(id):
+    return warehousevoucheradmin.delete_view(id)

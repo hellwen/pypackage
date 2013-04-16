@@ -4,8 +4,7 @@
 <div class="sidebox">
     <ul class="nav nav-list">
         <li class="nav-header">{{ _("Main") }}</li>
-        <li><a href="{{ url_for('.inventorylocation_list', next=request.path) }}">{{ _("InventoryLocatioin") }}</a></li>
-        <li><a href="{{ url_for('.warehousevoucher_list', next=request.path) }}">{{ _("WarehouseVoucher") }}</a></li>
+        <li><a href="{{ url_for('.product_list', next=request.path) }}">{{ _("Product") }}</a></li>
     </ul>
 </div>
 {%- endblock %}

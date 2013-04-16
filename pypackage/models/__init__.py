@@ -1,1 +1,1 @@
-#! /usr/bin/env python#coding=utf-8from .account import User, PrincipalGroup, Principalfrom .hr import Department, Job, Employeefrom .base import ItemGroup, Item
+#! /usr/bin/env python#coding=utf-8from .account import User, PrincipalGroup, Principalfrom .hr import Department, Job, Employeefrom .base import ItemGroup, Itemfrom .mm import Productfrom .im import InventoryLocation, WarehouseVoucher, WarehouseVoucherProductfrom .sd import Customer

@@ -50,7 +50,7 @@ class Employee(db.Model, UserMixin):
     job = db.relationship(Job, foreign_keys=job_id)
 
     ## personal inf
-    gender_id = db.Column(db.Integer, db.ForeignKey(Item.id))
+    gender_id = db.Column(db.Integer, db.ForeignKey(Item.item_id))
     gender = db.relationship(Item, foreign_keys=gender_id)
     id_card = db.Column(db.String(50))
     home_addr = db.Column(db.String(100))

@@ -7,7 +7,7 @@ from flask import Flask, request, flash, redirect, jsonify, url_for, g,\
 from flask.ext.babel import Babel, gettext as _
 
 from pypackage.extensions import db, login_manager
-from pypackage.views import frontend, account, hr, base
+from pypackage.views import frontend, account, hr, base, im, sd, mm
 from pypackage.models import User
 
 
@@ -26,8 +26,6 @@ def create_app(config=None, blueprints=None):
     configure_i18n(app)
 
     configure_blueprints(app)
-
-    # configure_modules(app, DEFAULT_MODULES)
 
     return app
 
@@ -99,6 +97,9 @@ def configure_blueprints(app):
     app.register_blueprint(account)
     app.register_blueprint(base)
     app.register_blueprint(hr)
+    app.register_blueprint(im)
+    app.register_blueprint(sd)
+    app.register_blueprint(mm)
 
 
 def configure_modules(app, modules):
