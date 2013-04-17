@@ -7,17 +7,57 @@ from flask import request, redirect, url_for, render_template, flash
 from flask.ext.babel import gettext as _, ngettext
 
 from pypackage import helpers as h
+from pypackage.forms.fields import InlineModelFormList
 
 
 class InlineFormBase(object):
-    list_columns = None
-    fieldsets = []
-    column_labels = dict()
-    session = None
+    """
+        Settings for inline form administration.
 
-    def __init__(self, model, form_class):
+        You can use this class to customize displayed form.
+        For example::
+
+            class MyUserInfoForm(InlineFormAdmin):
+                form_columns = ('name', 'email')
+    """
+    _defaults = ['form_columns', 'form_excluded_columns', 'form_args']
+    fieldsets = []
+
+    def __init__(self, forward_prop, model, form_class, **kwargs):
+        """
+            Constructor
+
+            :param model:
+                Target model class
+            :param kwargs:
+                Additional options
+        """
+        self.forward_prop = forward_prop
         self.model = model
         self.form_class = form_class
+
+        for k in self._defaults:
+            if not hasattr(self, k):
+                setattr(self, k, None)
+
+        for k, v in kwargs.iteritems():
+            setattr(self, k, v)
+
+    def postprocess_form(self, form_class):
+        """
+            Post process form. Use this to contribute fields.
+
+            For example::
+
+                class MyInlineForm(InlineFormAdmin):
+                    def postprocess_form(self, form):
+                        form.value = wtf.TextField('value')
+                        return form
+
+                class MyAdmin(ModelView):
+                    inline_models = (MyInlineForm(ValueModel),)
+        """
+        return form_class
 
 
 class FormBase(object):
@@ -39,10 +79,6 @@ class FormBase(object):
         self.model = model
         self.form_class = form_class
         self.endpoint = model.__name__.lower()
-
-        if self.inline_models:
-            for inline in self.inline_models:
-                inline.session = self.session
 
     def get_field_categorys(self):
         return [(tab[0]) for tab in self.fieldsets if tab[0]]
@@ -113,6 +149,16 @@ class FormBase(object):
         if not form:
             form = self.form_class(next=next)
         self.after_create_form(form)
+
+        if self.inline_models:
+            for inline in self.inline_models:
+                child_form = inline.postprocess_form(inline.form_class)
+                setattr(form, inline.forward_prop,
+                        InlineModelFormList(child_form,
+                                            self.session,
+                                            inline.model,
+                                            min_entries=1))
+
         return form
 
     def edit_form(self, obj):

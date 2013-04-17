@@ -4,11 +4,13 @@
 from flask import Blueprint, render_template
 from flask.ext.babel import gettext as _
 
-from pypackage.models import InventoryLocation, Item, WarehouseVoucher, WarehouseVoucherProduct
-from pypackage.forms import InventoryLocationForm, WarehouseVoucherForm, WarehouseVoucherProductForm
+from pypackage.models import InventoryLocation, Item, WarehouseVoucher,\
+    WarehouseVoucherProduct, Product
+from pypackage.forms import InventoryLocationForm, WarehouseVoucherForm,\
+    WarehouseVoucherProductForm
 
 from pypackage.extensions import db
-from pypackage.formbase import FormBase
+from pypackage.formbase import FormBase, InlineFormBase
 
 
 im = Blueprint('im', __name__,
@@ -69,7 +71,20 @@ def inventorylocation_delete(id):
     return inventorylocationadmin.delete_view(id)
 
 
+class WarehouseVoucherProductAdmin(InlineFormBase):
+    def postprocess_form(self, form):
+        form.product_id.choices = [(g.id, g.product_name) for g in
+            Product.query.filter_by(active=True).order_by('product_name')]
+        form.inventory_location_id.choices = [(g.id, g.location_name) for g in
+            InventoryLocation.query.filter_by(active=True).
+            order_by('location_name')]
+        return form
+
+
 class WarehouseVoucherAdmin(FormBase):
+    inline_models = (WarehouseVoucherProductAdmin("products",
+        WarehouseVoucherProduct, WarehouseVoucherProductForm),)
+
     list_columns = ("bill_no", "storage_date", "status", "products")
     column_labels = dict(bill_no=_("Bill No"),
         storage_date=_("Storage Date"),

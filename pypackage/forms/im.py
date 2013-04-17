@@ -25,9 +25,9 @@ class InventoryLocationForm(Form):
 class WarehouseVoucherProductForm(Form):
     next = HiddenField()
 
-    product_id = Select2Field(_("Product"), default=0,
+    product_id = Select2Field(_("Product"), default=0, choices=[(0,'a'), (1, 'b')],
         coerce=int, validators=[required()])
-    inventory_location_id = Select2Field(_("Inventory Location"), default=0,
+    inventory_location_id = Select2Field(_("Inventory Location"), default=0, choices=[(0,'a'), (1, 'b')],
         coerce=int, validators=[required()])
     quantity = IntegerField(_("Quantity"))
 
@@ -36,6 +36,6 @@ class WarehouseVoucherForm(Form):
     next = HiddenField()
 
     bill_no = TextField(_("Bill No"), validators=[required()])
-    storage_date = DateField(_("Storage Date"), validators=[required()])
+    storage_date = DateField(_("Storage Date (eg:2012-01-01)"), validators=[required()])
     products = InlineModelFormList(WarehouseVoucherProductForm,
         db.session, WarehouseVoucherProduct, min_entries=1)

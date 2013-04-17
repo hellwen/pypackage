@@ -8,6 +8,24 @@ from wtforms.fields import FieldList, FormField
 from .widgets import InlineFieldListWidget, InlineFormWidget
 
 
+def get_primary_key(model):
+    """
+        Return primary key name from a model
+
+        :param model:
+            Model class
+    """
+    props = model._sa_class_manager.mapper.iterate_properties
+
+    for p in props:
+        if hasattr(p, 'columns'):
+            for c in p.columns:
+                if c.primary_key:
+                    return p.key
+
+    return None
+
+
 class InlineFieldList(FieldList):
     widget = InlineFieldListWidget()
 
@@ -89,28 +107,7 @@ class InlineModelFormField(FormField):
                 field.populate_obj(obj, name)
 
 
-def get_primary_key(model):
-    """
-        Return primary key name from a model
-
-        :param model:
-            Model class
-    """
-    props = model._sa_class_manager.mapper.iterate_properties
-
-    for p in props:
-        if hasattr(p, 'columns'):
-            for c in p.columns:
-                if c.primary_key:
-                    return p.key
-
-    return None
-
-
 class InlineModelFormList(InlineFieldList):
-    """
-        TODO: Documentation
-    """
     def __init__(self, form, session, model, **kwargs):
         """
             Default constructor.
