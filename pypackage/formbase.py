@@ -5,6 +5,8 @@ import logging
 
 from flask import request, redirect, url_for, render_template, flash
 from flask.ext.babel import gettext as _, ngettext
+from flask.ext.wtf import Form, HiddenField, required,\
+    TextAreaField, TextField, IntegerField, DateField
 
 from pypackage import helpers as h
 from pypackage.forms.fields import InlineModelFormList
@@ -129,53 +131,51 @@ class FormBase(object):
     #     return self.scaffold_form()
 
     def after_create_form(self, form):
-        pass
+        return form
 
-    # Model handlers
-    def on_model_change(self, form, model):
-        """
-            Perform some actions after a model is created or updated.
+    def after_create_model(self, model):
+        return model
 
-            Called from create_model and update_model in the same transaction
-            (if it has any meaning for a store backend).
+    def after_update_model(self, model):
+        return model
 
-            By default do nothing.
-        """
-        pass
-
-    # def create_form(self, obj, next):
     def create_form(self, next):
         form = self.get_form()
         if not form:
+            if self.inline_models:
+                for inline in self.inline_models:
+                    child_form = inline.postprocess_form(inline.form_class)
+                    setattr(self.form_class, inline.forward_prop,
+                            InlineModelFormList(child_form,
+                                                self.session,
+                                                inline.model,
+                                                min_entries=1))
+
             form = self.form_class(next=next)
         self.after_create_form(form)
-
-        if self.inline_models:
-            for inline in self.inline_models:
-                child_form = inline.postprocess_form(inline.form_class)
-                setattr(form, inline.forward_prop,
-                        InlineModelFormList(child_form,
-                                            self.session,
-                                            inline.model,
-                                            min_entries=1))
-
         return form
 
     def edit_form(self, obj):
         form = self.get_form()
         if not form:
-            # form = self.form_class(obj=obj, next=next)
-            form = self.form_class(obj=obj)
-        self.after_create_form(form)
+            if self.inline_models:
+                for inline in self.inline_models:
+                    child_form = inline.postprocess_form(inline.form_class)
+                    setattr(self.form_class, inline.forward_prop,
+                            InlineModelFormList(child_form,
+                                                self.session,
+                                                inline.model,
+                                                min_entries=1))
+
+            form = self.form_class(next=next)
+        form = self.after_create_form(form)
         return form
 
     def create_model(self, form):
         try:
-            # self.form.populate_obj(obj)
-            # self.session.add(obj)
-            # self.session.commit()
             model = self.model()
             form.populate_obj(model)
+            model = self.after_create_model(model)
             self.session.add(model)
             self.session.commit()
             return True
@@ -187,17 +187,9 @@ class FormBase(object):
             return False
 
     def update_model(self, form, model):
-        """
-            Update model from form.
-
-            :param form:
-                Form instance
-            :param model:
-                Model instance
-        """
         try:
             form.populate_obj(model)
-            self.on_model_change(form, model)
+            model = self.after_update_model(model)
             self.session.commit()
             return True
         except Exception, ex:

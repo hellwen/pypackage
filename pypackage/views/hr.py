@@ -115,6 +115,7 @@ class EmployeeAdmin(FormBase):
         form.gender_id.choices = [(g.item_id, g.item_name) for g in
             Item.query.filter_by(active=True).filter_by(group_id=1).
             order_by('item_order')]
+        return form
 
 employeeadmin = EmployeeAdmin(hr, db.session, Employee, EmployeeForm)
 

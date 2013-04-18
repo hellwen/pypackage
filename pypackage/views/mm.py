@@ -37,6 +37,7 @@ class productadmin(FormBase):
         form.customer_id.choices = [(g.id, g.customer_code + " - " + g.customer_name) for g in
             Customer.query.filter_by(active=True).
             order_by('customer_name')]
+        return form
 
 productadmin = productadmin(mm, db.session, Product, ProductForm)
 

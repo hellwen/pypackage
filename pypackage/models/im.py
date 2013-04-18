@@ -31,12 +31,12 @@ class WarehouseVoucher(db.Model):
     bill_no = db.Column(db.String(30), nullable=False, unique=True)
     storage_date = db.Column(db.Date, nullable=False,
         default=date.today())
-    status = db.Column(db.Integer, default=0, nullable=False)
+    status = db.Column(db.String(1), default="N", nullable=False)
     products = db.relationship("WarehouseVoucherProduct",
         order_by="WarehouseVoucherProduct.id",
         cascade="all, delete-orphan")
     opt_datetime = db.Column(db.DateTime, nullable=False,
-        default=datetime.now)
+        default=datetime.utcnow)
     opt_userid = db.Column(db.String(30), nullable=False)
     remark = db.Column(db.String(300))
 
@@ -58,7 +58,7 @@ class WarehouseVoucherProduct(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):
-        return self.product
+        return u"a"
 
 # class DeliveryVoucher(db.Model):
 #     __tablename__ = "delivery_voucher"

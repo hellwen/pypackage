@@ -1,8 +1,11 @@
 #! /usr/bin/env python
 #coding=utf-8
+from datetime import datetime
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, g
 from flask.ext.babel import gettext as _
+from flask.ext.wtf import Form, HiddenField, required,\
+    TextAreaField, TextField, IntegerField, DateField
 
 from pypackage.models import InventoryLocation, Item, WarehouseVoucher,\
     WarehouseVoucherProduct, Product
@@ -12,6 +15,7 @@ from pypackage.forms import InventoryLocationForm, WarehouseVoucherForm,\
 from pypackage.extensions import db
 from pypackage.formbase import FormBase, InlineFormBase
 
+from pypackage.forms.form import Select2Field
 
 im = Blueprint('im', __name__,
     url_prefix="/im",
@@ -73,11 +77,16 @@ def inventorylocation_delete(id):
 
 class WarehouseVoucherProductAdmin(InlineFormBase):
     def postprocess_form(self, form):
-        form.product_id.choices = [(g.id, g.product_name) for g in
-            Product.query.filter_by(active=True).order_by('product_name')]
-        form.inventory_location_id.choices = [(g.id, g.location_name) for g in
+        form.product_id = Select2Field(_("Product"), default=0,
+            choices=[(g.id, g.customer.customer_name + " " + g.product_name) for g in
+            Product.query.filter_by(active=True).order_by("customer_id").order_by('product_name')],
+            coerce=int, validators=[required()])
+        form.inventory_location_id = Select2Field(_("Inventory Location"),
+            default=0, choices=[(g.id, g.location_name) for g in
             InventoryLocation.query.filter_by(active=True).
-            order_by('location_name')]
+            order_by('location_name')],
+            coerce=int, validators=[required()])
+        form.quantity = IntegerField(_("Quantity"))
         return form
 
 
@@ -93,6 +102,11 @@ class WarehouseVoucherAdmin(FormBase):
     fieldsets = [
         (None, {'fields': (("bill_no", "storage_date"), "products")}),
     ]
+
+    def after_create_model(self, model):
+        model.opt_datetime = datetime.now()
+        model.opt_userid = "demo"
+        return model
 
 warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
     WarehouseVoucher, WarehouseVoucherForm)
