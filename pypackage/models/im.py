@@ -58,7 +58,7 @@ class WarehouseVoucherProduct(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):
-        return u"a"
+        return u"<%s, %s: %i>" % (self.product.customer.customer_name, self.product.product_name, self.quantity)
 
 # class DeliveryVoucher(db.Model):
 #     __tablename__ = "delivery_voucher"

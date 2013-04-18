@@ -124,12 +124,6 @@ class FormBase(object):
     def get_form(self):
         pass
 
-    # def get_form(self):
-    #     if self.form is not None:
-    #         return self.form
-
-    #     return self.scaffold_form()
-
     def after_create_form(self, form):
         return form
 
@@ -166,8 +160,7 @@ class FormBase(object):
                                                 self.session,
                                                 inline.model,
                                                 min_entries=1))
-
-            form = self.form_class(next=next)
+            form = self.form_class(obj=obj, next=next)
         form = self.after_create_form(form)
         return form
 
