@@ -8,7 +8,7 @@ from pypackage.models import Product, Customer
 from pypackage.forms import ProductForm
 
 from pypackage.extensions import db
-from pypackage.formbase import FormBase
+from pypackage.base import BaseForm
 
 
 mm = Blueprint('mm', __name__,
@@ -21,16 +21,15 @@ def main():
     return render_template("mm/main.html")
 
 
-class productadmin(FormBase):
-    list_columns = ("product_code", "product_name", "customer",
-        "remark", "active")
+class ProductAdmin(BaseForm):
+    list_columns = ("product_code", "product_name", "customer")
     column_labels = dict(product_code=_("Product Code"),
         product_name=_("Product Name"),
         customer=_("Customer"),
-        remark=_("Remark"), active=_("Active"))
+        remark=_("Remark"))
     fieldsets = [
         (None, {'fields': (('product_code', 'product_name'),
-            ('customer_id'), ("remark"))}),
+            'customer_id', "remark")}),
     ]
 
     def after_create_form(self, form):
@@ -39,7 +38,7 @@ class productadmin(FormBase):
             order_by('customer_name')]
         return form
 
-productadmin = productadmin(mm, db.session, Product, ProductForm)
+productadmin = ProductAdmin(mm, db.session, Product, ProductForm)
 
 
 @mm.route("/product/list/", methods=("GET", "POST"))

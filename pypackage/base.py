@@ -12,7 +12,7 @@ from pypackage import helpers as h
 from pypackage.forms.fields import InlineModelFormList
 
 
-class InlineFormBase(object):
+class InlineBaseForm(object):
     """
         Settings for inline form administration.
 
@@ -62,14 +62,15 @@ class InlineFormBase(object):
         return form_class
 
 
-class FormBase(object):
+class BaseForm(object):
     list_columns = None
     fieldsets = []
     column_labels = dict()
     readonly = False
     set_focus = True
     inline_models = None
-    form_widget_args = None
+    form_create_widget_args = {}
+    form_edit_widget_args = {}
 
     list_template = "list.html"
     create_template = "create.html"
@@ -127,12 +128,6 @@ class FormBase(object):
     def after_create_form(self, form):
         return form
 
-    def after_create_model(self, model):
-        return model
-
-    def after_update_model(self, model):
-        return model
-
     def create_form(self, next):
         form = self.get_form()
         if not form:
@@ -164,6 +159,9 @@ class FormBase(object):
         form = self.after_create_form(form)
         return form
 
+    def after_create_model(self, model):
+        return model
+
     def create_model(self, form):
         try:
             model = self.model()
@@ -179,6 +177,9 @@ class FormBase(object):
             logging.exception('Failed to create model')
             return False
 
+    def after_update_model(self, model):
+        return model
+
     def update_model(self, form, model):
         try:
             form.populate_obj(model)
@@ -192,12 +193,16 @@ class FormBase(object):
             self.session.rollback()
             return False
 
-    def delete_model(self, obj):
+    def before_delete_model(self, model):
+        return True
+
+    def delete_model(self, model):
         try:
-            self.session.flush()
-            self.session.delete(obj)
-            self.session.commit()
-            return True
+            if self.before_delete_model(model):
+                self.session.flush()
+                self.session.delete(model)
+                self.session.commit()
+                return True
         except Exception, ex:
             flash(_('Failed to delete model. %(error)s', error=str(ex)),
                 'error')
@@ -242,7 +247,7 @@ class FormBase(object):
 
         return self.render(self.create_template,
                            form=form,
-                           form_widget_args=None,
+                           form_widget_args=self.form_create_widget_args,
                            return_url=return_url)
 
     def edit_view(self, id):
@@ -265,16 +270,16 @@ class FormBase(object):
 
         return self.render(self.edit_template,
                            form=form,
-                           form_widget_args=self.form_widget_args,
+                           form_widget_args=self.form_edit_widget_args,
                            return_url=return_url)
 
     def delete_view(self, id):
         return_url = request.args.get('next',
             url_for("." + self.endpoint + "_list"))
 
-        obj = self.model.query.get(id)
+        model = self.get_one(id)
 
-        if obj:
-            self.delete_model(obj)
+        if model:
+            self.delete_model(model)
 
         return redirect(return_url)

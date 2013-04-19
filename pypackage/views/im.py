@@ -8,12 +8,12 @@ from flask.ext.wtf import Form, HiddenField, required,\
     TextAreaField, TextField, IntegerField, DateField
 
 from pypackage.models import InventoryLocation, Item, WarehouseVoucher,\
-    WarehouseVoucherProduct, Product
+    WarehouseVoucherProduct, Product, BillRule
 from pypackage.forms import InventoryLocationForm, WarehouseVoucherForm,\
     WarehouseVoucherProductForm
 
 from pypackage.extensions import db
-from pypackage.formbase import FormBase, InlineFormBase
+from pypackage.base import BaseForm, InlineBaseForm
 
 from pypackage.forms.form import Select2Field
 
@@ -27,9 +27,8 @@ def main():
     return render_template("im/main.html")
 
 
-class InventoryLocationAdmin(FormBase):
-    list_columns = ("building", "floor", "inventory_type", "location_name",
-        "remark")
+class InventoryLocationAdmin(BaseForm):
+    list_columns = ("building", "floor", "inventory_type", "location_name")
     column_labels = dict(building=_("Building"),
         floor=_("Floor"),
         inventory_type=_("Inventory Type"),
@@ -45,6 +44,7 @@ class InventoryLocationAdmin(FormBase):
         form.inventory_type_id.choices = [(g.item_id, g.item_name) for g in
             Item.query.filter_by(active=True).filter_by(group_id=2).
             order_by('item_order')]
+        return form
 
 inventorylocationadmin = InventoryLocationAdmin(im, db.session,
     InventoryLocation, InventoryLocationForm)
@@ -75,7 +75,7 @@ def inventorylocation_delete(id):
     return inventorylocationadmin.delete_view(id)
 
 
-class WarehouseVoucherProductAdmin(InlineFormBase):
+class WarehouseVoucherProductAdmin(InlineBaseForm):
     def postprocess_form(self, form):
         form.product_id = Select2Field(_("Product"), default=0,
             choices=[(g.id, g.customer.customer_name + " " + g.product_name) for g in
@@ -86,24 +86,42 @@ class WarehouseVoucherProductAdmin(InlineFormBase):
             InventoryLocation.query.filter_by(active=True).
             order_by('location_name')],
             coerce=int, validators=[required()])
-        form.quantity = IntegerField(_("Quantity"))
+        form.quantity = IntegerField(_("Quantity"), validators=[required()])
         return form
 
 
-class WarehouseVoucherAdmin(FormBase):
+class WarehouseVoucherAdmin(BaseForm):
     inline_models = (WarehouseVoucherProductAdmin("products",
         WarehouseVoucherProduct, WarehouseVoucherProductForm),)
+
+    form_create_widget_args = {
+        "bill_no": {
+            "readonly": "True"
+        }
+    }
+
+    form_edit_widget_args = {
+        "bill_no": {
+            "readonly": "True"
+        }
+    }
 
     list_columns = ("bill_no", "storage_date", "status", "products")
     column_labels = dict(bill_no=_("Bill No"),
         storage_date=_("Storage Date"),
         products=_("Products"),
-        status=_("Status"))
+        status=_("Status"),
+        remark=_("Remark"))
     fieldsets = [
-        (None, {'fields': (("bill_no", "storage_date"), "products")}),
+        (None, {'fields': (("bill_no", "storage_date"),
+            "remark", "products")}),
     ]
 
+    def after_create_form(self, form):
+        return form
+
     def after_create_model(self, model):
+        model.bill_no = BillRule().get_new_bill_no("WarehouseVoucher")
         model.opt_datetime = datetime.now()
         model.opt_userid = "demo"
         return model

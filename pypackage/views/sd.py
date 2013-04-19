@@ -8,7 +8,7 @@ from pypackage.models import Customer
 from pypackage.forms import CustomerForm
 
 from pypackage.extensions import db
-from pypackage.formbase import FormBase
+from pypackage.base import BaseForm
 
 
 sd = Blueprint('sd', __name__,
@@ -21,11 +21,12 @@ def main():
     return render_template("sd/main.html")
 
 
-class CustomerAdmin(FormBase):
-    list_columns = ("customer_code", "customer_name", "remark", "active")
+class CustomerAdmin(BaseForm):
+    list_columns = ("customer_code", "customer_name")
     column_labels = dict(customer_code=_("Customer Code"),
         customer_name=_("Customer Name"),
-        remark=_("Remark"), active=_("Active"))
+        remark=_("Remark"),
+        active=_("Active"))
     fieldsets = [
         (None, {'fields': ("customer_code", "customer_name",
             "remark")}),

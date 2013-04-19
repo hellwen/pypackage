@@ -49,14 +49,14 @@
     {% for field in admin_view.get_fields(None) if field.type != 'HiddenField' and field.type != 'CSRFTokenField' %}
     <div class="row-fluid">
         {% if admin_view.is_tuple(field) %}
-            {% for f in field  if f.type != 'HiddenField' and f.type != 'CSRFTokenField' %}
+            {% for f in field if f.type != 'HiddenField' and f.type != 'CSRFTokenField' %}
             <div class="span3">
-                {% set kwargs = widget_args.get(f.name, {}) %}
+                {% set kwargs = widget_args.get(f, {}) %}
                 {{ render_field(form, form.__getitem__(f), not loop.index0 and admin_view.set_focus, kwargs) }}
             </div>
             {% endfor %}
         {% else %}
-            {% set kwargs = widget_args.get(field.name, {}) %}
+            {% set kwargs = widget_args.get(field, {}) %}
             {{ render_field(form, form.__getitem__(field), not loop.index0 and admin_view.set_focus, kwargs) }}
         {% endif %}
     </div>
@@ -86,12 +86,12 @@
                 {% if admin_view.is_tuple(field) %}
                     {% for f in field if f.type != 'HiddenField' and f.type != 'CSRFTokenField' %}
                     <div class="span3">
-                        {% set kwargs = widget_args.get(f.name, {}) %}
+                        {% set kwargs = widget_args.get(f, {}) %}
                         {{ render_field(form, form.__getitem__(f), not loop.index0 and admin_view.set_focus, kwargs) }}                        
                     </div>
                     {% endfor %}
                 {% else %}
-                    {% set kwargs = widget_args.get(field.name, {}) %}
+                    {% set kwargs = widget_args.get(field, {}) %}
                     {{ render_field(form, form.__getitem__(field), not loop.index0 and admin_view.set_focus, kwargs) }}                    
                 {% endif %}
             </div>

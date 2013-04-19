@@ -8,7 +8,7 @@ from pypackage.models import Employee, Department, Job, Item
 from pypackage.forms import EmployeeForm, DepartmentForm, JobForm
 
 from pypackage.extensions import db
-from pypackage.formbase import FormBase
+from pypackage.base import BaseForm
 
 
 hr = Blueprint('hr', __name__,
@@ -21,7 +21,7 @@ def main():
     return render_template("hr/main.html")
 
 
-class JobAdmin(FormBase):
+class JobAdmin(BaseForm):
     list_columns = ("job_name", "description")
     fieldsets = [
         (None, {'fields': ('job_name', 'description')}),
@@ -55,7 +55,7 @@ def job_delete(id):
     return jobadmin.delete_view(id)
 
 
-class DeptAdmin(FormBase):
+class DeptAdmin(BaseForm):
     list_columns = ("dept_name", "description")
     fieldsets = [
         (None, {'fields': ('dept_name', 'description')}),
@@ -90,7 +90,7 @@ def department_delete(id):
     return deptadmin.delete_view(id)
 
 
-class EmployeeAdmin(FormBase):
+class EmployeeAdmin(BaseForm):
     list_columns = ("emp_code", "emp_name", "gender", "id_card",
         "department", "job")
     column_labels = dict(emp_code=_("Employee Code"),

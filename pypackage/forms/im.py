@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 #coding=utf-8
+from datetime import date
+
 from flask.ext.wtf import Form, HiddenField, required,\
     TextAreaField, TextField, IntegerField, DateField
 
@@ -25,12 +27,13 @@ class WarehouseVoucherProductForm(Form):
     #     coerce=int, validators=[required()])
     # inventory_location_id = Select2Field(_("Inventory Location"), default=0,
     #     coerce=int, validators=[required()])
-    # quantity = IntegerField(_("Quantity"))
+    # quantity = IntegerField(_("Quantity"), validators=[required()])
 
 
 class WarehouseVoucherForm(Form):
     next = HiddenField()
 
-    bill_no = TextField(_("Bill No"), validators=[required()])
+    bill_no = TextField(_("Bill No"))
     storage_date = DateField(_("Storage Date (eg:2012-01-01)"),
-        validators=[required()])
+        validators=[required()], default=date.today())
+    remark = TextAreaField(_("Remark"))

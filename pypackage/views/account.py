@@ -13,7 +13,7 @@ from flask.ext.login import login_user, logout_user, login_required
 from pypackage.extensions import db
 from pypackage.models import User, Employee, PrincipalGroup
 from pypackage.forms import LoginForm, UserForm, UserEditForm
-from pypackage.formbase import FormBase
+from pypackage.base import BaseForm
 
 
 account = Blueprint("account", __name__, url_prefix="/account")
@@ -56,7 +56,7 @@ def logout():
     return redirect(next_url)
 
 
-class UserAdmin(FormBase):
+class UserAdmin(BaseForm):
     list_columns = ("username", "supperuser", "employee",
         "principalgroup", "description")
     fieldsets = [

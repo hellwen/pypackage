@@ -7,8 +7,8 @@ from flask.ext.babel import gettext as _
 from pypackage.extensions import db
 from pypackage.models import ItemGroup, Item
 from pypackage.forms import ItemGroupForm, ItemForm
-from pypackage.formbase import FormBase
-# from pypackage.formbase import FormBase, InlineFormBase
+from pypackage.base import BaseForm
+# from pypackage.base import BaseForm, InlineBaseForm
 
 
 base = Blueprint('base', __name__, url_prefix="/base")
@@ -19,7 +19,7 @@ def main():
     return render_template("base/main.html")
 
 
-# class ItemInlineAdmin(InlineFormBase):
+# class ItemInlineAdmin(InlineBaseForm):
 #     list_columns = ("item_order", "item_name")
 #     fieldsets = [
 #         (None, {'fields': ('item_order', 'item_name')}),
@@ -27,7 +27,7 @@ def main():
 #     column_labels = dict(item_order=_("Order"), item_name=_("Item Name"))
 
 
-class ItemGroupAdmin(FormBase):
+class ItemGroupAdmin(BaseForm):
     # inline_models = (ItemInlineAdmin(Item, ItemForm),)
 
     list_columns = ("id", "group_name", 'items')
@@ -66,7 +66,7 @@ def itemgroup_delete(id):
     return itemgroupadmin.delete_view(id)
 
 
-class ItemAdmin(FormBase):
+class ItemAdmin(BaseForm):
     # inline_models = (ItemInlineAdmin(Item, ItemForm),)
 
     list_columns = ("item_id", "item_order", "item_name")
