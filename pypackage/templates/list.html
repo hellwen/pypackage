@@ -1,19 +1,44 @@
 {% extends admin_view.blueprint.name + '/main.html' %}
+{% import 'macros/_actions.html' as actionlib with context %}
 
 {% block body %}
-    <ul class="nav nav-pills">
+    {% block model_menu_bar %}
+    <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#">{{ _('List') }} ({{ count }})</a>
+            <a href="javascript:void(0)">{{ _('List') }} ({{ admin_view.count }})</a>
         </li>
+        {% if admin_view.can_create %}
         <li>
             <a href="{{ url_for('.' + admin_view.endpoint + '_create', id=0, url=return_url) }}">{{ _('Create') }}</a>
         </li>
+        {% endif %}
+
+        {% if admin_view.actions %}
+        <li class="dropdown">
+            {{ actionlib.dropdown(admin_view.actions) }}
+        </li>
+        {% endif %}
     </ul>
+    {% endblock %}
+
+    {% if filter_groups %}
+        {{ model_layout.filter_form() }}
+        <div class="clearfix"></div>
+    {% endif %}
+
+    {% block model_list_table %}
     <table class="table table-striped table-bordered model-list">
         <thead>
             <tr>
                 {% block list_header scoped %}
+                    {% if admin_view.actions %}
+                    <th class="span1">
+                        <input type="checkbox" name="rowtoggle" class="action-rowtoggle" />
+                    </th>
+                    {% endif %}
+                    {%- if admin_view.can_edit or admin_view.can_delete -%}
                     <th class="span1">_____</th>
+                    {% endif %}
                     {% set column = 0 %}
                     {% for c in admin_view.list_columns %}
                     <th>
@@ -27,21 +52,25 @@
         {% for row in admin_view.data %}
         <tr>
             {% block list_row scoped %}
-                {% if actions %}
+                {% if admin_view.actions %}
                 <td>
                     <input type="checkbox" name="rowid" class="action-checkbox" value="{{ row.id }}" />
                 </td>
                 {% endif %}
                 <td>
                     {% block list_row_actions scoped %}
+                        {%- if admin_view.can_edit -%}
                         <a class="icon" href="{{ url_for('.' + admin_view.endpoint + '_edit', id=row.id, url=return_url) }}">
                             <i class="icon-pencil"></i>
                         </a>
+                        {% endif %}
+                        {%- if admin_view.can_delete -%}
                         <form class="icon" method="POST" action="{{ url_for('.' + admin_view.endpoint + '_delete', id=row.id, url=return_url) }}">
                             <button onclick="return confirm('{{ _('You sure you want to delete this item?') }}');">
                                 <i class="icon-remove"></i>
                             </button>
                         </form>
+                        {% endif %}
                     {% endblock %}
                 </td>
 
@@ -56,13 +85,22 @@
         </tr>
         {% endfor %}
     </table>
+
     {# 分页处理，暂时不支持
     {{ lib.pager(page, num_pages, pager_url) }}
     #}
+
+    {% endblock %}
+
+    {{ actionlib.form(admin_view.actions, url_for('.' + admin_view.endpoint + '_action')) }}
 {% endblock %}
 
 {% block tail %}
     <script src="{{ url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ url_for('static', filename='js/form.js') }}"></script>
     <script src="{{ url_for('static', filename='js/filters.js') }}"></script>
+
+    {{ actionlib.script(_('Please select at least one model.'),
+                      admin_view.actions,
+                      admin_view.actions_confirmation) }}    
 {% endblock %}

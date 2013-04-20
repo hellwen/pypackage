@@ -47,3 +47,6 @@ class BillRule(db.Model):
         if bill_name == "WarehouseVoucher":
             return "WV" + datetime.now().strftime("%y%m%d") \
                 + "_" + datetime.now().strftime("%f")
+        elif bill_name == "DeliveryVoucher":
+            return "DV" + datetime.now().strftime("%y%m%d") \
+                + "_" + datetime.now().strftime("%f")

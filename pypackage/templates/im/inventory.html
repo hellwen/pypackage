@@ -1,5 +1,4 @@
-{% extends admin_view.blueprint.name + '/main.html' %}
-{% import 'macros/_forms.html' as lib with context %}
+{% extends 'main.html' %}
 
 {% block head %}
     <link href="/static/css/datepicker.css" rel="stylesheet">
@@ -7,14 +6,14 @@
 {% endblock %}
 
 {% block body %}
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills">
         <li>
             <a href="{{ url_for('.' + admin_view.endpoint + '_list') }}">{{ _('List') }}</a>
         </li>
         <li class="active">
             <a href="#">{{ _('Create') }}</a>
         </li>
-  	</ul>
+    </ul>
 
     {% macro extra() %}
         <input name="_add_another" type="submit" class="btn btn-large" value="{{ _('Save and Add') }}" />

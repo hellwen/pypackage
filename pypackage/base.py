@@ -5,10 +5,11 @@ import logging
 
 from flask import request, redirect, url_for, render_template, flash
 from flask.ext.babel import gettext as _, ngettext
-from flask.ext.wtf import Form, HiddenField, required,\
-    TextAreaField, TextField, IntegerField, DateField
+# from flask.ext.wtf import Form, HiddenField, required,\
+#     TextAreaField, TextField, IntegerField, DateField
 
 from pypackage import helpers as h
+# from pypackage.actions import ActionsMixin
 from pypackage.forms.fields import InlineModelFormList
 
 
@@ -71,6 +72,12 @@ class BaseForm(object):
     inline_models = None
     form_create_widget_args = {}
     form_edit_widget_args = {}
+    actions = []
+    actions_confirmation = {}
+
+    can_create = True
+    can_edit = True
+    can_delete = True
 
     list_template = "list.html"
     create_template = "create.html"
@@ -212,7 +219,7 @@ class BaseForm(object):
 
     def list_view(self):
         self.data = self.model.query.all()
-        self.count = 0
+        self.count = self.model.query.count()
         return self.render(self.list_template)
 
     # def show_view(self, id):
@@ -232,9 +239,7 @@ class BaseForm(object):
 
         form = self.create_form(next=return_url)
 
-        # if self.form.validate_on_submit():
         if form.validate_on_submit():
-            # if self.create_model(obj):
             if self.create_model(form):
                 if '_add_another' in request.form:
                     flash(_('Created successfully.'))
@@ -242,8 +247,6 @@ class BaseForm(object):
                         url=return_url))
                 else:
                     return redirect(return_url)
-
-        # return render_template("create.html", formadmin=self)
 
         return self.render(self.create_template,
                            form=form,
@@ -253,9 +256,6 @@ class BaseForm(object):
     def edit_view(self, id):
         return_url = request.args.get('next',
             url_for("." + self.endpoint + "_list"))
-
-        # if not self.can_edit:
-            # return redirect(return_url)
 
         model = self.get_one(id)
 
@@ -281,5 +281,23 @@ class BaseForm(object):
 
         if model:
             self.delete_model(model)
+
+        return redirect(return_url)
+
+    def action_extend(self, action, ids):
+        pass
+
+    def action_view(self):
+        return_url = request.args.get('next',
+            url_for("." + self.endpoint + "_list"))
+
+        action = request.form.get('action')
+        ids = request.form.getlist('rowid')
+
+        if action == "delete":
+            for rowid in ids:
+                self.delete_view(rowid)
+
+        self.action_extend(action, ids)
 
         return redirect(return_url)

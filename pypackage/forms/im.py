@@ -37,3 +37,16 @@ class WarehouseVoucherForm(Form):
     storage_date = DateField(_("Storage Date (eg:2012-01-01)"),
         validators=[required()], default=date.today())
     remark = TextAreaField(_("Remark"))
+
+
+class DeliveryVoucherProductForm(Form):
+    id = HiddenField()
+
+
+class DeliveryVoucherForm(Form):
+    next = HiddenField()
+
+    bill_no = TextField(_("Bill No"))
+    storage_date = DateField(_("Storage Date (eg:2012-01-01)"),
+        validators=[required()], default=date.today())
+    remark = TextAreaField(_("Remark"))

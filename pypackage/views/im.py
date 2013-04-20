@@ -2,15 +2,16 @@
 #coding=utf-8
 from datetime import datetime
 
-from flask import Blueprint, render_template, g
+from flask import Blueprint, render_template, request
 from flask.ext.babel import gettext as _
-from flask.ext.wtf import Form, HiddenField, required,\
-    TextAreaField, TextField, IntegerField, DateField
+from flask.ext.wtf import required, IntegerField
 
-from pypackage.models import InventoryLocation, Item, WarehouseVoucher,\
-    WarehouseVoucherProduct, Product, BillRule
-from pypackage.forms import InventoryLocationForm, WarehouseVoucherForm,\
-    WarehouseVoucherProductForm
+from pypackage.models import InventoryLocation, Item, Product, BillRule, \
+    WarehouseVoucher, WarehouseVoucherProduct, \
+    DeliveryVoucher, DeliveryVoucherProduct
+from pypackage.forms import InventoryLocationForm,\
+    WarehouseVoucherForm, WarehouseVoucherProductForm, \
+    DeliveryVoucherForm, DeliveryVoucherProductForm
 
 from pypackage.extensions import db
 from pypackage.base import BaseForm, InlineBaseForm
@@ -86,7 +87,8 @@ class WarehouseVoucherProductAdmin(InlineBaseForm):
             InventoryLocation.query.filter_by(active=True).
             order_by('location_name')],
             coerce=int, validators=[required()])
-        form.quantity = IntegerField(_("Quantity"), validators=[required()])
+        form.quantity = IntegerField(_("Quantity"), validators=[required()],
+            default=1)
         return form
 
 
@@ -116,6 +118,9 @@ class WarehouseVoucherAdmin(BaseForm):
         (None, {'fields': (("bill_no", "storage_date"),
             "remark", "products")}),
     ]
+    actions = [("delete", "Delete"), ("confirm", _("Confirm"))]
+    actions_confirmation = {"delete": _("Confirmation Delete ?"),
+        "confirm": _("Confirmation Complete ?")}
 
     def after_create_form(self, form):
         return form
@@ -125,6 +130,13 @@ class WarehouseVoucherAdmin(BaseForm):
         model.opt_datetime = datetime.now()
         model.opt_userid = "demo"
         return model
+
+    def action_extend(self, action, ids):
+        if action == "confirm":
+            for rowid in ids:
+                model = self.get_one(rowid)
+                model.status = "C"
+                self.session.commit()
 
 warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
     WarehouseVoucher, WarehouseVoucherForm)
@@ -153,3 +165,109 @@ def warehousevoucher_edit(id):
 @im.route("/warehousevoucher/delete/<int:id>/", methods=("GET", "POST"))
 def warehousevoucher_delete(id):
     return warehousevoucheradmin.delete_view(id)
+
+
+@im.route("/warehousevoucher/action/", methods=("GET", "POST"))
+def warehousevoucher_action():
+    return warehousevoucheradmin.action_view()
+
+
+class DeliveryVoucherProductAdmin(InlineBaseForm):
+    def postprocess_form(self, form):
+        form.product_id = Select2Field(_("Product"), default=0,
+            choices=[(g.id, g.customer.customer_name + " " + g.product_name) for g in
+            Product.query.filter_by(active=True).order_by("customer_id").order_by('product_name')],
+            coerce=int, validators=[required()])
+        form.inventory_location_id = Select2Field(_("Inventory Location"),
+            default=0, choices=[(g.id, g.location_name) for g in
+            InventoryLocation.query.filter_by(active=True).
+            order_by('location_name')],
+            coerce=int, validators=[required()])
+        form.quantity = IntegerField(_("Quantity"), validators=[required()],
+            default=1)
+        return form
+
+
+class DeliveryVoucherAdmin(BaseForm):
+    inline_models = (DeliveryVoucherProductAdmin("products",
+        DeliveryVoucherProduct, DeliveryVoucherProductForm),)
+
+    form_create_widget_args = {
+        "bill_no": {
+            "readonly": "True"
+        }
+    }
+
+    form_edit_widget_args = {
+        "bill_no": {
+            "readonly": "True"
+        }
+    }
+
+    list_columns = ("bill_no", "storage_date", "status", "products")
+    column_labels = dict(bill_no=_("Bill No"),
+        storage_date=_("Storage Date"),
+        products=_("Products"),
+        status=_("Status"),
+        remark=_("Remark"))
+    fieldsets = [
+        (None, {'fields': (("bill_no", "storage_date"),
+            "remark", "products")}),
+    ]
+    actions = [("delete", "Delete"), ("confirm", _("Confirm"))]
+    actions_confirmation = {"delete": _("Confirmation Delete ?"),
+        "confirm": _("Confirmation Complete ?")}
+
+    def after_create_form(self, form):
+        return form
+
+    def after_create_model(self, model):
+        model.bill_no = BillRule().get_new_bill_no("DeliveryVoucher")
+        model.opt_datetime = datetime.now()
+        model.opt_userid = "demo"
+        return model
+
+    def action_extend(self, action, ids):
+        if action == "confirm":
+            for rowid in ids:
+                model = self.get_one(rowid)
+                model.status = "C"
+                self.session.commit()
+
+deliveryvoucheradmin = DeliveryVoucherAdmin(im, db.session,
+    DeliveryVoucher, DeliveryVoucherForm)
+
+
+@im.route("/deliveryvoucher/list/", methods=("GET", "POST"))
+def deliveryvoucher_list():
+    return deliveryvoucheradmin.list_view()
+
+
+@im.route("/deliveryvoucher/view/<int:id>/", methods=("GET", "POST"))
+def deliveryvoucher_view(id):
+    return deliveryvoucheradmin.show_view(id)
+
+
+@im.route("/deliveryvoucher/create/", methods=("GET", "POST"))
+def deliveryvoucher_create():
+    return deliveryvoucheradmin.create_view()
+
+
+@im.route("/deliveryvoucher/edit/<int:id>/", methods=("GET", "POST"))
+def deliveryvoucher_edit(id):
+    return deliveryvoucheradmin.edit_view(id)
+
+
+@im.route("/deliveryvoucher/delete/<int:id>/", methods=("GET", "POST"))
+def deliveryvoucher_delete(id):
+    return deliveryvoucheradmin.delete_view(id)
+
+
+@im.route("/deliveryvoucher/action/", methods=("GET", "POST"))
+def deliveryvoucher_action():
+    return deliveryvoucheradmin.action_view()
+
+
+# @im.route("/inventory/list/", methods=("GET", "POST"))
+# def inventory():
+#     return warehousevoucheradmin.list_view()
