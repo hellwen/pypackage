@@ -2,7 +2,7 @@
 {% from "macros/_forms.html" import render_errors %}
 
 {%- block body %}
-    <h2 class="title">{{ _('Login to pypackage') }}</h2>
+    <h2 class="title">{{ _('Please sign in') }}</h2>
     <form method="POST" action=".">
         {{ form.hidden_tag() }}
         <div class="control-group">
@@ -22,7 +22,7 @@
               <label class="checkbox">
                 <input type="checkbox"> Remember me
               </label>        
-              <button type="submit" class="btn">Sign in</button>
+              <button type="submit" class="btn btn-large btn-primary">Sign in</button>
             </div>
         </div>
     </form>  

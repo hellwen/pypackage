@@ -58,3 +58,8 @@ def customer_edit(id):
 @sd.route("/customer/delete/<int:id>/", methods=("GET", "POST"))
 def customer_delete(id):
     return customeradmin.delete_view(id)
+
+
+@sd.route("/customer/action/", methods=("GET", "POST"))
+def customer_action():
+    return customeradmin.action_view()

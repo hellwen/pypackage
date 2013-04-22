@@ -31,6 +31,7 @@ class WarehouseVoucher(db.Model):
     bill_no = db.Column(db.String(30), nullable=False, unique=True)
     storage_date = db.Column(db.Date, nullable=False,
         default=date.today())
+    delivery_person = db.Column(db.String(30), nullable=False)
     status = db.Column(db.String(1), default="N", nullable=False)
     products = db.relationship("WarehouseVoucherProduct",
         order_by="WarehouseVoucherProduct.id",
@@ -69,6 +70,7 @@ class DeliveryVoucher(db.Model):
     bill_no = db.Column(db.String(30), nullable=False, unique=True)
     storage_date = db.Column(db.Date, nullable=False,
         default=date.today())
+    consignor = db.Column(db.String(30), nullable=False)
     status = db.Column(db.String(1), default="N", nullable=False)
     products = db.relationship("DeliveryVoucherProduct",
         order_by="DeliveryVoucherProduct.id",

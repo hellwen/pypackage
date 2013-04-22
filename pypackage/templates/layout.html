@@ -39,11 +39,13 @@
                         
                         #}
                     </ul>
+                    {% if g.user %}
                     <ul class="nav pull-right">
                         <li>
                             <a href="{{ url_for('account.logout',next=request.path) }}">{{ _("Logout") }}</a>
                         </li>
                     </ul>
+                    {% endif %}
                 </div>
             </div>
         </div>

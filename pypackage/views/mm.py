@@ -64,3 +64,9 @@ def product_edit(id):
 @mm.route("/product/delete/<int:id>/", methods=("GET", "POST"))
 def product_delete(id):
     return productadmin.delete_view(id)
+
+
+@mm.route("/product/action/", methods=("GET", "POST"))
+def product_action():
+    return productadmin.action_view()
+

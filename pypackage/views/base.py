@@ -66,6 +66,11 @@ def itemgroup_delete(id):
     return itemgroupadmin.delete_view(id)
 
 
+@base.route("/itemgroup/action/", methods=("GET", "POST"))
+def itemgroup_action():
+    return itemgroupadmin.action_view()
+
+
 class ItemAdmin(BaseForm):
     # inline_models = (ItemInlineAdmin(Item, ItemForm),)
 
@@ -103,3 +108,9 @@ def item_edit(id):
 @base.route("/item/delete/id=<int:id>/", methods=("GET", "POST"))
 def item_delete(id):
     return itemadmin.delete_view(id)
+
+
+@base.route("/item/action/", methods=("GET", "POST"))
+def item_action():
+    return itemadmin.action_view()
+

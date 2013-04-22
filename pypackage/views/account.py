@@ -6,7 +6,8 @@
     :license: BSD, see LICENSE for more details.
 """
 
-from flask import Blueprint, request, flash, redirect, url_for, render_template
+from flask import Blueprint, request, flash, redirect, url_for, \
+    render_template, g
 from flask.ext.babel import gettext as _
 from flask.ext.login import login_user, logout_user, login_required
 
@@ -39,6 +40,8 @@ def login():
 
             flash(_("Welcome back, %(name)s", name=user.username), "success")
 
+            g.user = user
+
             return redirect(request.args.get("next") or
                 url_for("frontend.index"))
         else:
@@ -51,6 +54,7 @@ def login():
 @login_required
 def logout():
     logout_user()
+    g.user = None
     flash(_("You are now logged out"), "success")
     next_url = url_for("frontend.index")
     return redirect(next_url)
@@ -77,7 +81,7 @@ class UserAdmin(BaseForm):
         active=_("Active"))
 
     def after_create_form(self, form):
-        form.employee_id.choices = [(g.id, g.dept_name) for g in
+        form.employee_id.choices = [(g.id, g.emp_name) for g in
             Employee.query.filter_by(active=True).order_by('emp_name')]
         form.principalgroup_id.choices = [(g.id, g.job_name) for g in
             PrincipalGroup.query.filter_by(active=True).order_by('group_name')]
@@ -113,6 +117,11 @@ def user_edit(id):
 @account.route("/user/delete/id=<int:id>/", methods=("GET", "POST"))
 def user_delete(id):
     return useradmin.delete_view(id)
+
+
+@account.route("/user/action/", methods=("GET", "POST"))
+def user_action():
+    return useradmin.action_view()
 
 
 # @account.route("/user/create/", methods=("GET", "POST"))

@@ -55,6 +55,11 @@ def job_delete(id):
     return jobadmin.delete_view(id)
 
 
+@hr.route("/job/action/", methods=("GET", "POST"))
+def job_action():
+    return jobadmin.action_view()
+
+
 class DeptAdmin(BaseForm):
     list_columns = ("dept_name", "description")
     fieldsets = [
@@ -88,6 +93,11 @@ def department_edit(id):
 @hr.route("/department/delete/id=<int:id>/", methods=("GET", "POST"))
 def department_delete(id):
     return deptadmin.delete_view(id)
+
+
+@hr.route("/department/action/", methods=("GET", "POST"))
+def department_action():
+    return deptadmin.action_view()
 
 
 class EmployeeAdmin(BaseForm):
@@ -143,3 +153,9 @@ def employee_edit(id):
 @hr.route("/employee/delete/<int:id>/", methods=("GET", "POST"))
 def employee_delete(id):
     return employeeadmin.delete_view(id)
+
+
+@hr.route("/employee/action/", methods=("GET", "POST"))
+def employee_action():
+    return employeeadmin.action_view()
+    
