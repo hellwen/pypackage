@@ -7,7 +7,7 @@ from flask.ext.babel import gettext as _
 from pypackage.models import Customer
 from pypackage.forms import CustomerForm
 
-from pypackage.extensions import db
+from pypackage.extensions import db, login_required
 from pypackage.base import BaseForm
 
 
@@ -17,6 +17,7 @@ sd = Blueprint('sd', __name__,
 
 
 @sd.route("/main/", methods=("GET", "POST"))
+@login_required
 def main():
     return render_template("sd/main.html")
 
@@ -36,30 +37,36 @@ customeradmin = CustomerAdmin(sd, db.session, Customer, CustomerForm)
 
 
 @sd.route("/customer/list/", methods=("GET", "POST"))
+@login_required
 def customer_list():
     return customeradmin.list_view()
 
 
 @sd.route("/customer/view/<int:id>/", methods=("GET", "POST"))
+@login_required
 def customer_view(id):
     return customeradmin.show_view(id)
 
 
 @sd.route("/customer/create/", methods=("GET", "POST"))
+@login_required
 def customer_create():
     return customeradmin.create_view()
 
 
 @sd.route("/customer/edit/<int:id>/", methods=("GET", "POST"))
+@login_required
 def customer_edit(id):
     return customeradmin.edit_view(id)
 
 
 @sd.route("/customer/delete/<int:id>/", methods=("GET", "POST"))
+@login_required
 def customer_delete(id):
     return customeradmin.delete_view(id)
 
 
 @sd.route("/customer/action/", methods=("GET", "POST"))
+@login_required
 def customer_action():
     return customeradmin.action_view()

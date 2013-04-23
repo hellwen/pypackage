@@ -7,7 +7,7 @@ from flask.ext.babel import gettext as _
 from pypackage.models import Employee, Department, Job, Item
 from pypackage.forms import EmployeeForm, DepartmentForm, JobForm
 
-from pypackage.extensions import db
+from pypackage.extensions import db, login_required
 from pypackage.base import BaseForm
 
 
@@ -17,6 +17,7 @@ hr = Blueprint('hr', __name__,
 
 
 @hr.route("/main/", methods=("GET", "POST"))
+@login_required
 def main():
     return render_template("hr/main.html")
 
@@ -31,31 +32,37 @@ jobadmin = JobAdmin(hr, db.session, Job, JobForm)
 
 
 @hr.route("/job/list/", methods=("GET", "POST"))
+@login_required
 def job_list():
     return jobadmin.list_view()
 
 
 @hr.route("/job/view/id=<int:id>", methods=("GET", "POST"))
+@login_required
 def job_view(id):
     return jobadmin.show_view(id)
 
 
 @hr.route("/job/create/", methods=("GET", "POST"))
+@login_required
 def job_create():
     return jobadmin.create_view()
 
 
 @hr.route("/job/edit/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def job_edit(id):
     return jobadmin.edit_view(id)
 
 
 @hr.route("/job/delete/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def job_delete(id):
     return jobadmin.delete_view(id)
 
 
 @hr.route("/job/action/", methods=("GET", "POST"))
+@login_required
 def job_action():
     return jobadmin.action_view()
 
@@ -71,31 +78,37 @@ deptadmin = DeptAdmin(hr, db.session, Department, DepartmentForm)
 
 
 @hr.route("/department/list/", methods=("GET", "POST"))
+@login_required
 def department_list():
     return deptadmin.list_view()
 
 
 @hr.route("/department/id=<int:id>", methods=("GET", "POST"))
+@login_required
 def department_view(id):
     return deptadmin.show_view(id)
 
 
 @hr.route("/department/create/", methods=("GET", "POST"))
+@login_required
 def department_create():
     return deptadmin.create_view()
 
 
 @hr.route("/department/edit/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def department_edit(id):
     return deptadmin.edit_view(id)
 
 
 @hr.route("/department/delete/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def department_delete(id):
     return deptadmin.delete_view(id)
 
 
 @hr.route("/department/action/", methods=("GET", "POST"))
+@login_required
 def department_action():
     return deptadmin.action_view()
 
@@ -131,31 +144,37 @@ employeeadmin = EmployeeAdmin(hr, db.session, Employee, EmployeeForm)
 
 
 @hr.route("/employee/list/", methods=("GET", "POST"))
+@login_required
 def employee_list():
     return employeeadmin.list_view()
 
 
 @hr.route("/employee/view/<int:id>/", methods=("GET", "POST"))
+@login_required
 def employee_view(id):
     return employeeadmin.show_view(id)
 
 
 @hr.route("/employee/create/", methods=("GET", "POST"))
+@login_required
 def employee_create():
     return employeeadmin.create_view()
 
 
 @hr.route("/employee/edit/<int:id>/", methods=("GET", "POST"))
+@login_required
 def employee_edit(id):
     return employeeadmin.edit_view(id)
 
 
 @hr.route("/employee/delete/<int:id>/", methods=("GET", "POST"))
+@login_required
 def employee_delete(id):
     return employeeadmin.delete_view(id)
 
 
 @hr.route("/employee/action/", methods=("GET", "POST"))
+@login_required
 def employee_action():
     return employeeadmin.action_view()
     

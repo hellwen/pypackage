@@ -4,7 +4,7 @@
 from flask import Blueprint, render_template
 from flask.ext.babel import gettext as _
 
-from pypackage.extensions import db
+from pypackage.extensions import db, login_required
 from pypackage.models import ItemGroup, Item
 from pypackage.forms import ItemGroupForm, ItemForm
 from pypackage.base import BaseForm
@@ -15,6 +15,7 @@ base = Blueprint('base', __name__, url_prefix="/base")
 
 
 @base.route("/main/", methods=("GET", "POST"))
+@login_required
 def main():
     return render_template("base/main.html")
 
@@ -42,6 +43,7 @@ itemgroupadmin = ItemGroupAdmin(base, db.session, ItemGroup, ItemGroupForm)
 
 
 @base.route("/itemgroup/list/", methods=("GET", "POST"))
+@login_required
 def itemgroup_list():
     return itemgroupadmin.list_view()
 
@@ -52,21 +54,25 @@ def itemgroup_view(id):
 
 
 @base.route("/itemgroup/create/", methods=("GET", "POST"))
+@login_required
 def itemgroup_create():
     return itemgroupadmin.create_view()
 
 
 @base.route("/itemgroup/edit/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def itemgroup_edit(id):
     return itemgroupadmin.edit_view(id)
 
 
 @base.route("/itemgroup/delete/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def itemgroup_delete(id):
     return itemgroupadmin.delete_view(id)
 
 
 @base.route("/itemgroup/action/", methods=("GET", "POST"))
+@login_required
 def itemgroup_action():
     return itemgroupadmin.action_view()
 
@@ -86,31 +92,37 @@ itemadmin = ItemAdmin(base, db.session, Item, ItemForm)
 
 
 @base.route("/item/list/", methods=("GET", "POST"))
+@login_required
 def item_list():
     return itemadmin.list_view()
 
 
 @base.route("/item/view/id=<int:id>", methods=("GET", "POST"))
+@login_required
 def item_view(id):
     return itemadmin.show_view(id)
 
 
 @base.route("/item/create/", methods=("GET", "POST"))
+@login_required
 def item_create():
     return itemadmin.create_view()
 
 
 @base.route("/item/edit/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def item_edit(id):
     return itemadmin.edit_view(id)
 
 
 @base.route("/item/delete/id=<int:id>/", methods=("GET", "POST"))
+@login_required
 def item_delete(id):
     return itemadmin.delete_view(id)
 
 
 @base.route("/item/action/", methods=("GET", "POST"))
+@login_required
 def item_action():
     return itemadmin.action_view()
 

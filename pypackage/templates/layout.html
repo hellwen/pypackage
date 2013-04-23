@@ -20,7 +20,7 @@
 
 <body>
     {% block page_body %}
-        <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     {% block brand %}
@@ -39,7 +39,7 @@
                         
                         #}
                     </ul>
-                    {% if g.user %}
+                    {% if g.user.is_authenticated() %}
                     <ul class="nav pull-right">
                         <li>
                             <a href="{{ url_for('account.logout',next=request.path) }}">{{ _("Logout") }}</a>

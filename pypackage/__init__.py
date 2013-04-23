@@ -6,7 +6,7 @@ from flask import Flask, request, flash, redirect, jsonify, url_for, g,\
 
 from flask.ext.babel import Babel, gettext as _
 
-from pypackage.extensions import db, login_manager
+from pypackage.extensions import db, login_manager, current_user
 from pypackage.views import frontend, account, hr, base, im, sd, mm
 from pypackage.models import User
 
@@ -39,6 +39,10 @@ def configure_extensions(app):
     def load_user(userid):
         return User.query.get(userid)
 
+    @app.before_request
+    def before_request():
+        g.user = current_user
+
 
 def configure_i18n(app):
 
@@ -47,9 +51,11 @@ def configure_i18n(app):
     @babel.localeselector
     def get_locale():
         # if a user is logged in, use the locale from the user settings
-        user = getattr(g, 'user', None)
-        if user is not None:
-            return user.locale
+        
+        # user = getattr(g, 'user', None)
+        # if user is not None:
+        #     return user.locale
+
         # otherwise try to guess the language from the user accept
         # header the browser transmits.  We support de/fr/en in this
         # example.  The best match wins.

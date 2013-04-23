@@ -13,7 +13,7 @@ from pypackage.forms import InventoryLocationForm,\
     WarehouseVoucherForm, WarehouseVoucherProductForm, \
     DeliveryVoucherForm, DeliveryVoucherProductForm
 
-from pypackage.extensions import db
+from pypackage.extensions import db, login_required
 from pypackage.base import BaseForm, InlineBaseForm
 
 from pypackage.forms.form import Select2Field
@@ -24,6 +24,7 @@ im = Blueprint('im', __name__,
 
 
 @im.route("/main/", methods=("GET", "POST"))
+@login_required
 def main():
     return render_template("im/main.html")
 
@@ -52,31 +53,37 @@ inventorylocationadmin = InventoryLocationAdmin(im, db.session,
 
 
 @im.route("/inventorylocation/list/", methods=("GET", "POST"))
+@login_required
 def inventorylocation_list():
     return inventorylocationadmin.list_view()
 
 
 @im.route("/inventorylocation/view/<int:id>/", methods=("GET", "POST"))
+@login_required
 def inventorylocation_view(id):
     return inventorylocationadmin.show_view(id)
 
 
 @im.route("/inventorylocation/create/", methods=("GET", "POST"))
+@login_required
 def inventorylocation_create():
     return inventorylocationadmin.create_view()
 
 
 @im.route("/inventorylocation/edit/<int:id>/", methods=("GET", "POST"))
+@login_required
 def inventorylocation_edit(id):
     return inventorylocationadmin.edit_view(id)
 
 
 @im.route("/inventorylocation/delete/<int:id>/", methods=("GET", "POST"))
+@login_required
 def inventorylocation_delete(id):
     return inventorylocationadmin.delete_view(id)
 
 
 @im.route("/inventorylocation/action/", methods=("GET", "POST"))
+@login_required
 def inventorylocation_action():
     return inventorylocationadmin.action_view()
 
@@ -115,7 +122,7 @@ class WarehouseVoucherAdmin(BaseForm):
         }
     }
 
-    list_columns = ("bill_no", "storage_date", "delivery_person", "status",
+    list_columns = ("bill_no", "storage_date", "delivery_person",
         "products")
     column_labels = dict(bill_no=_("Bill No"),
         storage_date=_("Storage Date"),
@@ -154,31 +161,37 @@ warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
 
 
 @im.route("/warehousevoucher/list/", methods=("GET", "POST"))
+@login_required
 def warehousevoucher_list():
     return warehousevoucheradmin.list_view()
 
 
 @im.route("/warehousevoucher/view/<int:id>/", methods=("GET", "POST"))
+@login_required
 def warehousevoucher_view(id):
     return warehousevoucheradmin.show_view(id)
 
 
 @im.route("/warehousevoucher/create/", methods=("GET", "POST"))
+@login_required
 def warehousevoucher_create():
     return warehousevoucheradmin.create_view()
 
 
 @im.route("/warehousevoucher/edit/<int:id>/", methods=("GET", "POST"))
+@login_required
 def warehousevoucher_edit(id):
     return warehousevoucheradmin.edit_view(id)
 
 
 @im.route("/warehousevoucher/delete/<int:id>/", methods=("GET", "POST"))
+@login_required
 def warehousevoucher_delete(id):
     return warehousevoucheradmin.delete_view(id)
 
 
 @im.route("/warehousevoucher/action/", methods=("GET", "POST"))
+@login_required
 def warehousevoucher_action():
     return warehousevoucheradmin.action_view()
 
@@ -217,7 +230,7 @@ class DeliveryVoucherAdmin(BaseForm):
         }
     }
 
-    list_columns = ("bill_no", "storage_date", "consignor", "status",
+    list_columns = ("bill_no", "storage_date", "consignor",
         "products")
     column_labels = dict(bill_no=_("Bill No"),
         storage_date=_("Storage Date"),
@@ -247,63 +260,73 @@ deliveryvoucheradmin = DeliveryVoucherAdmin(im, db.session,
 
 
 @im.route("/deliveryvoucher/list/", methods=("GET", "POST"))
+@login_required
 def deliveryvoucher_list():
     return deliveryvoucheradmin.list_view()
 
 
 @im.route("/deliveryvoucher/view/<int:id>/", methods=("GET", "POST"))
+@login_required
 def deliveryvoucher_view(id):
     return deliveryvoucheradmin.show_view(id)
 
 
 @im.route("/deliveryvoucher/create/", methods=("GET", "POST"))
+@login_required
 def deliveryvoucher_create():
     return deliveryvoucheradmin.create_view()
 
 
 @im.route("/deliveryvoucher/edit/<int:id>/", methods=("GET", "POST"))
+@login_required
 def deliveryvoucher_edit(id):
     return deliveryvoucheradmin.edit_view(id)
 
 
 @im.route("/deliveryvoucher/delete/<int:id>/", methods=("GET", "POST"))
+@login_required
 def deliveryvoucher_delete(id):
     return deliveryvoucheradmin.delete_view(id)
 
 
 @im.route("/deliveryvoucher/action/", methods=("GET", "POST"))
+@login_required
 def deliveryvoucher_action():
     return deliveryvoucheradmin.action_view()
 
 
 @im.route("/inventory/list/", methods=("GET", "POST"))
+@login_required
 def inventory_list():
+    list_columns = ("product_name", "customer_name", "quantity")
     column_labels = dict(product_name=_("Product Name"),
         customer_name=_("Customer Name"),
         quantity=_("Quantity"))
 
-    db.session.query("product_name", "customer_name", "quantity").\
-        form_statement(" \
-            select p.product_name, c.customer_name, \
-                wv.quantity - dv.quantity as quantity  \
-            from ( \
-                select wvp.product_id, sum(wvp.quantity) as quantity \
-                from warehouse_voucher wv \
-                inner join warehouse_voucher_product wvp \
-                    on wvp.master_id = wv.id \
-                where wv.status = 'C' \
-                group by wvp.product_id \
-                ) wv \
-            left join ( \
-                select dvp.product_id, sum(dvp.quantity) as quantity \
-                from delivery_voucher dv \
-                inner join delivery_voucher_product dvp \
-                    on dvp.master_id = dv.id \
-                where dv.status = 'C' \
-                group by dv.product_id \
-                ) dv on dv.product_id = wv.product_id \
-            inner join products p on p.id = vw.product_id \
-            inner join customers c on c.id = p.customer_id \
-            ").all()
+    sql = """
+            select p.product_name, c.customer_name,
+                wv.quantity - dv.quantity as quantity
+            from (
+                select wvp.product_id, sum(wvp.quantity) as quantity
+                from warehouse_voucher wv
+                inner join warehouse_voucher_product wvp
+                    on wvp.master_id = wv.id
+                --where wv.status = 'C'
+                group by wvp.product_id
+                ) wv
+            left join (
+                select dvp.product_id, sum(dvp.quantity) as quantity
+                from delivery_voucher dv
+                inner join delivery_voucher_product dvp
+                    on dvp.master_id = dv.id
+                --where dv.status = 'C'
+                group by dvp.product_id
+                ) dv on dv.product_id = wv.product_id
+            inner join products p on p.id = wv.product_id
+            inner join customers c on c.id = p.customer_id
+            """
+    data = db.session.execute(sql)
+    count = 0
 
-    return render_template("im/inventory", column_labels)
+    return render_template("im/inventory.html", data=data, count=count,
+        list_columns=list_columns, column_labels=column_labels)
