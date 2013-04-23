@@ -29,10 +29,6 @@ def main():
 
 @account.route("/login/", methods=("GET", "POST"))
 def login():
-    if g.user is not None and g.user.is_authenticated():
-        return redirect(url_for('frontend.index'))
-
-
     form = LoginForm()
     if form.validate_on_submit():
         user, authenticated = User.query.authenticate(form.login.data,
@@ -82,6 +78,7 @@ class UserAdmin(BaseForm):
             Employee.query.filter_by(active=True).order_by('emp_name')]
         form.principalgroup_id.choices = [(g.id, g.job_name) for g in
             PrincipalGroup.query.filter_by(active=True).order_by('group_name')]
+        return form
 
 useradmin = UserAdmin(account, db.session, User, UserForm)
 

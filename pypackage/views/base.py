@@ -78,7 +78,7 @@ def itemgroup_action():
 
 
 class ItemAdmin(BaseForm):
-    # inline_models = (ItemInlineAdmin(Item, ItemForm),)
+    can_create = False
 
     list_columns = ("item_id", "item_order", "item_name")
     fieldsets = [

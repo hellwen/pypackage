@@ -263,7 +263,6 @@ class BaseForm(object):
             return redirect(return_url)
 
         form = self.edit_form(obj=model)
-
         if form.validate_on_submit():
             if self.update_model(form, model):
                 return redirect(return_url)

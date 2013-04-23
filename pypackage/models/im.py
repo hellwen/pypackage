@@ -38,7 +38,7 @@ class WarehouseVoucher(db.Model):
         cascade="all, delete-orphan")
     opt_datetime = db.Column(db.DateTime, nullable=False,
         default=datetime.utcnow)
-    opt_userid = db.Column(db.String(30), nullable=False)
+    opt_userid = db.Column(db.Integer, nullable=False)
     remark = db.Column(db.String(300))
 
     def __repr__(self):
@@ -77,7 +77,7 @@ class DeliveryVoucher(db.Model):
         cascade="all, delete-orphan")
     opt_datetime = db.Column(db.DateTime, nullable=False,
         default=datetime.utcnow)
-    opt_userid = db.Column(db.String(30), nullable=False)
+    opt_userid = db.Column(db.Integer, nullable=False)
     remark = db.Column(db.String(300))
 
     def __repr__(self):

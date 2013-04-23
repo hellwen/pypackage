@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask.ext.wtf import Form, TextAreaField, HiddenField, BooleanField, \
-        PasswordField, SubmitField, TextField, ValidationError, SelectField, \
+        PasswordField, SubmitField, TextField, ValidationError, \
         required, optional, equal_to, regexp
 
 from flask.ext.babel import gettext, lazy_gettext as _
@@ -16,6 +16,7 @@ from flask.ext.babel import gettext, lazy_gettext as _
 from pypackage.models import User
 
 from .validators import is_username
+from .form import Select2Field
 
 
 class LoginForm(Form):
@@ -41,16 +42,18 @@ class UserForm(Form):
     password_again = PasswordField(_("Password again"), validators=[
         equal_to("password", message=_("Passwords don't match"))])
 
-    supperuser = BooleanField("Supper User")
+    supperuser = BooleanField("Supper User", default=True,
+        validators=[required()])
 
-    employee_id = SelectField(_("Employee"), default=0, coerce=int,
+    employee_id = Select2Field(_("Employee"), default=0, coerce=int,
         validators=[optional()])
-    principalgroup_id = SelectField(_("Principal Group"), default=0,
+    principalgroup_id = Select2Field(_("Principal Group"), default=0,
         coerce=int, validators=[optional()])
 
-    description = TextField(_("Description"))
+    description = TextAreaField(_("Description"))
 
-    active = BooleanField("Active")
+    active = BooleanField("Active", default=True,
+         validators=[required()])
 
     def validate_username(self, field):
         user = User.query.filter(User.username.like(field.data)).first()
@@ -65,13 +68,15 @@ class UserEditForm(Form):
                          required(message=_("User name required")),
                          is_username])
 
-    supperuser = BooleanField("Supper User")
+    supperuser = BooleanField("Supper User", default=True,
+        validators=[required()])
 
-    employee_id = SelectField(_("Employee"), default=0, coerce=int,
+    employee_id = Select2Field(_("Employee"), default=0, coerce=int,
         validators=[optional()])
-    principalgroup_id = SelectField(_("Principal Group"), default=0,
+    principalgroup_id = Select2Field(_("Principal Group"), default=0,
         coerce=int, validators=[optional()])
 
-    description = TextField(_("Description"))
+    description = TextAreaField(_("Description"))
 
-    active = BooleanField("Active")
+    active = BooleanField("Active", default=True,
+         validators=[required()])

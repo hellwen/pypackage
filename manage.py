@@ -16,7 +16,7 @@ def _make_context():
     return dict(db=db)
 
 manager.add_command("shell", Shell(make_context=_make_context))
-manager.add_command("runserver", Server('0.0.0.0', port=8080))
+manager.add_command("runserver", Server('0.0.0.0', port=8081))
 
 
 @manager.command

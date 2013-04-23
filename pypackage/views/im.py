@@ -146,7 +146,7 @@ class WarehouseVoucherAdmin(BaseForm):
         model.bill_no = BillRule().get_new_bill_no("WarehouseVoucher")
         model.opt_datetime = datetime.now()
         model.status = "C"
-        model.opt_userid = g.user.username
+        model.opt_userid = g.user.id
         return model
 
     # def action_extend(self, action, ids):
@@ -251,7 +251,7 @@ class DeliveryVoucherAdmin(BaseForm):
         model.bill_no = BillRule().get_new_bill_no("DeliveryVoucher")
         model.opt_datetime = datetime.now()
         model.status = "C"
-        model.opt_userid = "demo"
+        model.opt_userid = g.user.id
         return model
 
 
@@ -305,7 +305,7 @@ def inventory_list():
 
     sql = """
             select p.product_name, c.customer_name,
-                wv.quantity - dv.quantity as quantity
+                wv.quantity - ifnull(dv.quantity, 0) as quantity
             from (
                 select wvp.product_id, sum(wvp.quantity) as quantity
                 from warehouse_voucher wv
