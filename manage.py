@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #coding=utf-8
-
+import os
 from flask.ext.script import Server, Shell, Manager, prompt_bool
 
 from pypackage import create_app
@@ -8,7 +8,10 @@ from pypackage.extensions import db
 
 from pypackage.models import User
 
-manager = Manager(create_app('config.cfg'))
+if os.environ.get('PRD_ENV') is None:
+    manager = Manager(create_app('config.dev.cfg'))
+else:
+    manager = Manager(create_app('config.prd.cfg'))
 
 
 # 添加shell中支持的环境
