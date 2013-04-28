@@ -1,0 +1,1 @@
+pybabel init -i messages.pot -d ../pypackage/translations -l zh_CN
