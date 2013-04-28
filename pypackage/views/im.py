@@ -305,7 +305,7 @@ def inventory_list():
 
     sql = """
             select p.product_name, c.customer_name,
-                wv.quantity - ifnull(dv.quantity, 0) as quantity
+                wv.quantity - isnull(dv.quantity, 0) as quantity
             from (
                 select wvp.product_id, sum(wvp.quantity) as quantity
                 from warehouse_voucher wv
