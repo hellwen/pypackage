@@ -305,13 +305,13 @@ def inventory_list():
 
     sql = """
             select p.product_name, c.customer_name,
-                wv.quantity - isnull(dv.quantity, 0) as quantity
+                wv.quantity - coalesce(dv.quantity,0) as quantity
             from (
                 select wvp.product_id, sum(wvp.quantity) as quantity
                 from warehouse_voucher wv
                 inner join warehouse_voucher_product wvp
                     on wvp.master_id = wv.id
-                --where wv.status = 'C'
+                where wv.status = 'C'
                 group by wvp.product_id
                 ) wv
             left join (
@@ -319,7 +319,7 @@ def inventory_list():
                 from delivery_voucher dv
                 inner join delivery_voucher_product dvp
                     on dvp.master_id = dv.id
-                --where dv.status = 'C'
+                where dv.status = 'C'
                 group by dvp.product_id
                 ) dv on dv.product_id = wv.product_id
             inner join products p on p.id = wv.product_id
