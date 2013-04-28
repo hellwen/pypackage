@@ -4,3 +4,4 @@ Flask-WTF
 Flask-Script
 Flask-Babel
 Flask-Login
+psycopg2

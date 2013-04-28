@@ -28,7 +28,7 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     group_id = db.Column(db.Integer, db.ForeignKey(ItemGroup.id),
         nullable=False)
-    item_id = db.Column(db.Integer, nullable=False)
+    item_id = db.Column(db.Integer, nullable=False, unique=True)
     item_order = db.Column(db.Integer, nullable=False)
     item_name = db.Column(db.String(50), nullable=False)
     active = db.Column(db.Boolean, default=True)
