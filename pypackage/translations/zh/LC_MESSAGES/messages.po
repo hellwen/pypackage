@@ -336,7 +336,7 @@ msgstr "修改"
 
 #: ../pypackage/templates/layout.html:30
 msgid "Home"
-msgstr "主页"
+msgstr "首页"
 
 #: ../pypackage/templates/layout.html:31
 msgid "Human Resources"

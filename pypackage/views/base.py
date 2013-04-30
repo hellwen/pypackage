@@ -45,7 +45,10 @@ itemgroupadmin = ItemGroupAdmin(base, db.session, ItemGroup, ItemGroupForm)
 @base.route("/itemgroup/list/", methods=("GET", "POST"))
 @login_required
 def itemgroup_list():
-    return itemgroupadmin.list_view()
+    column_labels = dict(id=_("Group ID"),
+        group_name=_("Group Name"),
+        items=_("Items"))    
+    return itemgroupadmin.list_view(column_labels=column_labels)
 
 
 @base.route("/itemgroup/view/id=<int:id>", methods=("GET", "POST"))
@@ -94,7 +97,10 @@ itemadmin = ItemAdmin(base, db.session, Item, ItemForm)
 @base.route("/item/list/", methods=("GET", "POST"))
 @login_required
 def item_list():
-    return itemadmin.list_view()
+    column_labels = dict(item_id=_("Item ID"),
+        item_order=_("Item Order"),
+        item_name=_("Item Name"))
+    return itemadmin.list_view(column_labels=column_labels)
 
 
 @base.route("/item/view/id=<int:id>", methods=("GET", "POST"))

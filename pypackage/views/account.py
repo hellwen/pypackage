@@ -86,7 +86,17 @@ useradmin = UserAdmin(account, db.session, User, UserForm)
 @account.route("/user/list", methods=("GET", "POST"))
 @login_required
 def user_list():
-    return useradmin.list_view()
+    column_labels = dict(username=_("User Name"),
+        password=_("Password"),
+        password_again=_("Password Again"),
+        employee=_("Employee"),
+        employee_id=_("Employee"),
+        supperuser=_("Supper User"),
+        principalgroup=_("Principal Group"),
+        principalgroup_id=_("Principal Group"),
+        description=_("Description"),
+        active=_("Active"))    
+    return useradmin.list_view(column_labels=column_labels)
 
 
 @account.route("/user/create/", methods=("GET", "POST"))

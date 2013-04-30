@@ -80,7 +80,9 @@ deptadmin = DeptAdmin(hr, db.session, Department, DepartmentForm)
 @hr.route("/department/list/", methods=("GET", "POST"))
 @login_required
 def department_list():
-    return deptadmin.list_view()
+    column_labels = dict(dept_name=_("Department"),
+        description=_("Description"))
+    return deptadmin.list_view(column_labels=column_labels)
 
 
 @hr.route("/department/id=<int:id>", methods=("GET", "POST"))
@@ -146,7 +148,10 @@ employeeadmin = EmployeeAdmin(hr, db.session, Employee, EmployeeForm)
 @hr.route("/employee/list/", methods=("GET", "POST"))
 @login_required
 def employee_list():
-    return employeeadmin.list_view()
+    column_labels = dict(emp_code=_("Employee Code"),
+        emp_name=_("Employee Name"), gender=_("Gender"), id_card=_("ID Card"),
+        department=_("Department"), job=_("Job"))
+    return employeeadmin.list_view(column_labels=column_labels)
 
 
 @hr.route("/employee/view/<int:id>/", methods=("GET", "POST"))

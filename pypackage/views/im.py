@@ -55,7 +55,12 @@ inventorylocationadmin = InventoryLocationAdmin(im, db.session,
 @im.route("/inventorylocation/list/", methods=("GET", "POST"))
 @login_required
 def inventorylocation_list():
-    return inventorylocationadmin.list_view()
+    column_labels = dict(building=_("Building#"),
+        floor=_("Floor#"),
+        inventory_type=_("Inventory Type"),
+        location_name=_("Location Name"),
+        remark=_("Remark"))
+    return inventorylocationadmin.list_view(column_labels=column_labels)
 
 
 @im.route("/inventorylocation/view/<int:id>/", methods=("GET", "POST"))
@@ -163,7 +168,13 @@ warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
 @im.route("/warehousevoucher/list/", methods=("GET", "POST"))
 @login_required
 def warehousevoucher_list():
-    return warehousevoucheradmin.list_view()
+    column_labels = dict(bill_no=_("Bill No"),
+        storage_date=_("Storage Date"),
+        delivery_person=_("Delivery Person"),
+        products=_("Products"),
+        status=_("Status"),
+        remark=_("Remark"))
+    return warehousevoucheradmin.list_view(column_labels=column_labels)
 
 
 @im.route("/warehousevoucher/view/<int:id>/", methods=("GET", "POST"))
@@ -262,7 +273,13 @@ deliveryvoucheradmin = DeliveryVoucherAdmin(im, db.session,
 @im.route("/deliveryvoucher/list/", methods=("GET", "POST"))
 @login_required
 def deliveryvoucher_list():
-    return deliveryvoucheradmin.list_view()
+    column_labels = dict(bill_no=_("Bill No"),
+        storage_date=_("Storage Date"),
+        consignor=_("Consignor"),
+        products=_("Products"),
+        status=_("Status"),
+        remark=_("Remark"))
+    return deliveryvoucheradmin.list_view(column_labels=column_labels)
 
 
 @im.route("/deliveryvoucher/view/<int:id>/", methods=("GET", "POST"))

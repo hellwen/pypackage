@@ -5,7 +5,6 @@
     <ul class="nav nav-list">
         <li class="nav-header">{{ _("Bases") }}</li>
         <li><a href="{{ url_for('.itemgroup_list', next=request.path) }}">{{ _("Item Group") }}</a></li>
-        <li><a href="{{ url_for('.item_list', next=request.path) }}">{{ _("Item") }}</a></li>
     </ul>
 </div>
 {%- endblock %}

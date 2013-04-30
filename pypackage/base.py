@@ -217,10 +217,13 @@ class BaseForm(object):
             self.session.rollback()
             return False
 
-    def list_view(self):
+    def list_view(self, column_labels):
         self.data = self.model.query.all()
         self.count = self.model.query.count()
-        return self.render(self.list_template)
+        if not column_labels:
+            column_labels = self.column_labels
+
+        return self.render(self.list_template, column_labels=column_labels)
 
     # def show_view(self, id):
     #     self.readonly = True

@@ -39,7 +39,11 @@ customeradmin = CustomerAdmin(sd, db.session, Customer, CustomerForm)
 @sd.route("/customer/list/", methods=("GET", "POST"))
 @login_required
 def customer_list():
-    return customeradmin.list_view()
+    column_labels = dict(customer_code=_("Customer Code"),
+        customer_name=_("Customer Name"),
+        remark=_("Remark"),
+        active=_("Active"))
+    return customeradmin.list_view(column_labels=column_labels)
 
 
 @sd.route("/customer/view/<int:id>/", methods=("GET", "POST"))
