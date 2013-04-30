@@ -2,7 +2,7 @@
 #coding=utf-8
 
 from flask.globals import _request_ctx_stack
-from flask.ext.babel import gettext, ngettext
+from flask.ext.babel import lazy_gettext
 import helpers as h
 
 
@@ -25,8 +25,7 @@ class RenderTemplateWidget(object):
 
         kwargs.update({
             'field': field,
-            '_gettext': gettext,
-            '_ngettext': ngettext,
+            '_': lazy_gettext,
             'h': h,
         })
 

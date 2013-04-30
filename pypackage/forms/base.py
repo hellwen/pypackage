@@ -2,12 +2,7 @@
 #coding=utf-8
 
 from flask.ext.wtf import Form, TextField, HiddenField, required
-from flask.ext.babel import gettext as _
-
-from pypackage.extensions import db
-from pypackage.models import Item
-
-from .fields import InlineModelFormList
+from flask.ext.babel import lazy_gettext as _
 
 
 class ItemForm(Form):
@@ -27,5 +22,3 @@ class ItemGroupForm(Form):
         required(message=_("You must provide"))])
     group_name = TextField(_("Group Name"), validators=[
         required(message=_("You must provide"))])
-    items = InlineModelFormList(ItemForm, db.session, Item, min_entries=1)
-

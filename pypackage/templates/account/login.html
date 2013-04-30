@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>{{ g.appname }}</title>   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -55,23 +55,23 @@
               
         <form class="form-signin" method="POST" action=".">
             {{ form.hidden_tag() }}
-            <h2 class="form-signin-heading">Please sign in</h2>
+            <h2 class="form-signin-heading">{{ _("Please sign in") }}</h2>
             <div class="control-group">
                 <div class="controls">
-                    {{ form.login(placeholder="User") }} {{ render_errors(form.login) }}
+                    {{ form.login(placeholder=_("User")) }} {{ render_errors(form.login) }}
                 </div>
             </div>
             <div class="control-group">
                 <div class="controls">
-                    {{ form.password(placeholder="Password") }} {{ render_errors(form.password) }}
+                    {{ form.password(placeholder=_("Password")) }} {{ render_errors(form.password) }}
                 </div>
             </div>
             <div class="control-group">
                 <div class="controls">
                   <label class="checkbox">
-                    <input type="checkbox" value="remember-me"> Remember me
+                    <input type="checkbox" value="remember-me">{{  _("Remember me") }}
                   </label>        
-                  <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+                  <button class="btn btn-large btn-primary" type="submit">{{  _("Sign in") }}</button>
                 </div>
             </div>
         </form>

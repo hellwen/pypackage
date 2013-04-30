@@ -4,7 +4,7 @@
 import logging
 
 from flask import request, redirect, url_for, render_template, flash
-from flask.ext.babel import gettext as _, ngettext
+from flask.ext.babel import lazy_gettext as _
 # from flask.ext.wtf import Form, HiddenField, required,\
 #     TextAreaField, TextField, IntegerField, DateField
 
@@ -43,8 +43,9 @@ class InlineBaseForm(object):
             if not hasattr(self, k):
                 setattr(self, k, None)
 
-        for k, v in kwargs.iteritems():
-            setattr(self, k, v)
+        self.kwargs = kwargs
+        # for k, v in kwargs.iteritems():
+        #     setattr(self, k, v)
 
     def postprocess_form(self, form_class):
         """
@@ -112,7 +113,6 @@ class BaseForm(object):
         # Provide i18n support even if flask-babel is not installed
         # or enabled.
         kwargs['_'] = _
-        kwargs['_ngettext'] = ngettext
         kwargs['h'] = h
         kwargs['unicode'] = unicode
 
@@ -145,7 +145,7 @@ class BaseForm(object):
                             InlineModelFormList(child_form,
                                                 self.session,
                                                 inline.model,
-                                                min_entries=1))
+                                                **inline.kwargs))
 
             form = self.form_class(next=next)
         self.after_create_form(form)

@@ -7,7 +7,7 @@ import datetime
 from wtforms import fields, widgets
 from flask.globals import _request_ctx_stack
 from flask.ext import wtf
-from flask.ext.babel import gettext, ngettext
+from flask.ext.babel import lazy_gettext as _
 import helpers as h
 
 
@@ -171,7 +171,7 @@ class TimeField(fields.Field):
                 except ValueError:
                     pass
 
-            raise ValueError(gettext('Invalid time format'))
+            raise ValueError(_('Invalid time format'))
 
 
 class Select2Widget(widgets.Select):
@@ -282,8 +282,7 @@ class RenderTemplateWidget(object):
 
         kwargs.update({
             'field': field,
-            '_gettext': gettext,
-            '_ngettext': ngettext,
+            '_': _,
             'h': h,
         })
 

@@ -8,7 +8,7 @@
 
 from flask import Blueprint, request, flash, redirect, url_for, \
     render_template
-from flask.ext.babel import gettext as _
+from flask.ext.babel import lazy_gettext as _
 from flask.ext.login import login_user, logout_user, login_required
 
 from pypackage.extensions import db
@@ -24,7 +24,6 @@ account = Blueprint("account", __name__, url_prefix="/account")
 @login_required
 def main():
     return render_template("account/main.html")
-
 
 
 @account.route("/login/", methods=("GET", "POST"))
@@ -95,7 +94,7 @@ def user_list():
         principalgroup=_("Principal Group"),
         principalgroup_id=_("Principal Group"),
         description=_("Description"),
-        active=_("Active"))    
+        active=_("Active"))
     return useradmin.list_view(column_labels=column_labels)
 
 

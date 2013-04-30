@@ -4,7 +4,7 @@
 from flask import Flask, request, flash, redirect, jsonify, url_for, g,\
     render_template
 
-from flask.ext.babel import Babel, gettext as _
+from flask.ext.babel import Babel, lazy_gettext as _
 
 from pypackage.extensions import db, login_manager, current_user
 from pypackage.views import frontend, account, hr, base, im, sd, mm

@@ -113,7 +113,8 @@ class WarehouseVoucherProductAdmin(InlineBaseForm):
 
 class WarehouseVoucherAdmin(BaseForm):
     inline_models = (WarehouseVoucherProductAdmin("products",
-        WarehouseVoucherProduct, WarehouseVoucherProductForm),)
+        WarehouseVoucherProduct, WarehouseVoucherProductForm,
+        label=_("Products"), min_entries=1),)
 
     form_create_widget_args = {
         "bill_no": {
@@ -227,7 +228,8 @@ class DeliveryVoucherProductAdmin(InlineBaseForm):
 
 class DeliveryVoucherAdmin(BaseForm):
     inline_models = (DeliveryVoucherProductAdmin("products",
-        DeliveryVoucherProduct, DeliveryVoucherProductForm),)
+        DeliveryVoucherProduct, DeliveryVoucherProductForm,
+        label=_("Products"), min_entries=1),)
 
     form_create_widget_args = {
         "bill_no": {

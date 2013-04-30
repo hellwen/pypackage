@@ -34,7 +34,8 @@ jobadmin = JobAdmin(hr, db.session, Job, JobForm)
 @hr.route("/job/list/", methods=("GET", "POST"))
 @login_required
 def job_list():
-    return jobadmin.list_view()
+    column_labels = dict(job_name=_("Job"), description=_("Description"))
+    return jobadmin.list_view(column_labels=column_labels)
 
 
 @hr.route("/job/view/id=<int:id>", methods=("GET", "POST"))

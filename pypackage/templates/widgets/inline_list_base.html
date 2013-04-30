@@ -15,7 +15,7 @@
             {%- if not check or check(subfield) %}
             <div class="fa-inline-field-control">
                 <input type="checkbox" name="del-{{ subfield.id }}" id="del-{{ subfield.id }}" />
-                <label for="del-{{ subfield.id }}" style="display: inline">{{ _gettext('Delete?') }}</label>
+                <label for="del-{{ subfield.id }}" style="display: inline">{{ _('Delete?') }}</label>
             </div>
             {%- endif -%}
 
@@ -23,6 +23,6 @@
         </div>
         {% endfor %}
     </div>
-    <a href="javascript:void(0)" class="btn" onclick="faForm.addInlineField('{{ field.id }}', '#{{ field.id }}-fields', {{ render_template(template, render)|tojson }});">{{ _gettext('Add') }} {{ field.label.text }}</a>
+    <a href="javascript:void(0)" class="btn" onclick="faForm.addInlineField('{{ field.id }}', '#{{ field.id }}-fields', {{ render_template(template, render)|tojson }});">{{ _('Add') }}</a>
 </div>
 {% endmacro %}

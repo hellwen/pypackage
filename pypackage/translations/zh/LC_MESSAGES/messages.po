@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-30 19:26+0800\n"
+"POT-Creation-Date: 2013-04-30 23:18+0800\n"
 "PO-Revision-Date: 2013-04-30 18:59+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh <LL@li.org>\n"
@@ -48,11 +47,12 @@ msgstr ""
 msgid "Failed to delete model. %(error)s"
 msgstr ""
 
-#: ../pypackage/base.py:245
+#: ../pypackage/base.py:248
 msgid "Created successfully."
 msgstr "创建成功。"
 
 #: ../pypackage/forms/account.py:25
+#: ../pypackage/templates/account/login.html:61
 msgid "User"
 msgstr "用户"
 
@@ -61,7 +61,8 @@ msgid "You must provide an username"
 msgstr "你必须提供一个用户名"
 
 #: ../pypackage/forms/account.py:27 ../pypackage/forms/account.py:40
-#: ../pypackage/views/account.py:66
+#: ../pypackage/templates/account/login.html:66
+#: ../pypackage/views/account.py:65 ../pypackage/views/account.py:89
 msgid "Password"
 msgstr "密码"
 
@@ -70,6 +71,7 @@ msgid "You must provide an password"
 msgstr "你必须提供一个密码"
 
 #: ../pypackage/forms/account.py:29
+#: ../pypackage/templates/account/login.html:72
 msgid "Remember me"
 msgstr "记住"
 
@@ -97,51 +99,70 @@ msgstr "重复密码"
 msgid "Passwords don't match"
 msgstr "密码不匹配"
 
+#: ../pypackage/forms/account.py:45 ../pypackage/forms/account.py:71
+#: ../pypackage/views/account.py:69 ../pypackage/views/account.py:93
+msgid "Supper User"
+msgstr "管理员"
+
 #: ../pypackage/forms/account.py:48 ../pypackage/forms/account.py:74
-#: ../pypackage/templates/hr/main.html:7 ../pypackage/views/account.py:68
-#: ../pypackage/views/account.py:69
+#: ../pypackage/templates/hr/main.html:7 ../pypackage/views/account.py:67
+#: ../pypackage/views/account.py:68 ../pypackage/views/account.py:91
+#: ../pypackage/views/account.py:92
 msgid "Employee"
 msgstr "员工"
 
 #: ../pypackage/forms/account.py:50 ../pypackage/forms/account.py:76
-#: ../pypackage/views/account.py:71 ../pypackage/views/account.py:72
+#: ../pypackage/views/account.py:70 ../pypackage/views/account.py:71
+#: ../pypackage/views/account.py:94 ../pypackage/views/account.py:95
 msgid "Principal Group"
 msgstr "权限组"
 
 #: ../pypackage/forms/account.py:53 ../pypackage/forms/account.py:79
 #: ../pypackage/forms/hr.py:23 ../pypackage/forms/hr.py:31
-#: ../pypackage/views/account.py:73 ../pypackage/views/hr.py:30
-#: ../pypackage/views/hr.py:76
+#: ../pypackage/views/account.py:72 ../pypackage/views/account.py:96
+#: ../pypackage/views/hr.py:30 ../pypackage/views/hr.py:37
+#: ../pypackage/views/hr.py:77 ../pypackage/views/hr.py:85
 msgid "Description"
 msgstr "描述"
+
+#: ../pypackage/forms/account.py:55 ../pypackage/forms/account.py:81
+#: ../pypackage/views/account.py:73 ../pypackage/views/account.py:97
+#: ../pypackage/views/sd.py:30 ../pypackage/views/sd.py:45
+msgid "Active"
+msgstr "有效"
 
 #: ../pypackage/forms/account.py:61
 msgid "This username is taken"
 msgstr "用户名已经存在"
 
-#: ../pypackage/forms/base.py:15 ../pypackage/views/base.py:87
+#: ../pypackage/forms/base.py:10 ../pypackage/views/base.py:86
+#: ../pypackage/views/base.py:96
 msgid "Item ID"
 msgstr "项目编号"
 
-#: ../pypackage/forms/base.py:16 ../pypackage/forms/base.py:18
-#: ../pypackage/forms/base.py:20 ../pypackage/forms/base.py:27
-#: ../pypackage/forms/base.py:29
+#: ../pypackage/forms/base.py:11 ../pypackage/forms/base.py:13
+#: ../pypackage/forms/base.py:15 ../pypackage/forms/base.py:22
+#: ../pypackage/forms/base.py:24
 msgid "You must provide"
 msgstr "你必须提供值"
 
-#: ../pypackage/forms/base.py:17 ../pypackage/views/base.py:88
+#: ../pypackage/forms/base.py:12 ../pypackage/views/base.py:87
+#: ../pypackage/views/base.py:97
 msgid "Item Order"
 msgstr "项目顺序"
 
-#: ../pypackage/forms/base.py:19 ../pypackage/views/base.py:89
+#: ../pypackage/forms/base.py:14 ../pypackage/views/base.py:88
+#: ../pypackage/views/base.py:98
 msgid "Item Name"
 msgstr "项目名称"
 
-#: ../pypackage/forms/base.py:26 ../pypackage/views/base.py:38
+#: ../pypackage/forms/base.py:21 ../pypackage/views/base.py:34
+#: ../pypackage/views/base.py:44
 msgid "Group ID"
 msgstr "项目组编号"
 
-#: ../pypackage/forms/base.py:28 ../pypackage/views/base.py:39
+#: ../pypackage/forms/base.py:23 ../pypackage/views/base.py:35
+#: ../pypackage/views/base.py:45
 msgid "Group Name"
 msgstr "项目组名称"
 
@@ -169,7 +190,8 @@ msgstr "职位名称"
 msgid "You must provide an job name"
 msgstr "你必须提供一个职位"
 
-#: ../pypackage/forms/hr.py:37 ../pypackage/views/hr.py:119
+#: ../pypackage/forms/hr.py:37 ../pypackage/views/hr.py:122
+#: ../pypackage/views/hr.py:152
 msgid "Employee Code"
 msgstr "员工编号"
 
@@ -177,7 +199,8 @@ msgstr "员工编号"
 msgid "You must provide an employee code"
 msgstr "你必须提供一个员工编号"
 
-#: ../pypackage/forms/hr.py:39 ../pypackage/views/hr.py:120
+#: ../pypackage/forms/hr.py:39 ../pypackage/views/hr.py:123
+#: ../pypackage/views/hr.py:153
 msgid "Employee Name"
 msgstr "员工名称"
 
@@ -202,7 +225,8 @@ msgid "Office Location"
 msgstr "办公地点"
 
 #: ../pypackage/forms/hr.py:45 ../pypackage/templates/hr/main.html:10
-#: ../pypackage/views/hr.py:75 ../pypackage/views/hr.py:121
+#: ../pypackage/views/hr.py:76 ../pypackage/views/hr.py:84
+#: ../pypackage/views/hr.py:124 ../pypackage/views/hr.py:154
 msgid "Department"
 msgstr "部门"
 
@@ -211,7 +235,8 @@ msgid "You must choices a Department"
 msgstr "你必须选择一个部门"
 
 #: ../pypackage/forms/hr.py:47 ../pypackage/templates/hr/main.html:9
-#: ../pypackage/views/hr.py:30 ../pypackage/views/hr.py:121
+#: ../pypackage/views/hr.py:30 ../pypackage/views/hr.py:37
+#: ../pypackage/views/hr.py:124 ../pypackage/views/hr.py:154
 msgid "Job"
 msgstr "职位"
 
@@ -219,7 +244,8 @@ msgstr "职位"
 msgid "You must choices a Job"
 msgstr "你必须选择一个职位"
 
-#: ../pypackage/forms/hr.py:49 ../pypackage/views/hr.py:120
+#: ../pypackage/forms/hr.py:49 ../pypackage/views/hr.py:123
+#: ../pypackage/views/hr.py:153
 msgid "Gender"
 msgstr "性别"
 
@@ -227,7 +253,8 @@ msgstr "性别"
 msgid "You must choices a Gender"
 msgstr "你必须选择一个性别"
 
-#: ../pypackage/forms/hr.py:51 ../pypackage/views/hr.py:120
+#: ../pypackage/forms/hr.py:51 ../pypackage/views/hr.py:123
+#: ../pypackage/views/hr.py:153
 msgid "ID Card"
 msgstr "身份证"
 
@@ -236,7 +263,6 @@ msgid "Home Address"
 msgstr "家庭地址"
 
 #: ../pypackage/forms/hr.py:53
-#, fuzzy
 msgid "Date of Birth (eg:2012-01-01)"
 msgstr "出生日期 (eg:2012-01-01)"
 
@@ -245,31 +271,39 @@ msgid "Reamrk"
 msgstr "备注"
 
 #: ../pypackage/forms/im.py:16 ../pypackage/views/im.py:34
+#: ../pypackage/views/im.py:58
 msgid "Building#"
 msgstr "楼号"
 
 #: ../pypackage/forms/im.py:17 ../pypackage/views/im.py:35
+#: ../pypackage/views/im.py:59
 msgid "Floor#"
 msgstr "层号"
 
 #: ../pypackage/forms/im.py:18 ../pypackage/views/im.py:36
+#: ../pypackage/views/im.py:60
 msgid "Inventory Type"
 msgstr "仓库类型"
 
 #: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:37
+#: ../pypackage/views/im.py:61
 msgid "Location Name"
 msgstr "库位"
 
 #: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:40
 #: ../pypackage/forms/im.py:54 ../pypackage/forms/mm.py:18
 #: ../pypackage/forms/sd.py:14 ../pypackage/views/im.py:38
-#: ../pypackage/views/im.py:132 ../pypackage/views/im.py:240
-#: ../pypackage/views/mm.py:30 ../pypackage/views/sd.py:29
+#: ../pypackage/views/im.py:62 ../pypackage/views/im.py:138
+#: ../pypackage/views/im.py:177 ../pypackage/views/im.py:253
+#: ../pypackage/views/im.py:283 ../pypackage/views/mm.py:30
+#: ../pypackage/views/mm.py:52 ../pypackage/views/sd.py:29
+#: ../pypackage/views/sd.py:44
 msgid "Remark"
 msgstr "备注"
 
 #: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:50
-#: ../pypackage/views/im.py:127 ../pypackage/views/im.py:235
+#: ../pypackage/views/im.py:133 ../pypackage/views/im.py:172
+#: ../pypackage/views/im.py:248 ../pypackage/views/im.py:278
 msgid "Bill No"
 msgstr "单据编号"
 
@@ -277,34 +311,38 @@ msgstr "单据编号"
 msgid "Storage Date (eg:2012-01-01)"
 msgstr "入库日期 (如:2012-01-01)"
 
-#: ../pypackage/forms/im.py:39 ../pypackage/views/im.py:129
+#: ../pypackage/forms/im.py:39 ../pypackage/views/im.py:135
+#: ../pypackage/views/im.py:174
 msgid "Delivery Person"
 msgstr "送货人"
 
-#: ../pypackage/forms/im.py:53 ../pypackage/views/im.py:237
+#: ../pypackage/forms/im.py:53 ../pypackage/views/im.py:250
+#: ../pypackage/views/im.py:280
 msgid "Consignor"
 msgstr "送货人"
 
 #: ../pypackage/forms/mm.py:14 ../pypackage/views/mm.py:27
+#: ../pypackage/views/mm.py:49
 msgid "Product Code"
 msgstr "产品编号"
 
-#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:302
-#: ../pypackage/views/mm.py:28
+#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:321
+#: ../pypackage/views/mm.py:28 ../pypackage/views/mm.py:50
 msgid "Product Name"
 msgstr "产品名称"
 
 #: ../pypackage/forms/mm.py:16 ../pypackage/templates/sd/main.html:7
-#: ../pypackage/views/mm.py:29
+#: ../pypackage/views/mm.py:29 ../pypackage/views/mm.py:51
 msgid "Customer"
 msgstr "客户"
 
 #: ../pypackage/forms/sd.py:12 ../pypackage/views/sd.py:27
+#: ../pypackage/views/sd.py:42
 msgid "Customer Code"
 msgstr "客户编号"
 
-#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:303
-#: ../pypackage/views/sd.py:28
+#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:322
+#: ../pypackage/views/sd.py:28 ../pypackage/views/sd.py:43
 msgid "Customer Name"
 msgstr "客户名称"
 
@@ -367,17 +405,25 @@ msgstr "基础数据"
 msgid "Logout"
 msgstr "注销"
 
-#: ../pypackage/templates/list.html:69
+#: ../pypackage/templates/list.html:71
 msgid "You sure you want to delete this item?"
 msgstr "你确定删除这个项目吗？"
 
-#: ../pypackage/templates/list.html:101
+#: ../pypackage/templates/list.html:103
 msgid "Please select at least one model."
 msgstr ""
 
 #: ../pypackage/templates/view.html:10
 msgid "View"
 msgstr "查看"
+
+#: ../pypackage/templates/account/login.html:58
+msgid "Please sign in"
+msgstr "请登录"
+
+#: ../pypackage/templates/account/login.html:74
+msgid "Sign in"
+msgstr "登录"
 
 #: ../pypackage/templates/account/main.html:6
 msgid "Acctounts"
@@ -391,10 +437,6 @@ msgstr "基础数据"
 #: ../pypackage/templates/base/main.html:7
 msgid "Item Group"
 msgstr "项目组"
-
-#: ../pypackage/templates/base/main.html:8
-msgid "Item"
-msgstr "项目"
 
 #: ../pypackage/templates/errors/403.html:5
 msgid "403, Page Not Allowed"
@@ -471,57 +513,65 @@ msgstr ""
 msgid "older"
 msgstr ""
 
-#: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:93
-#: ../pypackage/views/im.py:201
+#: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:98
+#: ../pypackage/views/im.py:213
 msgid "Product"
 msgstr "产品"
 
-#: ../pypackage/views/account.py:43
+#: ../pypackage/templates/widgets/inline_list_base.html:18
+msgid "Delete?"
+msgstr "删除？"
+
+#: ../pypackage/templates/widgets/inline_list_base.html:26
+msgid "Add"
+msgstr "添加"
+
+#: ../pypackage/views/account.py:42
 msgid "Sorry, invalid login"
 msgstr "对不起，无效登录"
 
-#: ../pypackage/views/account.py:61 ../pypackage/views/account.py:104
+#: ../pypackage/views/account.py:60 ../pypackage/views/account.py:113
 msgid "Auth"
 msgstr "权限"
 
-#: ../pypackage/views/account.py:65
+#: ../pypackage/views/account.py:64 ../pypackage/views/account.py:88
 msgid "User Name"
 msgstr "用户名称"
 
-#: ../pypackage/views/account.py:67
+#: ../pypackage/views/account.py:66 ../pypackage/views/account.py:90
 msgid "Password Again"
 msgstr "重复密码"
 
-#: ../pypackage/views/account.py:70
-msgid "Supper User"
-msgstr "管理员"
-
-#: ../pypackage/views/account.py:74 ../pypackage/views/sd.py:30
-msgid "Active"
-msgstr "有效"
-
-#: ../pypackage/views/base.py:40
+#: ../pypackage/views/base.py:28 ../pypackage/views/base.py:36
+#: ../pypackage/views/base.py:46
 msgid "Items"
 msgstr "项目"
 
-#: ../pypackage/views/im.py:99 ../pypackage/views/im.py:207
+#: ../pypackage/views/im.py:104 ../pypackage/views/im.py:219
 msgid "Inventory Location"
 msgstr "库位"
 
-#: ../pypackage/views/im.py:104 ../pypackage/views/im.py:212
-#: ../pypackage/views/im.py:304
+#: ../pypackage/views/im.py:109 ../pypackage/views/im.py:224
+#: ../pypackage/views/im.py:323
 msgid "Quantity"
 msgstr "数量"
 
-#: ../pypackage/views/im.py:128 ../pypackage/views/im.py:236
-msgid "Storage Date"
-msgstr "存储日期"
-
-#: ../pypackage/views/im.py:130 ../pypackage/views/im.py:238
+#: ../pypackage/views/im.py:117 ../pypackage/views/im.py:136
+#: ../pypackage/views/im.py:175 ../pypackage/views/im.py:232
+#: ../pypackage/views/im.py:251 ../pypackage/views/im.py:281
 msgid "Products"
 msgstr "产品"
 
-#: ../pypackage/views/im.py:131 ../pypackage/views/im.py:239
+#: ../pypackage/views/im.py:134 ../pypackage/views/im.py:173
+#: ../pypackage/views/im.py:249 ../pypackage/views/im.py:279
+msgid "Storage Date"
+msgstr "存储日期"
+
+#: ../pypackage/views/im.py:137 ../pypackage/views/im.py:176
+#: ../pypackage/views/im.py:252 ../pypackage/views/im.py:282
 msgid "Status"
 msgstr "状态"
+
+#~ msgid "Itemsa"
+#~ msgstr "项目"
 
