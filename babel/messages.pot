@@ -1,14 +1,14 @@
-# Translations template for pypackage.
+# Translations template for PROJECT.
 # Copyright (C) 2013 ORGANIZATION
-# This file is distributed under the same license as the pypackage project.
+# This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pypackage VERSION\n"
+"Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-28 21:45+0800\n"
+"POT-Creation-Date: 2013-04-30 19:26+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,9 +33,8 @@ msgstr ""
 msgid "Sorry, an error has occurred"
 msgstr ""
 
-#: ../pypackage/base.py:182
-#, python-format
-msgid "Failed to create model. %(error)s"
+#: ../pypackage/base.py:183
+msgid "Failed to create model. %(error)"
 msgstr ""
 
 #: ../pypackage/base.py:197
@@ -54,66 +53,66 @@ msgstr ""
 
 #: ../pypackage/forms/account.py:25
 msgid "User"
-msgstr "用户"
+msgstr ""
 
 #: ../pypackage/forms/account.py:26
-msgid "You must provide an email or username"
-msgstr "你必须提供用户名"
+msgid "You must provide an username"
+msgstr ""
 
 #: ../pypackage/forms/account.py:27 ../pypackage/forms/account.py:40
 #: ../pypackage/views/account.py:66
 msgid "Password"
-msgstr "密码"
+msgstr ""
 
 #: ../pypackage/forms/account.py:28
 msgid "You must provide an password"
-msgstr "你必须提供密码"
+msgstr ""
 
 #: ../pypackage/forms/account.py:29
 msgid "Remember me"
-msgstr "记住"
+msgstr ""
 
 #: ../pypackage/forms/account.py:31
 msgid "Login"
-msgstr "登录"
+msgstr ""
 
 #: ../pypackage/forms/account.py:37 ../pypackage/forms/account.py:67
 msgid "User name"
-msgstr "用户名"
+msgstr ""
 
 #: ../pypackage/forms/account.py:38 ../pypackage/forms/account.py:68
 msgid "User name required"
-msgstr "必须要有用户名"
+msgstr ""
 
 #: ../pypackage/forms/account.py:41
 msgid "Password required"
-msgstr "必须要有秘密"
+msgstr ""
 
 #: ../pypackage/forms/account.py:42
 msgid "Password again"
-msgstr "再一次密码"
+msgstr ""
 
 #: ../pypackage/forms/account.py:43
 msgid "Passwords don't match"
-msgstr "密码不匹配"
+msgstr ""
 
 #: ../pypackage/forms/account.py:48 ../pypackage/forms/account.py:74
 #: ../pypackage/templates/hr/main.html:7 ../pypackage/views/account.py:68
 #: ../pypackage/views/account.py:69
 msgid "Employee"
-msgstr "员工"
+msgstr ""
 
 #: ../pypackage/forms/account.py:50 ../pypackage/forms/account.py:76
 #: ../pypackage/views/account.py:71 ../pypackage/views/account.py:72
 msgid "Principal Group"
-msgstr "权限组"
+msgstr ""
 
 #: ../pypackage/forms/account.py:53 ../pypackage/forms/account.py:79
 #: ../pypackage/forms/hr.py:23 ../pypackage/forms/hr.py:31
 #: ../pypackage/views/account.py:73 ../pypackage/views/hr.py:30
 #: ../pypackage/views/hr.py:76
 msgid "Description"
-msgstr "描述"
+msgstr ""
 
 #: ../pypackage/forms/account.py:61
 msgid "This username is taken"
@@ -121,143 +120,143 @@ msgstr ""
 
 #: ../pypackage/forms/base.py:15 ../pypackage/views/base.py:87
 msgid "Item ID"
-msgstr "项目编号"
+msgstr ""
 
 #: ../pypackage/forms/base.py:16 ../pypackage/forms/base.py:18
 #: ../pypackage/forms/base.py:20 ../pypackage/forms/base.py:27
 #: ../pypackage/forms/base.py:29
 msgid "You must provide"
-msgstr "你必须提供内容"
+msgstr ""
 
 #: ../pypackage/forms/base.py:17 ../pypackage/views/base.py:88
 msgid "Item Order"
-msgstr "项目序号"
+msgstr ""
 
 #: ../pypackage/forms/base.py:19 ../pypackage/views/base.py:89
 msgid "Item Name"
-msgstr "项目名称"
+msgstr ""
 
 #: ../pypackage/forms/base.py:26 ../pypackage/views/base.py:38
 msgid "Group ID"
-msgstr "组编号"
+msgstr ""
 
 #: ../pypackage/forms/base.py:28 ../pypackage/views/base.py:39
 msgid "Group Name"
-msgstr "组名称"
+msgstr ""
 
 #: ../pypackage/forms/form.py:174
 msgid "Invalid time format"
-msgstr "无效时间格式"
+msgstr ""
 
 #: ../pypackage/forms/form.py:236
 msgid "Invalid Choice: could not coerce"
-msgstr "无效选择"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:21
 msgid "Dept Name"
-msgstr "部门名称"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:22
 msgid "You must provide an department name"
-msgstr "你必须提供部门名称"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:29
 msgid "Job Name"
-msgstr "职位名称"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:30
 msgid "You must provide an job name"
-msgstr "你必须提供职位名称"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:37 ../pypackage/views/hr.py:119
 msgid "Employee Code"
-msgstr "员工编号"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:38
 msgid "You must provide an employee code"
-msgstr "你必须提供员工编号"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:39 ../pypackage/views/hr.py:120
 msgid "Employee Name"
-msgstr "员工名称"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:40
 msgid "You must provide an employee name"
-msgstr "你必须提供员工名称"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:41
 msgid "Work Email"
-msgstr "工作邮箱"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:42
 msgid "Work Phone"
-msgstr "工作电话"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:43
 msgid "Work Mobile"
-msgstr "工作手机"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:44
 msgid "Office Location"
-msgstr "办公位置"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:45 ../pypackage/templates/hr/main.html:10
 #: ../pypackage/views/hr.py:75 ../pypackage/views/hr.py:121
 msgid "Department"
-msgstr "部门"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:46
 msgid "You must choices a Department"
-msgstr "你必须选择部门"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:47 ../pypackage/templates/hr/main.html:9
 #: ../pypackage/views/hr.py:30 ../pypackage/views/hr.py:121
 msgid "Job"
-msgstr "职位"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:48
 msgid "You must choices a Job"
-msgstr "你必须选择职位"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:49 ../pypackage/views/hr.py:120
 msgid "Gender"
-msgstr "性别"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:50
 msgid "You must choices a Gender"
-msgstr "你必须选择性别"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:51 ../pypackage/views/hr.py:120
 msgid "ID Card"
-msgstr "身份证"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:52
 msgid "Home Address"
-msgstr "家庭地址"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:53
 msgid "Date of Birth (eg:2012-01-01)"
-msgstr "出生年月"
+msgstr ""
 
 #: ../pypackage/forms/hr.py:56
 msgid "Reamrk"
-msgstr "备注"
+msgstr ""
 
-#: ../pypackage/forms/im.py:16
+#: ../pypackage/forms/im.py:16 ../pypackage/views/im.py:34
 msgid "Building#"
-msgstr "建筑编号"
+msgstr ""
 
-#: ../pypackage/forms/im.py:17
+#: ../pypackage/forms/im.py:17 ../pypackage/views/im.py:35
 msgid "Floor#"
-msgstr "楼层编号"
+msgstr ""
 
 #: ../pypackage/forms/im.py:18 ../pypackage/views/im.py:36
 msgid "Inventory Type"
-msgstr "仓库类型"
+msgstr ""
 
 #: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:37
 msgid "Location Name"
-msgstr "位置"
+msgstr ""
 
 #: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:40
 #: ../pypackage/forms/im.py:54 ../pypackage/forms/mm.py:18
@@ -265,47 +264,47 @@ msgstr "位置"
 #: ../pypackage/views/im.py:132 ../pypackage/views/im.py:240
 #: ../pypackage/views/mm.py:30 ../pypackage/views/sd.py:29
 msgid "Remark"
-msgstr "备注"
+msgstr ""
 
 #: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:50
 #: ../pypackage/views/im.py:127 ../pypackage/views/im.py:235
 msgid "Bill No"
-msgstr "单号"
+msgstr ""
 
 #: ../pypackage/forms/im.py:37 ../pypackage/forms/im.py:51
 msgid "Storage Date (eg:2012-01-01)"
-msgstr "入库日期(eg:2012-01-01)"
+msgstr ""
 
 #: ../pypackage/forms/im.py:39 ../pypackage/views/im.py:129
 msgid "Delivery Person"
-msgstr "送货人"
+msgstr ""
 
 #: ../pypackage/forms/im.py:53 ../pypackage/views/im.py:237
 msgid "Consignor"
-msgstr "送货人"
+msgstr ""
 
 #: ../pypackage/forms/mm.py:14 ../pypackage/views/mm.py:27
 msgid "Product Code"
-msgstr "产品编号"
+msgstr ""
 
 #: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:302
 #: ../pypackage/views/mm.py:28
 msgid "Product Name"
-msgstr "产品名称"
+msgstr ""
 
 #: ../pypackage/forms/mm.py:16 ../pypackage/templates/sd/main.html:7
 #: ../pypackage/views/mm.py:29
 msgid "Customer"
-msgstr "客户"
+msgstr ""
 
 #: ../pypackage/forms/sd.py:12 ../pypackage/views/sd.py:27
 msgid "Customer Code"
-msgstr "客户编号"
+msgstr ""
 
 #: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:303
 #: ../pypackage/views/sd.py:28
 msgid "Customer Name"
-msgstr "客户名称"
+msgstr ""
 
 #: ../pypackage/forms/validators.py:17
 msgid "You can only use letters, numbers or dashes"
@@ -313,30 +312,58 @@ msgstr ""
 
 #: ../pypackage/templates/about.html:5
 msgid "About"
-msgstr "关于"
-
-#: ../pypackage/templates/actions.html:3
-#: ../pypackage/templates/macros/_actions.html:2
-msgid "With selected"
-msgstr "选中"
+msgstr ""
 
 #: ../pypackage/templates/create.html:12 ../pypackage/templates/edit.html:12
 #: ../pypackage/templates/list.html:8 ../pypackage/templates/view.html:7
 #: ../pypackage/templates/im/inventory.html:11
 msgid "List"
-msgstr "列表"
+msgstr ""
 
 #: ../pypackage/templates/create.html:15 ../pypackage/templates/list.html:12
 msgid "Create"
-msgstr "创建"
+msgstr ""
 
 #: ../pypackage/templates/create.html:20
 msgid "Save and Add"
-msgstr "保存并添加"
+msgstr ""
 
 #: ../pypackage/templates/edit.html:15 ../pypackage/templates/view.html:13
 msgid "Edit"
-msgstr "编辑"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:30
+msgid "Home"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:31
+msgid "Human Resources"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:32
+msgid "Sales Distribution"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:33
+msgid "Warehouse"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:34
+msgid "Material"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:35
+#: ../pypackage/templates/account/main.html:7
+msgid "Account"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:36 ../pypackage/templates/im/main.html:11
+msgid "Base"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:45
+msgid "Logout"
+msgstr ""
 
 #: ../pypackage/templates/list.html:69
 msgid "You sure you want to delete this item?"
@@ -348,28 +375,24 @@ msgstr ""
 
 #: ../pypackage/templates/view.html:10
 msgid "View"
-msgstr "视图"
+msgstr ""
 
 #: ../pypackage/templates/account/main.html:6
 msgid "Acctounts"
-msgstr "账号"
-
-#: ../pypackage/templates/account/main.html:7
-msgid "Account"
-msgstr "帐号"
+msgstr ""
 
 #: ../pypackage/templates/base/main.html:6
 #: ../pypackage/templates/hr/main.html:8
 msgid "Bases"
-msgstr "基础信息"
+msgstr ""
 
 #: ../pypackage/templates/base/main.html:7
 msgid "Item Group"
-msgstr "项目组"
+msgstr ""
 
 #: ../pypackage/templates/base/main.html:8
 msgid "Item"
-msgstr "项目"
+msgstr ""
 
 #: ../pypackage/templates/errors/403.html:5
 msgid "403, Page Not Allowed"
@@ -401,7 +424,7 @@ msgstr ""
 
 #: ../pypackage/templates/hr/main.html:6
 msgid "HR"
-msgstr "人事"
+msgstr ""
 
 #: ../pypackage/templates/im/main.html:6 ../pypackage/templates/mm/main.html:6
 #: ../pypackage/templates/sd/main.html:6
@@ -410,33 +433,33 @@ msgstr ""
 
 #: ../pypackage/templates/im/main.html:7
 msgid "Warehouse Voucher"
-msgstr "入库单"
+msgstr ""
 
 #: ../pypackage/templates/im/main.html:8
 msgid "Inventory"
-msgstr "库存"
+msgstr ""
 
 #: ../pypackage/templates/im/main.html:9
 msgid "Delivery Voucher"
-msgstr "出库单"
-
-#: ../pypackage/templates/im/main.html:11
-msgid "Base"
-msgstr "基础数据"
+msgstr ""
 
 #: ../pypackage/templates/im/main.html:12
 msgid "Inventory Locatioin"
-msgstr "库位"
+msgstr ""
+
+#: ../pypackage/templates/macros/_actions.html:2
+msgid "With selected"
+msgstr ""
 
 #: ../pypackage/templates/macros/_forms.html:115
 #: ../pypackage/templates/macros/lib.html:134
 msgid "Submit"
-msgstr "提交"
+msgstr ""
 
 #: ../pypackage/templates/macros/_forms.html:120
 #: ../pypackage/templates/macros/lib.html:139
 msgid "Cancel"
-msgstr "撤销"
+msgstr ""
 
 #: ../pypackage/templates/macros/_page.html:7
 msgid "newer"
@@ -449,70 +472,54 @@ msgstr ""
 #: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:93
 #: ../pypackage/views/im.py:201
 msgid "Product"
-msgstr "产品"
-
-#: ../pypackage/templates/widgets/inline_list_base.html:18
-msgid "Delete?"
-msgstr "确定删除？"
-
-#: ../pypackage/templates/widgets/inline_list_base.html:26
-msgid "Add"
-msgstr "添加"
+msgstr ""
 
 #: ../pypackage/views/account.py:43
 msgid "Sorry, invalid login"
-msgstr "对不起，登录无效"
+msgstr ""
 
 #: ../pypackage/views/account.py:61 ../pypackage/views/account.py:104
 msgid "Auth"
-msgstr "权限"
+msgstr ""
 
 #: ../pypackage/views/account.py:65
 msgid "User Name"
-msgstr "用户名称"
+msgstr ""
 
 #: ../pypackage/views/account.py:67
 msgid "Password Again"
-msgstr "重复密码"
+msgstr ""
 
 #: ../pypackage/views/account.py:70
 msgid "Supper User"
-msgstr "超级用户"
+msgstr ""
 
 #: ../pypackage/views/account.py:74 ../pypackage/views/sd.py:30
 msgid "Active"
-msgstr "有效"
+msgstr ""
 
 #: ../pypackage/views/base.py:40
 msgid "Items"
-msgstr "项目"
-
-#: ../pypackage/views/im.py:34
-msgid "Building"
-msgstr "建筑编号"
-
-#: ../pypackage/views/im.py:35
-msgid "Floor"
-msgstr "楼层编号"
+msgstr ""
 
 #: ../pypackage/views/im.py:99 ../pypackage/views/im.py:207
 msgid "Inventory Location"
-msgstr "库位"
+msgstr ""
 
 #: ../pypackage/views/im.py:104 ../pypackage/views/im.py:212
 #: ../pypackage/views/im.py:304
 msgid "Quantity"
-msgstr "数量"
+msgstr ""
 
 #: ../pypackage/views/im.py:128 ../pypackage/views/im.py:236
 msgid "Storage Date"
-msgstr "入库日期"
+msgstr ""
 
 #: ../pypackage/views/im.py:130 ../pypackage/views/im.py:238
 msgid "Products"
-msgstr "产品"
+msgstr ""
 
 #: ../pypackage/views/im.py:131 ../pypackage/views/im.py:239
 msgid "Status"
-msgstr "状态"
+msgstr ""
 

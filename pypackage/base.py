@@ -179,9 +179,9 @@ class BaseForm(object):
             return True
         except Exception, ex:
             self.session.rollback()
-            flash(_('Failed to create model. %(error)s', error=str(ex)),
-                'error')
-            logging.exception('Failed to create model')
+            flash(_("Failed to create model. %(error)",
+                error=str(ex)), "error")
+            logging.exception("Failed to create model")
             return False
 
     def after_update_model(self, model):

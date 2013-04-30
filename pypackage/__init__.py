@@ -48,25 +48,25 @@ def configure_i18n(app):
 
     babel = Babel(app)
 
-    @babel.localeselector
-    def get_locale():
-        # if a user is logged in, use the locale from the user settings
+    # @babel.localeselector
+    # def get_locale():
+    #     # if a user is logged in, use the locale from the user settings
         
-        # user = getattr(g, 'user', None)
-        # if user is not None:
-        #     return user.locale
+    #     # user = getattr(g, 'user', None)
+    #     # if user is not None:
+    #     #     return user.locale
 
-        # otherwise try to guess the language from the user accept
-        # header the browser transmits.  We support de/fr/en in this
-        # example.  The best match wins.
-        accept_languages = app.config.get('ACCEPT_LANGUAGES')
-        return request.accept_languages.best_match(accept_languages)
+    #     # otherwise try to guess the language from the user accept
+    #     # header the browser transmits.  We support de/fr/en in this
+    #     # example.  The best match wins.
+    #     accept_languages = app.config.get('ACCEPT_LANGUAGES')
+    #     return request.accept_languages.best_match(accept_languages)
 
-    @babel.timezoneselector
-    def get_timezone():
-        user = getattr(g, 'user', None)
-        if user is not None:
-            return user.timezone
+    # @babel.timezoneselector
+    # def get_timezone():
+    #     user = getattr(g, 'user', None)
+    #     if user is not None:
+    #         return user.timezone
 
 
 def configure_errorhandlers(app):

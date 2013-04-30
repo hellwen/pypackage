@@ -31,8 +31,8 @@ def main():
 
 class InventoryLocationAdmin(BaseForm):
     list_columns = ("building", "floor", "inventory_type", "location_name")
-    column_labels = dict(building=_("Building"),
-        floor=_("Floor"),
+    column_labels = dict(building=_("Building#"),
+        floor=_("Floor#"),
         inventory_type=_("Inventory Type"),
         location_name=_("Location Name"),
         remark=_("Remark"))

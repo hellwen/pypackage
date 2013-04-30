@@ -23,7 +23,7 @@ class LoginForm(Form):
     next = HiddenField()
     
     login = TextField(_("User"), validators=[
-        required(message=_("You must provide an email or username"))])
+        required(message=_("You must provide an username"))])
     password = PasswordField(_("Password"), validators=[
         required(message=_("You must provide an password"))])
     remember = BooleanField(_("Remember me"))
