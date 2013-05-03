@@ -13,7 +13,8 @@ class InventoryLocation(db.Model):
     __tablename__ = "inventory_location"
 
     id = db.Column(db.Integer, primary_key=True)
-    inventory_type_id = db.Column(db.Integer, db.ForeignKey(Item.item_id))
+    inventory_type_id = db.Column(db.Integer, db.ForeignKey(Item.item_id),
+        nullable=False)
     inventory_type = db.relationship(Item, foreign_keys=inventory_type_id)
     building = db.Column(db.String(1), nullable=False)
     floor = db.Column(db.Integer, default=0, nullable=False)
