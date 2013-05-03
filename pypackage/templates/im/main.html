@@ -5,6 +5,7 @@
     <ul class="nav nav-list">
         <li class="nav-header">{{ _("Main") }}</li>
         <li><a href="{{ url_for('.warehousevoucher_list', next=request.path) }}">{{ _("Warehouse Voucher") }}</a></li>
+        <li><a href="{{ url_for('.inventory_bylocation_list', next=request.path) }}">{{ _("Inventory by location") }}</a></li>
         <li><a href="{{ url_for('.inventory_list', next=request.path) }}">{{ _("Inventory") }}</a></li>
         <li><a href="{{ url_for('.deliveryvoucher_list', next=request.path) }}">{{ _("Delivery Voucher") }}</a></li>
         <li class="divider"></li>

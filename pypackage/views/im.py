@@ -30,11 +30,13 @@ def main():
 
 
 class InventoryLocationAdmin(BaseForm):
-    list_columns = ("building", "floor", "inventory_type", "location_name")
+    list_columns = ("building", "floor", "inventory_type", "location_name",
+        "location_full_name")
     column_labels = dict(building=_("Building#"),
         floor=_("Floor#"),
         inventory_type=_("Inventory Type"),
         location_name=_("Location Name"),
+        location_full_name=_("Location Full Name"),
         remark=_("Remark"))
     fieldsets = [
         (None, {'fields': (("building", "floor"),
@@ -102,7 +104,7 @@ class WarehouseVoucherProductAdmin(InlineBaseForm):
             .order_by('product_name')],
             coerce=int, validators=[required()])
         form.inventory_location_id = Select2Field(_("Inventory Location"),
-            default=0, choices=[(g.id, g.location_name) for g in
+            default=0, choices=[(g.id, g.location_full_name) for g in
             InventoryLocation.query.filter_by(active=True).
             order_by('location_name')],
             coerce=int, validators=[required()])
@@ -217,7 +219,7 @@ class DeliveryVoucherProductAdmin(InlineBaseForm):
             .order_by('product_name')],
             coerce=int, validators=[required()])
         form.inventory_location_id = Select2Field(_("Inventory Location"),
-            default=0, choices=[(g.id, g.location_name) for g in
+            default=0, choices=[(g.id, g.location_full_name) for g in
             InventoryLocation.query.filter_by(active=True).
             order_by('location_name')],
             coerce=int, validators=[required()])
@@ -343,6 +345,50 @@ def inventory_list():
                 ) dv on dv.product_id = wv.product_id
             inner join products p on p.id = wv.product_id
             inner join customers c on c.id = p.customer_id
+            """
+    data = db.session.execute(sql)
+    count = 0
+
+    return render_template("im/inventory.html", data=data, count=count,
+        list_columns=list_columns, column_labels=column_labels)
+
+
+@im.route("/inventory_bylocation/list/", methods=("GET", "POST"))
+@login_required
+def inventory_bylocation_list():
+    list_columns = ("product_name", "customer_name", "location_full_name",
+        "quantity")
+    column_labels = dict(product_name=_("Product Name"),
+        customer_name=_("Customer Name"),
+        location_full_name=_("Location Name"),
+        quantity=_("Quantity"))
+
+    sql = """
+            select p.product_name, c.customer_name,
+                l.building || l.floor || l.location_name as location_full_name,
+                wv.quantity - coalesce(dv.quantity,0) as quantity
+            from (
+                select wvp.product_id, wvp.inventory_location_id,
+                    sum(wvp.quantity) as quantity
+                from warehouse_voucher wv
+                inner join warehouse_voucher_product wvp
+                    on wvp.master_id = wv.id
+                where wv.status = 'C'
+                group by wvp.product_id, wvp.inventory_location_id
+                ) wv
+            left join (
+                select dvp.product_id, dvp.inventory_location_id,
+                    sum(dvp.quantity) as quantity
+                from delivery_voucher dv
+                inner join delivery_voucher_product dvp
+                    on dvp.master_id = dv.id
+                where dv.status = 'C'
+                group by dvp.product_id, dvp.inventory_location_id
+                ) dv on dv.product_id = wv.product_id
+                and dv.inventory_location_id = wv.inventory_location_id
+            inner join products p on p.id = wv.product_id
+            inner join customers c on c.id = p.customer_id
+            inner join inventory_location l on l.id = wv.inventory_location_id
             """
     data = db.session.execute(sql)
     count = 0

@@ -13,7 +13,7 @@ from .form import Select2Field
 class InventoryLocationForm(Form):
     next = HiddenField()
 
-    building = IntegerField(_("Building#"), validators=[required()])
+    building = TextField(_("Building#"), validators=[required()])
     floor = IntegerField(_("Floor#"), validators=[required()])
     inventory_type_id = Select2Field(_("Inventory Type"), default=0,
         coerce=int, validators=[required()])

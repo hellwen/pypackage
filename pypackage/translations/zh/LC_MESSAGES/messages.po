@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-30 23:18+0800\n"
+"POT-Creation-Date: 2013-05-03 22:40+0800\n"
 "PO-Revision-Date: 2013-04-30 18:59+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh <LL@li.org>\n"
@@ -270,40 +270,40 @@ msgstr "出生日期 (eg:2012-01-01)"
 msgid "Reamrk"
 msgstr "备注"
 
-#: ../pypackage/forms/im.py:16 ../pypackage/views/im.py:34
-#: ../pypackage/views/im.py:58
+#: ../pypackage/forms/im.py:16 ../pypackage/views/im.py:35
+#: ../pypackage/views/im.py:60
 msgid "Building#"
 msgstr "楼号"
 
-#: ../pypackage/forms/im.py:17 ../pypackage/views/im.py:35
-#: ../pypackage/views/im.py:59
+#: ../pypackage/forms/im.py:17 ../pypackage/views/im.py:36
+#: ../pypackage/views/im.py:61
 msgid "Floor#"
 msgstr "层号"
 
-#: ../pypackage/forms/im.py:18 ../pypackage/views/im.py:36
-#: ../pypackage/views/im.py:60
+#: ../pypackage/forms/im.py:18 ../pypackage/views/im.py:37
+#: ../pypackage/views/im.py:62
 msgid "Inventory Type"
 msgstr "仓库类型"
 
-#: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:37
-#: ../pypackage/views/im.py:61
+#: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:38
+#: ../pypackage/views/im.py:63 ../pypackage/views/im.py:363
 msgid "Location Name"
 msgstr "库位"
 
 #: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:40
 #: ../pypackage/forms/im.py:54 ../pypackage/forms/mm.py:18
-#: ../pypackage/forms/sd.py:14 ../pypackage/views/im.py:38
-#: ../pypackage/views/im.py:62 ../pypackage/views/im.py:138
-#: ../pypackage/views/im.py:177 ../pypackage/views/im.py:253
-#: ../pypackage/views/im.py:283 ../pypackage/views/mm.py:30
+#: ../pypackage/forms/sd.py:14 ../pypackage/views/im.py:40
+#: ../pypackage/views/im.py:64 ../pypackage/views/im.py:140
+#: ../pypackage/views/im.py:179 ../pypackage/views/im.py:255
+#: ../pypackage/views/im.py:285 ../pypackage/views/mm.py:30
 #: ../pypackage/views/mm.py:52 ../pypackage/views/sd.py:29
 #: ../pypackage/views/sd.py:44
 msgid "Remark"
 msgstr "备注"
 
 #: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:50
-#: ../pypackage/views/im.py:133 ../pypackage/views/im.py:172
-#: ../pypackage/views/im.py:248 ../pypackage/views/im.py:278
+#: ../pypackage/views/im.py:135 ../pypackage/views/im.py:174
+#: ../pypackage/views/im.py:250 ../pypackage/views/im.py:280
 msgid "Bill No"
 msgstr "单据编号"
 
@@ -311,13 +311,13 @@ msgstr "单据编号"
 msgid "Storage Date (eg:2012-01-01)"
 msgstr "入库日期 (如:2012-01-01)"
 
-#: ../pypackage/forms/im.py:39 ../pypackage/views/im.py:135
-#: ../pypackage/views/im.py:174
+#: ../pypackage/forms/im.py:39 ../pypackage/views/im.py:137
+#: ../pypackage/views/im.py:176
 msgid "Delivery Person"
 msgstr "送货人"
 
-#: ../pypackage/forms/im.py:53 ../pypackage/views/im.py:250
-#: ../pypackage/views/im.py:280
+#: ../pypackage/forms/im.py:53 ../pypackage/views/im.py:252
+#: ../pypackage/views/im.py:282
 msgid "Consignor"
 msgstr "送货人"
 
@@ -326,8 +326,9 @@ msgstr "送货人"
 msgid "Product Code"
 msgstr "产品编号"
 
-#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:321
-#: ../pypackage/views/mm.py:28 ../pypackage/views/mm.py:50
+#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:323
+#: ../pypackage/views/im.py:361 ../pypackage/views/mm.py:28
+#: ../pypackage/views/mm.py:50
 msgid "Product Name"
 msgstr "产品名称"
 
@@ -341,8 +342,9 @@ msgstr "客户"
 msgid "Customer Code"
 msgstr "客户编号"
 
-#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:322
-#: ../pypackage/views/sd.py:28 ../pypackage/views/sd.py:43
+#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:324
+#: ../pypackage/views/im.py:362 ../pypackage/views/sd.py:28
+#: ../pypackage/views/sd.py:43
 msgid "Customer Name"
 msgstr "客户名称"
 
@@ -397,7 +399,7 @@ msgstr "物料"
 msgid "Account"
 msgstr "帐号"
 
-#: ../pypackage/templates/layout.html:36 ../pypackage/templates/im/main.html:11
+#: ../pypackage/templates/layout.html:36 ../pypackage/templates/im/main.html:12
 msgid "Base"
 msgstr "基础数据"
 
@@ -480,14 +482,18 @@ msgid "Warehouse Voucher"
 msgstr "入库凭证"
 
 #: ../pypackage/templates/im/main.html:8
+msgid "Inventory by location"
+msgstr "库存（库位）"
+
+#: ../pypackage/templates/im/main.html:9
 msgid "Inventory"
 msgstr "库存"
 
-#: ../pypackage/templates/im/main.html:9
+#: ../pypackage/templates/im/main.html:10
 msgid "Delivery Voucher"
 msgstr "出库凭证"
 
-#: ../pypackage/templates/im/main.html:12
+#: ../pypackage/templates/im/main.html:13
 msgid "Inventory Locatioin"
 msgstr "库位"
 
@@ -513,8 +519,8 @@ msgstr ""
 msgid "older"
 msgstr ""
 
-#: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:98
-#: ../pypackage/views/im.py:213
+#: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:100
+#: ../pypackage/views/im.py:215
 msgid "Product"
 msgstr "产品"
 
@@ -547,31 +553,33 @@ msgstr "重复密码"
 msgid "Items"
 msgstr "项目"
 
-#: ../pypackage/views/im.py:104 ../pypackage/views/im.py:219
+#: ../pypackage/views/im.py:39
+#, fuzzy
+msgid "Location Full Name"
+msgstr "库位"
+
+#: ../pypackage/views/im.py:106 ../pypackage/views/im.py:221
 msgid "Inventory Location"
 msgstr "库位"
 
-#: ../pypackage/views/im.py:109 ../pypackage/views/im.py:224
-#: ../pypackage/views/im.py:323
+#: ../pypackage/views/im.py:111 ../pypackage/views/im.py:226
+#: ../pypackage/views/im.py:325 ../pypackage/views/im.py:364
 msgid "Quantity"
 msgstr "数量"
 
-#: ../pypackage/views/im.py:117 ../pypackage/views/im.py:136
-#: ../pypackage/views/im.py:175 ../pypackage/views/im.py:232
-#: ../pypackage/views/im.py:251 ../pypackage/views/im.py:281
+#: ../pypackage/views/im.py:119 ../pypackage/views/im.py:138
+#: ../pypackage/views/im.py:177 ../pypackage/views/im.py:234
+#: ../pypackage/views/im.py:253 ../pypackage/views/im.py:283
 msgid "Products"
 msgstr "产品"
 
-#: ../pypackage/views/im.py:134 ../pypackage/views/im.py:173
-#: ../pypackage/views/im.py:249 ../pypackage/views/im.py:279
+#: ../pypackage/views/im.py:136 ../pypackage/views/im.py:175
+#: ../pypackage/views/im.py:251 ../pypackage/views/im.py:281
 msgid "Storage Date"
 msgstr "存储日期"
 
-#: ../pypackage/views/im.py:137 ../pypackage/views/im.py:176
-#: ../pypackage/views/im.py:252 ../pypackage/views/im.py:282
+#: ../pypackage/views/im.py:139 ../pypackage/views/im.py:178
+#: ../pypackage/views/im.py:254 ../pypackage/views/im.py:284
 msgid "Status"
 msgstr "状态"
-
-#~ msgid "Itemsa"
-#~ msgstr "项目"
 

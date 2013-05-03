@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 #coding=utf-8
 from datetime import datetime, date
+from sqlalchemy.ext.hybrid import hybrid_property
 
 from pypackage.extensions import db
 
@@ -12,16 +13,21 @@ class InventoryLocation(db.Model):
     __tablename__ = "inventory_location"
 
     id = db.Column(db.Integer, primary_key=True)
-    building = db.Column(db.Integer, default=0, nullable=False)
-    floor = db.Column(db.Integer, default=0, nullable=False)
     inventory_type_id = db.Column(db.Integer, db.ForeignKey(Item.item_id))
     inventory_type = db.relationship(Item, foreign_keys=inventory_type_id)
+    building = db.Column(db.String(1), nullable=False)
+    floor = db.Column(db.Integer, default=0, nullable=False)
     location_name = db.Column(db.String(50), nullable=False)
     remark = db.Column(db.String(300))
     active = db.Column(db.Boolean, default=True, nullable=False)
 
+    @hybrid_property
+    def location_full_name(self):
+        return unicode(self.building) + unicode(self.floor) \
+            + unicode(self.location_name)
+
     def __repr__(self):
-        return self.location_name
+        return self.location_full_name
 
 
 class WarehouseVoucher(db.Model):
