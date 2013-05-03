@@ -30,14 +30,12 @@ def main():
 
 
 class InventoryLocationAdmin(BaseForm):
-    list_columns = ("building", "floor", "inventory_type", "location_name",
-        "location_full_name")
-    column_labels = dict(building=_("Building#"),
-        floor=_("Floor#"),
-        inventory_type=_("Inventory Type"),
-        location_name=_("Location Name"),
-        location_full_name=_("Location Full Name"),
-        remark=_("Remark"))
+    list_columns = ("inventory_type", "building", "floor", "location_name")
+    # column_labels = dict(inventory_type=_("Inventory Type"),
+    #     building=_("Building#"),
+    #     floor=_("Floor#"),
+    #     location_name=_("Location Name"),
+    #     remark=_("Remark"))
     fieldsets = [
         (None, {'fields': (("building", "floor"),
             ("inventory_type_id", "location_name"),

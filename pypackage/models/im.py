@@ -27,6 +27,11 @@ class InventoryLocation(db.Model):
         return unicode(self.building) + unicode(self.floor) \
             + unicode(self.location_name)
 
+    @hybrid_property
+    def full_name(self):
+        return unicode(self.building) + unicode(self.floor) \
+            + unicode(self.location_name)
+
     def __repr__(self):
         return self.location_full_name
 
