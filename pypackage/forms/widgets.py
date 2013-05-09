@@ -7,16 +7,7 @@ import helpers as h
 
 
 class RenderTemplateWidget(object):
-    """
-        WTForms widget that renders Jinja2 template
-    """
     def __init__(self, template):
-        """
-            Constructor
-
-            :param template:
-                Template path
-        """
         self.template = template
 
     def __call__(self, field, **kwargs):

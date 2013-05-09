@@ -42,9 +42,29 @@
                     {% if g.user.is_authenticated() %}
                     <ul class="nav pull-right">
                         <li>
-                            <a href="{{ url_for('account.logout',next=request.path) }}">{{ _("Logout") }}</a>
+                            <div class="btn-group">
+                                {% if g.user.employee.emp_name %}
+                                    <button class="btn">{{ g.user.employee.emp_name }}</button>
+                                {% else %}
+                                    <button class="btn">{{ g.user.username }}</button>
+                                {% endif %}
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                    <li><a href="{{ url_for('account.setting',next=request.path) }}">{{ _("Setting") }}</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{ url_for('account.logout',next=request.path) }}">{{ _("Logout") }}</a></li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
+                    {% else %}
+                    <ul class="nav pull-right">
+                        <li>
+                            <a href="{{ url_for('account.login',next=request.path) }}">{{ _("Login") }}</a>
+                        </li>
+                    </ul>                    
                     {% endif %}
                 </div>
             </div>

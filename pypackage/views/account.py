@@ -52,6 +52,12 @@ def logout():
     return redirect(next_url)
 
 
+@account.route("/setting/", methods=("GET", "POST"))
+@login_required
+def setting():
+    return render_template("account/setting.html")
+
+
 class UserAdmin(BaseForm):
     list_columns = ("username", "supperuser", "employee",
         "principalgroup", "description")
@@ -130,62 +136,3 @@ def user_delete(id):
 @login_required
 def user_action():
     return useradmin.action_view()
-
-
-# @account.route("/user/create/", methods=("GET", "POST"))
-# def user_create():
-#     form = UserForm(next=request.args.get('next', None))
-
-#     # form.employee.choices = [(1, "1"),]
-#     # form.employee.choices.extend([(g.id, g.dept_name) for g in
-#         # Employee.query.filter_by(active=True).order_by('emp_name')])
-
-#     if form.validate_on_submit():
-#         user = User()
-#         form.populate_obj(user)
-
-#         db.session.add(user)
-#         db.session.commit()
-
-#         flash(_("Welcome, %(name)s", name=user.username), "success")
-
-#         next_url = form.next.data
-
-#         if not next_url or next_url == request.path:
-#             next_url = url_for('account.main', username=user.username)
-
-#         return redirect(next_url)
-
-#     return render_template("account/user.html", form=form)
-
-
-# @account.route("/user/edit=<int:id>/", methods=("GET", "POST"))
-# def user_edit(id):
-#     user = User.query.get(id)
-#     form = UserForm(next=request.args.get('next', None), obj=user)
-
-#     form.employee_id.choices = [(0, "")]
-#     form.employee_id.choices.extend([(g.id, g.dept_name) for g in
-#         Employee.query.filter_by(active=True).order_by('emp_name')])
-
-#     if form.validate_on_submit():
-#         form.populate_obj(user)
-#         db.session.add(user)
-#         db.session.commit()
-
-#         next_url = form.next.data
-#         if not next_url or next_url == request.path:
-#             next_url = url_for('account.main')
-
-#         return redirect(url_for('account.user'))
-
-#     return render_template("account/user.html", form=form)
-
-
-# @account.route("/user/delete=<int:id>/", methods=("GET", "POST"))
-# def user_delete(id):
-#     user = User.query.get(id)
-#     if user:
-#         db.session.delete(user)
-#         db.session.commit()
-#     return redirect(url_for("account.user"))

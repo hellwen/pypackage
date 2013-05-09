@@ -2,7 +2,7 @@
 <div class="fa-inline-field">
     <div class="fa-inline-field-control">
         <a href="javascript:void(0)" class="fa-remove-field"><i class="icon-remove"></i></a>
-    </div>
+    </div>    
     {{ render(template) }}
 </div>
 {%- endmacro %}
@@ -23,6 +23,7 @@
         </div>
         {% endfor %}
     </div>
-    <a href="javascript:void(0)" class="btn" onclick="faForm.addInlineField('{{ field.id }}', '#{{ field.id }}-fields', {{ render_template(template, render)|tojson }});">{{ _('Add') }}</a>
+    <a href="javascript:void(0)" class="btn" onclick="faForm.addInlineField('{{ field.id }}', '#{{ field.id }}-fields',
+        {{ render_template(template, render)|tojson }});">{{ _('Add') }}</a>
 </div>
 {% endmacro %}

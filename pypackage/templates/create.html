@@ -1,5 +1,5 @@
 {% extends admin_view.blueprint.name + '/main.html' %}
-{% import 'macros/_forms.html' as lib with context %}
+{% import 'macros/_forms.html' as _forms with context %}
 
 {% block head %}
     <link href="/static/css/datepicker.css" rel="stylesheet">
@@ -20,9 +20,9 @@
         <input name="_add_another" type="submit" class="btn btn-large" value="{{ _('Save and Add') }}" />
     {% endmacro %}
 
-    {% call lib.form_tag() %}
-        {{ lib.render_form_fields(form, widget_args=form_widget_args) }}
-        {{ lib.render_form_buttons(return_url, extra()) }}        
+    {% call _forms.form_tag() %}
+        {{ _forms.render_form_fields(form, widget_args=form_widget_args) }}
+        {{ _forms.render_form_buttons(return_url, extra()) }}
     {% endcall %}
 {% endblock %}
 
