@@ -343,6 +343,7 @@ def inventory_list():
                 ) dv on dv.product_id = wv.product_id
             inner join products p on p.id = wv.product_id
             inner join customers c on c.id = p.customer_id
+            where wv.quantity - coalesce(dv.quantity,0) != 0
             """
     data = db.session.execute(sql)
     count = 0
@@ -387,6 +388,7 @@ def inventory_bylocation_list():
             inner join products p on p.id = wv.product_id
             inner join customers c on c.id = p.customer_id
             inner join inventory_location l on l.id = wv.inventory_location_id
+            where wv.quantity - coalesce(dv.quantity,0) != 0
             """
     data = db.session.execute(sql)
     count = 0
