@@ -29,11 +29,7 @@
         <tr>
             {% block list_row scoped %}
                 {% for c in list_columns %}
-                    {%- if row[c] %}
-                        <td>{{ row[c] }}</td>
-                    {%- else %}
-                        <td></td>
-                    {%- endif %}
+                    <td>{{ row[c] }}</td>
                 {% endfor %}
             {% endblock %}
         </tr>
