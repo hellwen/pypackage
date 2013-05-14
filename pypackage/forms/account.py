@@ -42,8 +42,7 @@ class UserForm(Form):
     password_again = PasswordField(_("Password again"), validators=[
         equal_to("password", message=_("Passwords don't match"))])
 
-    supperuser = BooleanField(_("Supper User"), default=True,
-        validators=[required()])
+    supperuser = BooleanField(_("Supper User"), default=False)
 
     employee_id = Select2Field(_("Employee"), default=0, coerce=int,
         validators=[optional()])
@@ -68,8 +67,7 @@ class UserEditForm(Form):
                          required(message=_("User name required")),
                          is_username])
 
-    supperuser = BooleanField(_("Supper User"), default=True,
-        validators=[required()])
+    supperuser = BooleanField(_("Supper User"), default=False)
 
     employee_id = Select2Field(_("Employee"), default=0, coerce=int,
         validators=[optional()])

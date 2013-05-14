@@ -77,7 +77,11 @@
                 </td>
 
                 {% for c in admin_view.list_columns %}
-                    {%- if row[c] %}
+                    {%- if row[c] == True %}
+                        <td><i class="icon-ok"></i></td>
+                    {%- elif row[c] == False %}
+                        <td><i class="icon-remove"></i></td>
+                    {%- elif row[c] %}
                         <td>{{ row[c] }}</td>
                     {%- else %}
                         <td></td>
