@@ -24,7 +24,7 @@ class CustomerShippingForm(Form):
 class CustomerContactForm(Form):
     id = HiddenField()
     name = TextField(_("Name"), validators=[required()])
-    title = TextField(_("Title"), validators=[required()])
-    phone = TextField(_("Phone"), validators=[required()])
-    mobile = TextField(_("Mobile"), validators=[required()])
+    title = TextField(_("Title"))
+    phone = TextField(_("Phone"))
+    mobile = TextField(_("Mobile"))
     remark = TextField(_("Remark"))

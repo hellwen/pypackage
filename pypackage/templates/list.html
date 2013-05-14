@@ -42,7 +42,7 @@
                     {% set column = 0 %}
                     {% for c in admin_view.list_columns %}
                     <th>
-                        {# 如果这里使用admin_view中的字典会导致无法使用babel #}
+                        {# 如果这里使用admin_view中的字典会导致无法使用babel，原因未知 #}
                         {# {{ admin_view.column_labels[c] }} #}
                         {{ column_labels[c] }}
                     </th>

@@ -24,7 +24,7 @@ class InlineBaseForm(object):
                 form_columns = ('name', 'email')
     """
     _defaults = ['form_columns', 'form_excluded_columns', 'form_args']
-    fieldsets = []
+    list_columns = None
 
     def __init__(self, forward_prop, model, form_class, **kwargs):
         """
@@ -145,6 +145,7 @@ class BaseForm(object):
                             InlineModelFormList(child_form,
                                                 self.session,
                                                 inline.model,
+                                                inline.list_columns,
                                                 **inline.kwargs))
 
             form = self.form_class(next=next)
@@ -161,7 +162,8 @@ class BaseForm(object):
                             InlineModelFormList(child_form,
                                                 self.session,
                                                 inline.model,
-                                                min_entries=1))
+                                                inline.list_columns,
+                                                **inline.kwargs))
             form = self.form_class(obj=obj, next=next)
         form = self.after_create_form(form)
         return form

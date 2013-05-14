@@ -23,7 +23,7 @@ class RenderTemplateWidget(object):
         template = jinja_env.get_template(self.template)
         return template.render(kwargs)
 
-
+ 
 class InlineFieldListWidget(RenderTemplateWidget):
     def __init__(self):
         super(InlineFieldListWidget, self).__init__(

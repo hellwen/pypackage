@@ -108,7 +108,7 @@ class InlineModelFormField(FormField):
 
 
 class InlineModelFormList(InlineFieldList):
-    def __init__(self, form, session, model, **kwargs):
+    def __init__(self, form, session, model, list_columns, **kwargs):
         """
             Default constructor.
 
@@ -118,10 +118,13 @@ class InlineModelFormList(InlineFieldList):
                 SQLAlchemy session
             :param model:
                 Related model
+            :param list_columns:
+                Show Columns
         """
         self.form = form
         self.session = session
         self.model = model
+        self.list_columns = list_columns
 
         self._pk = get_primary_key(model)
 

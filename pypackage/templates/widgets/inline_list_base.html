@@ -17,9 +17,9 @@
                 <input type="checkbox" name="del-{{ subfield.id }}" id="del-{{ subfield.id }}" />
                 <label for="del-{{ subfield.id }}" style="display: inline">{{ _('Delete?') }}</label>
             </div>
-            {%- endif -%}
+            {%- endif -%} 
 
-            {{ render(subfield) }}
+            {{ render(subfield) }}           
         </div>
         {% endfor %}
     </div>
