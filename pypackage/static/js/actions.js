@@ -15,22 +15,27 @@ var AdminModelActions = function(actionErrorMessage, actionConfirmations) {
                 return false;
 
         // Update hidden form and submit it
-        var form = $('#action_form');
-        $('#action', form).val(name);
+        // var form = $('#action_form');
+        // $('#action', form).val(name);
 
-        $('input.action-checkbox', form).remove();
-        $('input.action-checkbox:checked').each(function() {
-            form.append($(this).clone());
-        });
+        // $('input.action-checkbox', form).remove();
+        // $('input.action-checkbox:checked').each(function() {
+        //     form.append($(this).clone());
+        // });
 
-        form.submit();
+        // form.submit();
 
         return false;
     };
-
-    $(function() {
-        $('.action-rowtoggle').change(function() {
-            $('input.action-checkbox').attr('checked', this.checked);
-        });
-    });
 };
+
+
+$(function() {
+    $('.action-rowtoggle').change(function() {
+        $('input.action-checkbox').attr('checked', this.checked);
+    });
+
+    $('input.action-checkbox').change(function() {
+        $('.action-rowtoggle').attr('checked', false);
+    });
+});

@@ -141,9 +141,9 @@ class WarehouseVoucherAdmin(BaseForm):
             ("delivery_person", "remark"),
             "products")}),
     ]
-    # actions = [("delete", "Delete"), ("confirm", _("Confirm"))]
-    # actions_confirmation = {"delete": _("Confirmation Delete ?"),
-    #     "confirm": _("Confirmation Complete ?")}
+    actions = [("delete", _("Delete")), ("confirm", _("Confirm"))]
+    actions_confirmation = {"delete": _("Confirmation Delete ?"),
+        "confirm": _("Confirmation Complete ?")}
 
     def after_create_form(self, form):
         return form

@@ -32,7 +32,6 @@ class CustomerShipping(db.Model):
         nullable=False)
     name = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(200), nullable=False)
-    remark = db.Column(db.String(100))
 
     def __repr__(self):
         return self.name
@@ -47,8 +46,6 @@ class CustomerContact(db.Model):
     name = db.Column(db.String(50), nullable=False)
     title = db.Column(db.String(50))
     phone = db.Column(db.String(50))
-    mobile = db.Column(db.String(50))
-    remark = db.Column(db.String(100))
 
     def __repr__(self):
         return self.name

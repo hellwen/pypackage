@@ -1,5 +1,5 @@
-{% macro dropdown(actions, btn_class='dropdown-toggle') -%}
-    <a class="{{ btn_class }}" data-toggle="dropdown" href="javascript:void(0)">{{ _('With selected') }}<b class="caret"></b></a>
+{% macro dropdown(actions) -%}
+    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">{{ _('With selected') }}<b class="caret"></b></a>
     <ul class="dropdown-menu">
         {% for p in actions %}
         <li>
@@ -20,8 +20,9 @@
 {% macro script(message, actions, actions_confirmation) %}
     {% if actions %}
     <script src="{{ url_for('static', filename='js/actions.js') }}"></script>
+
     <script language="javascript">
-        var modelActions = new AdminModelActions({{ message|tojson|safe }}, {{ actions_confirmation|tojson|safe }});
+        var modelActions = new AdminModelActions({{ message|safe }}, {{ actions_confirmation|tojson|safe }});
     </script>
     {% endif %}
 {% endmacro %}
