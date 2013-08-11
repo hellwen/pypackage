@@ -247,7 +247,8 @@ class BaseForm(object):
         if form.validate_on_submit():
             if self.create_model(form):
                 if '_add_another' in request.form:
-                    flash(_('Created successfully.'))
+                    # 因报错暂时注释
+                    # flash(_('Created successfully.'))
                     return redirect(url_for('.' + self.endpoint + '_create',
                         url=return_url))
                 else:
