@@ -44,7 +44,7 @@ class InventoryLocationAdmin(BaseForm):
 
     def after_create_form(self, form):
         form.inventory_type_id.choices = [(g.item_id, g.item_name) for g in
-            Item.query.filter_by(active=True).filter_by(group_id=2).
+            Item.query.filter_by(active=True).filter_by(group_id=20).
             order_by('item_order')]
         return form
 
