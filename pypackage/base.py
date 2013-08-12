@@ -4,7 +4,7 @@
 import logging
 
 from flask import request, redirect, url_for, render_template, flash
-from flask.ext.babel import lazy_gettext as _
+from flask.ext.babel import gettext as _
 # from flask.ext.wtf import Form, HiddenField, required,\
 #     TextAreaField, TextField, IntegerField, DateField
 
