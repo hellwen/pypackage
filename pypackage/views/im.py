@@ -128,17 +128,20 @@ class WarehouseVoucherAdmin(BaseForm):
         }
     }
 
-    list_columns = ("bill_no", "storage_date", "delivery_person",
-        "products")
+    list_columns = ("bill_no", "storage_date", "delivery_workshop",
+        "store_person", "products")
     column_labels = dict(bill_no=_("Bill No"),
-        storage_date=_("Storage Date"),
+        storage_date=_("Warehouse Voucher Date"),
+        delivery_workshop=_("Delivery Workshop"),
         delivery_person=_("Delivery Person"),
+        store_person=_("Store Person"),
         products=_("Products"),
         status=_("Status"),
         remark=_("Remark"))
     fieldsets = [
         (None, {'fields': (("bill_no", "storage_date"),
-            ("delivery_person", "remark"),
+            ("delivery_workshop_id", "store_person"),
+            ("remark"),
             "products")}),
     ]
     actions = [("delete", _("Delete")), ("confirm", _("Confirm"))]
@@ -146,6 +149,10 @@ class WarehouseVoucherAdmin(BaseForm):
         "confirm": _("Confirmation Complete ?")}
 
     def after_create_form(self, form):
+        form.delivery_workshop_id.choices = \
+            [(g.item_id, g.item_name) for g in \
+            Item.query.filter_by(active=True).filter_by(group_id=30).
+            order_by('item_order')]
         return form
 
     def after_create_model(self, model):
@@ -154,6 +161,7 @@ class WarehouseVoucherAdmin(BaseForm):
         model.status = "C"
         model.opt_userid = g.user.id
         return model
+
 
     # def action_extend(self, action, ids):
     #     if action == "confirm":
@@ -170,8 +178,9 @@ warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
 @login_required
 def warehousevoucher_list():
     column_labels = dict(bill_no=_("Bill No"),
-        storage_date=_("Storage Date"),
-        delivery_person=_("Delivery Person"),
+        storage_date=_("Warehouse Voucher Date"),
+        delivery_workshop=_("Delivery Workshop"),
+        store_person=_("Store Person"),
         products=_("Products"),
         status=_("Status"),
         remark=_("Remark"))
@@ -243,17 +252,19 @@ class DeliveryVoucherAdmin(BaseForm):
         }
     }
 
-    list_columns = ("bill_no", "storage_date", "consignor",
-        "products")
+    list_columns = ("bill_no", "storage_date", "picker",
+        "store_person", "products")
     column_labels = dict(bill_no=_("Bill No"),
-        storage_date=_("Storage Date"),
-        consignor=_("Consignor"),
+        storage_date=_("Delivery Voucher Date"),
+        picker=_("Picker"),
+        store_person=_("Store Person"),
         products=_("Products"),
         status=_("Status"),
         remark=_("Remark"))
     fieldsets = [
         (None, {'fields': (("bill_no", "storage_date"),
-            ("consignor", "remark"),
+            ("picker", "store_person"),
+            ("remark"),
             "products")}),
     ]
 
@@ -276,8 +287,9 @@ deliveryvoucheradmin = DeliveryVoucherAdmin(im, db.session,
 @login_required
 def deliveryvoucher_list():
     column_labels = dict(bill_no=_("Bill No"),
-        storage_date=_("Storage Date"),
-        consignor=_("Consignor"),
+        storage_date=_("Delivery Voucher Date"),
+        picker=_("Picker"),
+        store_person=_("Store Person"),
         products=_("Products"),
         status=_("Status"),
         remark=_("Remark"))
@@ -317,7 +329,7 @@ def deliveryvoucher_action():
 @im.route("/inventory/list/", methods=("GET", "POST"))
 @login_required
 def inventory_list():
-    list_columns = ("product_name", "customer_name", "quantity")
+    list_columns = ("customer_name", "product_name", "quantity")
     column_labels = dict(product_name=_("Product Name"),
         customer_name=_("Customer Name"),
         quantity=_("Quantity"))

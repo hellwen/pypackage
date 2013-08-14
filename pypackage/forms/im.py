@@ -34,9 +34,13 @@ class WarehouseVoucherForm(Form):
     next = HiddenField()
 
     bill_no = TextField(_("Bill No"))
-    storage_date = DateField(_("Storage Date (eg:2012-01-01)"),
+    storage_date = DateField(_("Warehouse Voucher Date (eg:2012-01-01)"),
         validators=[required()], default=date.today())
-    delivery_person = TextField(_("Delivery Person"), validators=[required()])
+    delivery_workshop_id = Select2Field(_("Delivery Workshop"), default=0,
+        coerce=int,
+        validators=[required(message=_("You must choices a Workshop"))])
+    delivery_person = TextField(_("Delivery Person"))
+    store_person = TextField(_("Store Person"), validators=[required()])
     remark = TextAreaField(_("Remark"))
 
 
@@ -48,7 +52,8 @@ class DeliveryVoucherForm(Form):
     next = HiddenField()
 
     bill_no = TextField(_("Bill No"))
-    storage_date = DateField(_("Storage Date (eg:2012-01-01)"),
+    storage_date = DateField(_("Delivery Voucher Date (eg:2012-01-01)"),
         validators=[required()], default=date.today())
-    consignor = TextField(_("Consignor"), validators=[required()])
+    picker = TextField(_("Picker"), validators=[required()])
+    store_person = TextField(_("Store Person"), validators=[required()])
     remark = TextAreaField(_("Remark"))

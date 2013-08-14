@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-05-14 23:25+0800\n"
+"POT-Creation-Date: 2013-08-14 23:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -283,39 +283,56 @@ msgid "Floor#"
 msgstr ""
 
 #: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:61
-#: ../pypackage/views/im.py:362
+#: ../pypackage/views/im.py:374
 msgid "Location Name"
 msgstr ""
 
-#: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:40
-#: ../pypackage/forms/im.py:54 ../pypackage/forms/mm.py:18
-#: ../pypackage/forms/sd.py:14 ../pypackage/forms/sd.py:21
-#: ../pypackage/forms/sd.py:30 ../pypackage/views/im.py:62
-#: ../pypackage/views/im.py:138 ../pypackage/views/im.py:177
-#: ../pypackage/views/im.py:253 ../pypackage/views/im.py:283
+#: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:44
+#: ../pypackage/forms/im.py:59 ../pypackage/forms/mm.py:18
+#: ../pypackage/forms/sd.py:14 ../pypackage/views/im.py:62
+#: ../pypackage/views/im.py:140 ../pypackage/views/im.py:186
+#: ../pypackage/views/im.py:263 ../pypackage/views/im.py:295
 #: ../pypackage/views/mm.py:30 ../pypackage/views/mm.py:52
 #: ../pypackage/views/sd.py:46 ../pypackage/views/sd.py:61
 msgid "Remark"
 msgstr ""
 
-#: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:50
-#: ../pypackage/views/im.py:133 ../pypackage/views/im.py:172
-#: ../pypackage/views/im.py:248 ../pypackage/views/im.py:278
+#: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:54
+#: ../pypackage/views/im.py:133 ../pypackage/views/im.py:180
+#: ../pypackage/views/im.py:257 ../pypackage/views/im.py:289
 msgid "Bill No"
 msgstr ""
 
-#: ../pypackage/forms/im.py:37 ../pypackage/forms/im.py:51
-msgid "Storage Date (eg:2012-01-01)"
+#: ../pypackage/forms/im.py:37
+msgid "Warehouse Voucher Date (eg:2012-01-01)"
 msgstr ""
 
 #: ../pypackage/forms/im.py:39 ../pypackage/views/im.py:135
-#: ../pypackage/views/im.py:174
+#: ../pypackage/views/im.py:182
+msgid "Delivery Workshop"
+msgstr ""
+
+#: ../pypackage/forms/im.py:41
+msgid "You must choices a Workshop"
+msgstr ""
+
+#: ../pypackage/forms/im.py:42 ../pypackage/views/im.py:136
 msgid "Delivery Person"
 msgstr ""
 
-#: ../pypackage/forms/im.py:53 ../pypackage/views/im.py:250
-#: ../pypackage/views/im.py:280
-msgid "Consignor"
+#: ../pypackage/forms/im.py:43 ../pypackage/forms/im.py:58
+#: ../pypackage/views/im.py:137 ../pypackage/views/im.py:183
+#: ../pypackage/views/im.py:260 ../pypackage/views/im.py:292
+msgid "Store Person"
+msgstr ""
+
+#: ../pypackage/forms/im.py:55
+msgid "Delivery Voucher Date (eg:2012-01-01)"
+msgstr ""
+
+#: ../pypackage/forms/im.py:57 ../pypackage/views/im.py:259
+#: ../pypackage/views/im.py:291
+msgid "Picker"
 msgstr ""
 
 #: ../pypackage/forms/mm.py:14 ../pypackage/views/mm.py:27
@@ -323,8 +340,8 @@ msgstr ""
 msgid "Product Code"
 msgstr ""
 
-#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:321
-#: ../pypackage/views/im.py:360 ../pypackage/views/mm.py:28
+#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:333
+#: ../pypackage/views/im.py:372 ../pypackage/views/mm.py:28
 #: ../pypackage/views/mm.py:50
 msgid "Product Name"
 msgstr ""
@@ -339,13 +356,13 @@ msgstr ""
 msgid "Customer Code"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:322
-#: ../pypackage/views/im.py:361 ../pypackage/views/sd.py:45
+#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:334
+#: ../pypackage/views/im.py:373 ../pypackage/views/sd.py:45
 #: ../pypackage/views/sd.py:60
 msgid "Customer Name"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:19 ../pypackage/forms/sd.py:26
+#: ../pypackage/forms/sd.py:19 ../pypackage/forms/sd.py:25
 msgid "Name"
 msgstr ""
 
@@ -353,16 +370,12 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:27
+#: ../pypackage/forms/sd.py:26
 msgid "Title"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:28
+#: ../pypackage/forms/sd.py:27
 msgid "Phone"
-msgstr ""
-
-#: ../pypackage/forms/sd.py:29
-msgid "Mobile"
 msgstr ""
 
 #: ../pypackage/forms/validators.py:17
@@ -541,7 +554,7 @@ msgid "older"
 msgstr ""
 
 #: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:98
-#: ../pypackage/views/im.py:213
+#: ../pypackage/views/im.py:222
 msgid "Product"
 msgstr ""
 
@@ -574,29 +587,48 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
-#: ../pypackage/views/im.py:104 ../pypackage/views/im.py:219
+#: ../pypackage/views/im.py:104 ../pypackage/views/im.py:228
 msgid "Inventory Location"
 msgstr ""
 
-#: ../pypackage/views/im.py:109 ../pypackage/views/im.py:224
-#: ../pypackage/views/im.py:323 ../pypackage/views/im.py:363
+#: ../pypackage/views/im.py:109 ../pypackage/views/im.py:233
+#: ../pypackage/views/im.py:335 ../pypackage/views/im.py:375
 msgid "Quantity"
 msgstr ""
 
-#: ../pypackage/views/im.py:117 ../pypackage/views/im.py:136
-#: ../pypackage/views/im.py:175 ../pypackage/views/im.py:232
-#: ../pypackage/views/im.py:251 ../pypackage/views/im.py:281
+#: ../pypackage/views/im.py:117 ../pypackage/views/im.py:138
+#: ../pypackage/views/im.py:184 ../pypackage/views/im.py:241
+#: ../pypackage/views/im.py:261 ../pypackage/views/im.py:293
 msgid "Products"
 msgstr ""
 
-#: ../pypackage/views/im.py:134 ../pypackage/views/im.py:173
-#: ../pypackage/views/im.py:249 ../pypackage/views/im.py:279
-msgid "Storage Date"
+#: ../pypackage/views/im.py:134 ../pypackage/views/im.py:181
+msgid "Warehouse Voucher Date"
 msgstr ""
 
-#: ../pypackage/views/im.py:137 ../pypackage/views/im.py:176
-#: ../pypackage/views/im.py:252 ../pypackage/views/im.py:282
+#: ../pypackage/views/im.py:139 ../pypackage/views/im.py:185
+#: ../pypackage/views/im.py:262 ../pypackage/views/im.py:294
 msgid "Status"
+msgstr ""
+
+#: ../pypackage/views/im.py:147
+msgid "Delete"
+msgstr ""
+
+#: ../pypackage/views/im.py:147
+msgid "Confirm"
+msgstr ""
+
+#: ../pypackage/views/im.py:148
+msgid "Confirmation Delete ?"
+msgstr ""
+
+#: ../pypackage/views/im.py:149
+msgid "Confirmation Complete ?"
+msgstr ""
+
+#: ../pypackage/views/im.py:258 ../pypackage/views/im.py:290
+msgid "Delivery Voucher Date"
 msgstr ""
 
 #: ../pypackage/views/sd.py:37
