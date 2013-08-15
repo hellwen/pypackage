@@ -34,6 +34,7 @@ class WarehouseVoucherForm(Form):
     next = HiddenField()
 
     bill_no = TextField(_("Bill No"))
+    manual_bill_no = TextField(_("Manual Bill No"))
     storage_date = DateField(_("Warehouse Voucher Date (eg:2012-01-01)"),
         validators=[required()], default=date.today())
     delivery_workshop_id = Select2Field(_("Delivery Workshop"), default=0,
@@ -52,6 +53,7 @@ class DeliveryVoucherForm(Form):
     next = HiddenField()
 
     bill_no = TextField(_("Bill No"))
+    manual_bill_no = TextField(_("Manual Bill No"))
     storage_date = DateField(_("Delivery Voucher Date (eg:2012-01-01)"),
         validators=[required()], default=date.today())
     picker = TextField(_("Picker"), validators=[required()])

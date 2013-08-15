@@ -41,6 +41,7 @@ class WarehouseVoucher(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     bill_no = db.Column(db.String(30), nullable=False, unique=True)
+    manual_bill_no = db.Column(db.String(30), nullable=True)
     storage_date = db.Column(db.Date, nullable=False,
         default=date.today())
     delivery_workshop_id = db.Column(db.Integer, db.ForeignKey(Item.item_id),
@@ -76,8 +77,9 @@ class WarehouseVoucherProduct(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):
-        return u"<%s, %s: %i>" % (self.product.customer.customer_name,
-            self.product.product_name, self.quantity)
+        return u"<%s, %s, %s: %i>" % (self.product.customer.customer_name,
+            self.product.product_name, self.product.specification,
+            self.quantity)
 
 
 class DeliveryVoucher(db.Model):
@@ -85,6 +87,7 @@ class DeliveryVoucher(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     bill_no = db.Column(db.String(30), nullable=False, unique=True)
+    manual_bill_no = db.Column(db.String(30), nullable=True)
     storage_date = db.Column(db.Date, nullable=False,
         default=date.today())
     picker = db.Column(db.String(30), nullable=True)
@@ -116,5 +119,6 @@ class DeliveryVoucherProduct(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):
-        return u"<%s, %s: %i>" % (self.product.customer.customer_name,
-            self.product.product_name, self.quantity)
+        return u"<%s, %s, %s: %i>" % (self.product.customer.customer_name,
+            self.product.product_name, self.product.specification,
+            self.quantity)

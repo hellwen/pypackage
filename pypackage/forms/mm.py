@@ -15,4 +15,5 @@ class ProductForm(Form):
     product_name = TextField(_("Product Name"), validators=[required()])
     customer_id = Select2Field(_("Customer"), default=0, coerce=int,
         validators=[required()])
+    specification = TextField(_("Spec"))
     remark = TextAreaField(_("Remark"))

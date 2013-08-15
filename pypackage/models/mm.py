@@ -13,6 +13,7 @@ class Product(db.Model):
     product_name = db.Column(db.String(50), nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey(Customer.id))
     customer = db.relationship(Customer, foreign_keys=customer_id)
+    specification = db.Column(db.String(50), nullable=True)
     remark = db.Column(db.String(300))
     active = db.Column(db.Boolean, default=True, nullable=False)
 

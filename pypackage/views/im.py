@@ -96,8 +96,9 @@ def inventorylocation_action():
 class WarehouseVoucherProductAdmin(InlineBaseForm):
     def postprocess_form(self, form):
         form.product_id = Select2Field(_("Product"), default=0,
-            choices=[(g.id, g.customer.customer_name + " " + g.product_name)
-            for g in Product.query.filter_by(active=True)
+            choices=[(g.id, g.customer.customer_name + " "+ g.product_name +
+                " " + str(g.specification) + "")
+                for g in Product.query.filter_by(active=True)
             .order_by("customer_id")
             .order_by('product_name')],
             coerce=int, validators=[required()])
@@ -128,9 +129,10 @@ class WarehouseVoucherAdmin(BaseForm):
         }
     }
 
-    list_columns = ("bill_no", "storage_date", "delivery_workshop",
-        "store_person", "products")
+    list_columns = ("bill_no", "manual_bill_no", "storage_date",
+        "delivery_workshop", "store_person", "products")
     column_labels = dict(bill_no=_("Bill No"),
+        manual_bill_no=_("Manual Bill No"),
         storage_date=_("Warehouse Voucher Date"),
         delivery_workshop=_("Delivery Workshop"),
         delivery_person=_("Delivery Person"),
@@ -139,9 +141,9 @@ class WarehouseVoucherAdmin(BaseForm):
         status=_("Status"),
         remark=_("Remark"))
     fieldsets = [
-        (None, {'fields': (("bill_no", "storage_date"),
-            ("delivery_workshop_id", "store_person"),
-            ("remark"),
+        (None, {'fields': (("bill_no", "manual_bill_no"),
+            ("storage_date", "delivery_workshop_id"),
+            ("store_person", "remark"),
             "products")}),
     ]
     actions = [("delete", _("Delete")), ("confirm", _("Confirm"))]
@@ -178,6 +180,7 @@ warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
 @login_required
 def warehousevoucher_list():
     column_labels = dict(bill_no=_("Bill No"),
+        manual_bill_no=_("Manual Bill No"),
         storage_date=_("Warehouse Voucher Date"),
         delivery_workshop=_("Delivery Workshop"),
         store_person=_("Store Person"),
@@ -220,8 +223,9 @@ def warehousevoucher_action():
 class DeliveryVoucherProductAdmin(InlineBaseForm):
     def postprocess_form(self, form):
         form.product_id = Select2Field(_("Product"), default=0,
-            choices=[(g.id, g.customer.customer_name + " " + g.product_name)
-            for g in Product.query.filter_by(active=True)
+            choices=[(g.id, g.customer.customer_name + " " + g.product_name +
+                " " + str(g.specification) + "")
+                for g in Product.query.filter_by(active=True)
             .order_by("customer_id")
             .order_by('product_name')],
             coerce=int, validators=[required()])
@@ -252,9 +256,10 @@ class DeliveryVoucherAdmin(BaseForm):
         }
     }
 
-    list_columns = ("bill_no", "storage_date", "picker",
-        "store_person", "products")
+    list_columns = ("bill_no", "manual_bill_no", "storage_date",
+        "picker", "store_person", "products")
     column_labels = dict(bill_no=_("Bill No"),
+        manual_bill_no=_("Manual Bill No"),
         storage_date=_("Delivery Voucher Date"),
         picker=_("Picker"),
         store_person=_("Store Person"),
@@ -262,9 +267,9 @@ class DeliveryVoucherAdmin(BaseForm):
         status=_("Status"),
         remark=_("Remark"))
     fieldsets = [
-        (None, {'fields': (("bill_no", "storage_date"),
-            ("picker", "store_person"),
-            ("remark"),
+        (None, {'fields': (("bill_no", "manual_bill_no"),
+            ("storage_date", "picker"),
+            ("store_person", "remark"),
             "products")}),
     ]
 
@@ -287,6 +292,7 @@ deliveryvoucheradmin = DeliveryVoucherAdmin(im, db.session,
 @login_required
 def deliveryvoucher_list():
     column_labels = dict(bill_no=_("Bill No"),
+        manual_bill_no=_("Manual Bill No"),
         storage_date=_("Delivery Voucher Date"),
         picker=_("Picker"),
         store_person=_("Store Person"),
@@ -329,13 +335,15 @@ def deliveryvoucher_action():
 @im.route("/inventory/list/", methods=("GET", "POST"))
 @login_required
 def inventory_list():
-    list_columns = ("customer_name", "product_name", "quantity")
+    list_columns = ("customer_name", "product_name", "specification",
+        "quantity")
     column_labels = dict(product_name=_("Product Name"),
+        specification=_("Spec"),
         customer_name=_("Customer Name"),
         quantity=_("Quantity"))
 
     sql = """
-            select p.product_name, c.customer_name,
+            select p.product_name, p.specification, c.customer_name,
                 wv.quantity - coalesce(dv.quantity,0) as quantity
             from (
                 select wvp.product_id, sum(wvp.quantity) as quantity
@@ -367,15 +375,16 @@ def inventory_list():
 @im.route("/inventory_bylocation/list/", methods=("GET", "POST"))
 @login_required
 def inventory_bylocation_list():
-    list_columns = ("product_name", "customer_name", "location_full_name",
-        "quantity")
+    list_columns = ("product_name", "specification", "customer_name",
+        "location_full_name", "quantity")
     column_labels = dict(product_name=_("Product Name"),
+        specification=_("Spec"),
         customer_name=_("Customer Name"),
         location_full_name=_("Location Name"),
         quantity=_("Quantity"))
 
     sql = """
-            select p.product_name, c.customer_name,
+            select p.product_name, p.specification, c.customer_name,
                 l.building || l.floor || l.location_name as location_full_name,
                 wv.quantity - coalesce(dv.quantity,0) as quantity
             from (

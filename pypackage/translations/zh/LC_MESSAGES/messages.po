@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-08-14 23:58+0800\n"
+"POT-Creation-Date: 2013-08-15 21:38+0800\n"
 "PO-Revision-Date: 2013-04-30 18:59+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh <LL@li.org>\n"
@@ -283,81 +283,93 @@ msgid "Floor#"
 msgstr "层号"
 
 #: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:61
-#: ../pypackage/views/im.py:374
+#: ../pypackage/views/im.py:383
 msgid "Location Name"
 msgstr "库位"
 
-#: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:44
-#: ../pypackage/forms/im.py:59 ../pypackage/forms/mm.py:18
+#: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:45
+#: ../pypackage/forms/im.py:61 ../pypackage/forms/mm.py:19
 #: ../pypackage/forms/sd.py:14 ../pypackage/views/im.py:62
-#: ../pypackage/views/im.py:140 ../pypackage/views/im.py:186
-#: ../pypackage/views/im.py:263 ../pypackage/views/im.py:295
-#: ../pypackage/views/mm.py:30 ../pypackage/views/mm.py:52
+#: ../pypackage/views/im.py:142 ../pypackage/views/im.py:189
+#: ../pypackage/views/im.py:268 ../pypackage/views/im.py:301
+#: ../pypackage/views/mm.py:32 ../pypackage/views/mm.py:56
 #: ../pypackage/views/sd.py:46 ../pypackage/views/sd.py:61
 msgid "Remark"
 msgstr "备注"
 
-#: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:54
-#: ../pypackage/views/im.py:133 ../pypackage/views/im.py:180
-#: ../pypackage/views/im.py:257 ../pypackage/views/im.py:289
+#: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:55
+#: ../pypackage/views/im.py:134 ../pypackage/views/im.py:182
+#: ../pypackage/views/im.py:261 ../pypackage/views/im.py:294
 msgid "Bill No"
 msgstr "单据编号"
 
-#: ../pypackage/forms/im.py:37
+#: ../pypackage/forms/im.py:37 ../pypackage/forms/im.py:56
+#: ../pypackage/views/im.py:135 ../pypackage/views/im.py:183
+#: ../pypackage/views/im.py:262 ../pypackage/views/im.py:295
+msgid "Manual Bill No"
+msgstr "手工单号"
+
+#: ../pypackage/forms/im.py:38
 msgid "Warehouse Voucher Date (eg:2012-01-01)"
 msgstr "入库日期 (如:2012-01-01)"
 
-#: ../pypackage/forms/im.py:39 ../pypackage/views/im.py:135
-#: ../pypackage/views/im.py:182
+#: ../pypackage/forms/im.py:40 ../pypackage/views/im.py:137
+#: ../pypackage/views/im.py:185
 msgid "Delivery Workshop"
 msgstr "送货部门"
 
-#: ../pypackage/forms/im.py:41
+#: ../pypackage/forms/im.py:42
 msgid "You must choices a Workshop"
 msgstr "你必须选择一个车间"
 
-#: ../pypackage/forms/im.py:42 ../pypackage/views/im.py:136
+#: ../pypackage/forms/im.py:43 ../pypackage/views/im.py:138
 msgid "Delivery Person"
 msgstr "送货人"
 
-#: ../pypackage/forms/im.py:43 ../pypackage/forms/im.py:58
-#: ../pypackage/views/im.py:137 ../pypackage/views/im.py:183
-#: ../pypackage/views/im.py:260 ../pypackage/views/im.py:292
+#: ../pypackage/forms/im.py:44 ../pypackage/forms/im.py:60
+#: ../pypackage/views/im.py:139 ../pypackage/views/im.py:186
+#: ../pypackage/views/im.py:265 ../pypackage/views/im.py:298
 msgid "Store Person"
 msgstr "仓管员"
 
-#: ../pypackage/forms/im.py:55
+#: ../pypackage/forms/im.py:57
 msgid "Delivery Voucher Date (eg:2012-01-01)"
 msgstr "出库日期 (如:2012-01-01)"
 
-#: ../pypackage/forms/im.py:57 ../pypackage/views/im.py:259
-#: ../pypackage/views/im.py:291
+#: ../pypackage/forms/im.py:59 ../pypackage/views/im.py:264
+#: ../pypackage/views/im.py:297
 msgid "Picker"
 msgstr "领料人"
 
-#: ../pypackage/forms/mm.py:14 ../pypackage/views/mm.py:27
-#: ../pypackage/views/mm.py:49
+#: ../pypackage/forms/mm.py:14 ../pypackage/views/mm.py:28
+#: ../pypackage/views/mm.py:52
 msgid "Product Code"
 msgstr "产品编号"
 
-#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:333
-#: ../pypackage/views/im.py:372 ../pypackage/views/mm.py:28
-#: ../pypackage/views/mm.py:50
+#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:340
+#: ../pypackage/views/im.py:380 ../pypackage/views/mm.py:29
+#: ../pypackage/views/mm.py:53
 msgid "Product Name"
 msgstr "产品名称"
 
 #: ../pypackage/forms/mm.py:16 ../pypackage/templates/sd/main.html:7
-#: ../pypackage/views/mm.py:29 ../pypackage/views/mm.py:51
+#: ../pypackage/views/mm.py:30 ../pypackage/views/mm.py:54
 msgid "Customer"
 msgstr "客户"
+
+#: ../pypackage/forms/mm.py:18 ../pypackage/views/im.py:341
+#: ../pypackage/views/im.py:381 ../pypackage/views/mm.py:31
+#: ../pypackage/views/mm.py:55
+msgid "Spec"
+msgstr "规格"
 
 #: ../pypackage/forms/sd.py:12 ../pypackage/views/sd.py:44
 #: ../pypackage/views/sd.py:59
 msgid "Customer Code"
 msgstr "客户编号"
 
-#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:334
-#: ../pypackage/views/im.py:373 ../pypackage/views/sd.py:45
+#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:342
+#: ../pypackage/views/im.py:382 ../pypackage/views/sd.py:45
 #: ../pypackage/views/sd.py:60
 msgid "Customer Name"
 msgstr "客户名称"
@@ -554,7 +566,7 @@ msgid "older"
 msgstr ""
 
 #: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:98
-#: ../pypackage/views/im.py:222
+#: ../pypackage/views/im.py:225
 msgid "Product"
 msgstr "产品"
 
@@ -587,47 +599,47 @@ msgstr "重复密码"
 msgid "Items"
 msgstr "项目"
 
-#: ../pypackage/views/im.py:104 ../pypackage/views/im.py:228
+#: ../pypackage/views/im.py:105 ../pypackage/views/im.py:232
 msgid "Inventory Location"
 msgstr "库位"
 
-#: ../pypackage/views/im.py:109 ../pypackage/views/im.py:233
-#: ../pypackage/views/im.py:335 ../pypackage/views/im.py:375
+#: ../pypackage/views/im.py:110 ../pypackage/views/im.py:237
+#: ../pypackage/views/im.py:343 ../pypackage/views/im.py:384
 msgid "Quantity"
 msgstr "数量"
 
-#: ../pypackage/views/im.py:117 ../pypackage/views/im.py:138
-#: ../pypackage/views/im.py:184 ../pypackage/views/im.py:241
-#: ../pypackage/views/im.py:261 ../pypackage/views/im.py:293
+#: ../pypackage/views/im.py:118 ../pypackage/views/im.py:140
+#: ../pypackage/views/im.py:187 ../pypackage/views/im.py:245
+#: ../pypackage/views/im.py:266 ../pypackage/views/im.py:299
 msgid "Products"
 msgstr "产品"
 
-#: ../pypackage/views/im.py:134 ../pypackage/views/im.py:181
+#: ../pypackage/views/im.py:136 ../pypackage/views/im.py:184
 msgid "Warehouse Voucher Date"
 msgstr "入库日期"
 
-#: ../pypackage/views/im.py:139 ../pypackage/views/im.py:185
-#: ../pypackage/views/im.py:262 ../pypackage/views/im.py:294
+#: ../pypackage/views/im.py:141 ../pypackage/views/im.py:188
+#: ../pypackage/views/im.py:267 ../pypackage/views/im.py:300
 msgid "Status"
 msgstr "状态"
 
-#: ../pypackage/views/im.py:147
+#: ../pypackage/views/im.py:149
 msgid "Delete"
 msgstr "删除？"
 
-#: ../pypackage/views/im.py:147
+#: ../pypackage/views/im.py:149
 msgid "Confirm"
 msgstr ""
 
-#: ../pypackage/views/im.py:148
+#: ../pypackage/views/im.py:150
 msgid "Confirmation Delete ?"
 msgstr ""
 
-#: ../pypackage/views/im.py:149
+#: ../pypackage/views/im.py:151
 msgid "Confirmation Complete ?"
 msgstr ""
 
-#: ../pypackage/views/im.py:258 ../pypackage/views/im.py:290
+#: ../pypackage/views/im.py:263 ../pypackage/views/im.py:296
 msgid "Delivery Voucher Date"
 msgstr "出库日期"
 
@@ -638,3 +650,4 @@ msgstr "联系人"
 #: ../pypackage/views/sd.py:40
 msgid "Shippings"
 msgstr "送货信息"
+

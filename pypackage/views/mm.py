@@ -23,14 +23,17 @@ def main():
 
 
 class ProductAdmin(BaseForm):
-    list_columns = ("product_code", "product_name", "customer")
+    list_columns = ("product_code", "product_name", "customer",
+        "specification")
     column_labels = dict(product_code=_("Product Code"),
         product_name=_("Product Name"),
         customer=_("Customer"),
+        specification=_("Spec"),
         remark=_("Remark"))
     fieldsets = [
         (None, {'fields': (('product_code', 'product_name'),
-            'customer_id', "remark")}),
+            ('customer_id', 'specification'),
+            "remark")}),
     ]
 
     def after_create_form(self, form):
@@ -49,6 +52,7 @@ def product_list():
     column_labels = dict(product_code=_("Product Code"),
         product_name=_("Product Name"),
         customer=_("Customer"),
+        specification=_("Spec"),
         remark=_("Remark"))
     return productadmin.list_view(column_labels=column_labels)
 
