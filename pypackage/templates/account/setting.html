@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 
+{% import 'macros/_menu.html' as _menu with context %}
+
+{%- block menu %}
+    {{ _menu.main_menu(active='') }}
+{%- endblock %}
+
+
 {%- block body %}
 <div class="body">
+    Hello, this is nothing!
 </div>
 {%- endblock %}
