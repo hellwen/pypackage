@@ -1,0 +1,33 @@
+{% macro sidebar(active='employee') -%}
+<div class="sidebox">
+    <ul class="nav nav-list">
+        <li class="nav-header">{{ _("HR") }}</li>
+
+        {% if active == 'employee' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.employee_list', next=request.path) }}">{{ _("Employee") }}</a>
+        </li>
+        
+        <li class="nav-header">{{ _("Bases") }}</li>
+
+        {% if active == 'job' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.job_list', next=request.path) }}">{{ _("Job") }}</a>
+        </li>
+
+        {% if active == 'department' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.department_list', next=request.path) }}">{{ _("Department") }}</a>
+        </li>
+    </ul>
+</div>
+{%- endmacro %}

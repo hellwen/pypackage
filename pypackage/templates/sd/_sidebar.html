@@ -1,0 +1,15 @@
+{% macro sidebar(active='customer') -%}
+<div class="sidebox">
+    <ul class="nav nav-list">
+        <li class="nav-header">{{ _("Sales Distribution") }}</li>
+        
+        {% if active == 'customer' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.customer_list', next=request.path) }}">{{ _("Customer") }}</a>
+        </li>
+    </ul>
+</div>
+{%- endmacro %}

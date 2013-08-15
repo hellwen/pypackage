@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 
+{% import 'macros/_menu.html' as _menu with context %}
+
+{% import 'mm/_sidebar.html' as _sidebar with context %}
+
+{%- block menu %}
+    {{ _menu.main_menu(active='mm') }}
+{%- endblock %}
+
 {%- block sidebar %}
-<div class="sidebox">
-    <ul class="nav nav-list">
-        <li class="nav-header">{{ _("Main") }}</li>
-        <li><a href="{{ url_for('.product_list', next=request.path) }}">{{ _("Product") }}</a></li>
-    </ul>
-</div>
+    {{ _sidebar.sidebar(active='') }}
 {%- endblock %}
 
 {%- block body %}

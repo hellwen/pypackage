@@ -1,0 +1,49 @@
+{% macro sidebar(active='warehousevoucher') -%}
+<div class="sidebox">
+    <ul class="nav nav-list">
+        <li class="nav-header">{{ _("Warehouse") }}</li>
+        {% if active == 'warehousevoucher' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.warehousevoucher_list', next=request.path) }}">{{ _("Warehouse Voucher") }}</a>
+        </li>
+
+        {% if active == 'inventory_bylocation' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.inventory_bylocation_list', next=request.path) }}">{{ _("Inventory by location") }}</a>
+        </li>
+
+        {% if active == 'inventory' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.inventory_list', next=request.path) }}">{{ _("Inventory") }}</a>
+        </li>
+
+        {% if active == 'deliveryvoucher' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.deliveryvoucher_list', next=request.path) }}">{{ _("Delivery Voucher") }}</a>
+        </li>
+
+        <li class="divider"></li>
+        <li class="nav-header">{{ _("Base") }}</li>
+
+        {% if active == 'inventorylocation' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.inventorylocation_list', next=request.path) }}">{{ _("Inventory Locatioin") }}</a>
+        </li>
+    </ul>
+</div>
+{%- endmacro %}

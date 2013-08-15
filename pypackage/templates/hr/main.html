@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
+{% import 'macros/_menu.html' as _menu with context %}
+
+{% import 'hr/_sidebar.html' as _sidebar with context %}
+
+{%- block menu %}
+    {{ _menu.main_menu(active='hr') }}
+{%- endblock %}
+
 {%- block sidebar %}
-<div class="sidebox">
-    <ul class="nav nav-list">
-        <li class="nav-header">{{ _("HR") }}</li>
-        <li><a href="{{ url_for('.employee_list', next=request.path) }}">{{ _("Employee") }}</a></li>
-        <li class="nav-header">{{ _("Bases") }}</li>
-        <li><a href="{{ url_for('.job_list', next=request.path) }}">{{ _("Job") }}</a></li>
-        <li><a href="{{ url_for('.department_list', next=request.path) }}">{{ _("Department") }}</a></li>
-    </ul>
-</div>
+    {{ _sidebar.sidebar(active='') }}
 {%- endblock %}
 
 {%- block body %}

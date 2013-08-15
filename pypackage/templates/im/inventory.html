@@ -1,4 +1,18 @@
-{% extends 'im/main.html' %}
+{% extends "layout.html" %}
+
+{% import 'macros/_menu.html' as _menu with context %}
+{% import 'macros/_actions.html' as actionlib with context %}
+
+{% import 'im/_sidebar.html' as _sidebar with context %}
+
+
+{%- block menu %}
+    {{ _menu.main_menu(active='im') }}
+{%- endblock %}
+
+{%- block sidebar %}
+    {{ _sidebar.sidebar(active=endpoint) }}
+{%- endblock %}
 
 {% block head %}
     <link href="/static/css/datepicker.css" rel="stylesheet">

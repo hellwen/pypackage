@@ -13,7 +13,7 @@
     <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/static/css/main.css" rel="stylesheet">
     {% endblock %}
-    
+
     {% block head %}
     {% endblock %}
 </head>
@@ -26,19 +26,9 @@
                     {% block brand %}
                     <a class="brand" href="#">{{ g.appname }}</a>
                     {% endblock %}
-                    <ul class="nav">
-                        <li><a href="{{ url_for('frontend.index') }}">{{ _("Home") }}</a></li>
-                        <li><a href="{{ url_for('hr.main') }}">{{ _("Human Resources") }}</a></li>
-                        <li><a href="{{ url_for('sd.main') }}">{{ _("Sales Distribution") }}</a></li>
-                        <li><a href="{{ url_for('im.main') }}">{{ _("Warehouse") }}</a></li>
-                        <li><a href="{{ url_for('mm.main') }}">{{ _("Material") }}</a></li>
-                        <li><a href="{{ url_for('account.main') }}">{{ _("Account") }}</a></li>
-                        <li><a href="{{ url_for('base.main') }}">{{ _("Base") }}</a></li>
-                        {#
-                        <li><a href="{{ url_for('sales.main') }}">{{ _("Word Order") }}</a></li>
-                        
-                        #}
-                    </ul>
+
+                    {% block menu %}{% endblock %}
+
                     {% if g.user.is_authenticated() %}
                     <ul class="nav pull-right">
                         <li>

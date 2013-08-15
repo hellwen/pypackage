@@ -1,0 +1,14 @@
+{% macro sidebar(active='itemgroup') -%}
+<div class="sidebox">
+    <ul class="nav nav-list">
+        <li class="nav-header">{{ _("Bases") }}</li>
+        {% if active == 'itemgroup' %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+            <a href="{{ url_for('.itemgroup_list', next=request.path) }}">{{ _("Item Group") }}</a>
+        </li>
+    </ul>
+</div>
+{%- endmacro %}

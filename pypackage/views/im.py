@@ -368,7 +368,8 @@ def inventory_list():
     data = db.session.execute(sql)
     count = 0
 
-    return render_template("im/inventory.html", data=data, count=count,
+    return render_template("im/inventory.html", endpoint='inventory',
+        data=data, count=count,
         list_columns=list_columns, column_labels=column_labels)
 
 
@@ -414,5 +415,7 @@ def inventory_bylocation_list():
     data = db.session.execute(sql)
     count = 0
 
-    return render_template("im/inventory.html", data=data, count=count,
+    return render_template("im/inventory.html",
+        endpoint='inventory_bylocation',
+        data=data, count=count,
         list_columns=list_columns, column_labels=column_labels)
