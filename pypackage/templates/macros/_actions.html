@@ -22,7 +22,7 @@
     <script src="{{ url_for('static', filename='js/actions.js') }}"></script>
 
     <script language="javascript">
-        var modelActions = new AdminModelActions({{ message|safe }}, {{ actions_confirmation|tojson|safe }});
+        var modelActions = new AdminModelActions("{{ message|safe }}", {{ actions_confirmation|tojson|safe }});
     </script>
     {% endif %}
 {% endmacro %}

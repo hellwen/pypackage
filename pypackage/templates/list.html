@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% import 'macros/_menu.html' as _menu with context %}
-{% import 'macros/_actions.html' as actionlib with context %}
+{% import 'macros/_actions.html' as _actions with context %}
 
 {% import admin_view.blueprint.name + '/_sidebar.html' as _sidebar with context %}
 
@@ -28,9 +28,13 @@
 
         {% if admin_view.actions %}
         <li class="dropdown">
-            {{ actionlib.dropdown(admin_view.actions) }}
+            {{ _actions.dropdown(admin_view.actions) }}
         </li>
         {% endif %}
+
+        <li>
+            <a href="javascript:window.print();">{{ _("Print") }}</a>
+        </li>        
     </ul>
     {% endblock %}
 
@@ -111,13 +115,13 @@
 
     {% endblock %}
 
-    {{ actionlib.form(admin_view.actions, url_for('.' + admin_view.endpoint + '_action')) }}
+    {{ _actions.form(admin_view.actions, url_for('.' + admin_view.endpoint + '_action')) }}
 {% endblock %}
 
 {% block tail %}
-    <script src="{{ url_for('static', filename='js/filters.js') }}"></script>
+    <!-- // <script src="{{ url_for('static', filename='js/filters.js') }}"></script> -->
 
-    {{ actionlib.script(_('Please select at least one model.'),
+    {{ _actions.script(_('Please select at least one model.'),
                       admin_view.actions,
-                      admin_view.actions_confirmation) }}    
+                      admin_view.actions_confirmation) }}
 {% endblock %}

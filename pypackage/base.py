@@ -9,7 +9,6 @@ from flask.ext.babel import gettext as _
 #     TextAreaField, TextField, IntegerField, DateField
 
 from pypackage import helpers as h
-# from pypackage.actions import ActionsMixin
 from pypackage.forms.fields import InlineModelFormList
 
 
@@ -298,9 +297,9 @@ class BaseForm(object):
         action = request.form.get('action')
         ids = request.form.getlist('rowid')
 
-        if action == "delete":
-            for rowid in ids:
-                self.delete_view(rowid)
+        # if action == "delete":
+            # for rowid in ids:
+            #     self.delete_view(rowid)
 
         self.action_extend(action, ids)
 

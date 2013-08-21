@@ -14,6 +14,7 @@ from pypackage.forms import InventoryLocationForm,\
     DeliveryVoucherForm, DeliveryVoucherProductForm
 
 from pypackage.extensions import db, login_required
+from pypackage.actions import ActionsMixin
 from pypackage.base import BaseForm, InlineBaseForm
 
 from pypackage.forms.form import Select2Field
@@ -164,13 +165,13 @@ class WarehouseVoucherAdmin(BaseForm):
         model.opt_userid = g.user.id
         return model
 
-
-    # def action_extend(self, action, ids):
-    #     if action == "confirm":
-    #         for rowid in ids:
-    #             model = self.get_one(rowid)
-    #             model.status = "C"
-    #             self.session.commit()
+    def action_extend(self, action, ids):
+        if action == "confirm":
+            for rowid in ids:
+                print rowid
+                # model = self.get_one(rowid)
+                # model.status = "C"
+                # self.session.commit()
 
 warehousevoucheradmin = WarehouseVoucherAdmin(im, db.session,
     WarehouseVoucher, WarehouseVoucherForm)
