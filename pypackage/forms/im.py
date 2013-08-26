@@ -2,8 +2,10 @@
 #coding=utf-8
 from datetime import date
 
-from flask.ext.wtf import Form, HiddenField, required,\
-    TextAreaField, TextField, IntegerField, DateField
+from wtforms import TextAreaField, HiddenField, TextField, \
+    IntegerField, DateField
+from wtforms.validators import required, optional
+from flask.ext.wtf import Form
 
 from flask.ext.babel import lazy_gettext as _
 

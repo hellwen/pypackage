@@ -4,7 +4,9 @@ from datetime import datetime
 
 from flask import Blueprint, render_template, g
 from flask.ext.babel import gettext as _
-from flask.ext.wtf import required, IntegerField
+
+from wtforms import IntegerField
+from wtforms.validators import required
 
 from pypackage.models import InventoryLocation, Item, Product, BillRule, \
     WarehouseVoucher, WarehouseVoucherProduct, \

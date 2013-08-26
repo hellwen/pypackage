@@ -7,9 +7,10 @@
 
     :license: BSD, see LICENSE for more details.
 """
-from flask.ext.wtf import Form, TextAreaField, HiddenField, BooleanField, \
-        PasswordField, SubmitField, TextField, ValidationError, \
-        required, optional, equal_to, regexp
+from wtforms import TextAreaField, HiddenField, BooleanField, \
+    PasswordField, SubmitField, TextField, ValidationError
+from wtforms.validators import required, optional, equal_to
+from flask.ext.wtf import Form
 
 from flask.ext.babel import lazy_gettext as _
 

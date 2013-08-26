@@ -7,7 +7,7 @@
 
     :license: BSD, see LICENSE for more details.
 """
-from flask.ext.wtf import regexp
+from wtforms.validators import regexp
 
 from flask.ext.babel import lazy_gettext as _
 

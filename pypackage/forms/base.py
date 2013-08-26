@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 #coding=utf-8
+from wtforms import TextAreaField, HiddenField, TextField
+from wtforms.validators import required, optional
+from flask.ext.wtf import Form
 
-from flask.ext.wtf import Form, TextField, HiddenField, required
 from flask.ext.babel import lazy_gettext as _
 
 
