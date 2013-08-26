@@ -9,6 +9,10 @@
 
 {%- block body %}
 <div class="body">
-    Hello, this is nothing!
+
+    <a href="{{ url_for('account.change_password') }}">
+        {{ _("Change Password") }}
+    </a>
+
 </div>
 {%- endblock %}

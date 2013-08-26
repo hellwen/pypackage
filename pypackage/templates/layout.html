@@ -34,17 +34,31 @@
                         <li>
                             <div class="btn-group">
                                 {% if g.user.employee.emp_name %}
-                                    <button class="btn">{{ g.user.employee.emp_name }}</button>
+                                    <button class="btn">
+                                        {{ g.user.employee.emp_name }}
+                                    </button>
                                 {% else %}
-                                    <button class="btn">{{ g.user.username }}</button>
+                                    <button class="btn">
+                                        {{ g.user.username }}
+                                    </button>
                                 {% endif %}
-                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                <button class="btn dropdown-toggle"
+                                    data-toggle="dropdown">
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                                    <li><a href="{{ url_for('account.setting',next=request.path) }}">{{ _("Setting") }}</a></li>
+                                <ul class="dropdown-menu"
+                                    role="menu"
+                                    aria-labelledby="dropdownMenu">
+                                    <li><a href="{{ url_for('account.setting',next=request.path) }}">
+                                        {{ _("Setting") }}</a>
+                                    </li>
+                                    <li><a href="{{ url_for('account.change_password',next=request.path) }}">
+                                        {{ _("Change Password") }}</a>
+                                    </li>
                                     <li class="divider"></li>
-                                    <li><a href="{{ url_for('account.logout',next=request.path) }}">{{ _("Logout") }}</a></li>
+                                    <li><a href="{{ url_for('account.logout',next=request.path) }}">
+                                        {{ _("Logout") }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -52,7 +66,8 @@
                     {% else %}
                     <ul class="nav pull-right">
                         <li>
-                            <a href="{{ url_for('account.login',next=request.path) }}">{{ _("Login") }}</a>
+                            <a href="{{ url_for('account.login',next=request.path) }}">
+                                {{ _("Login") }}</a>
                         </li>
                     </ul>                    
                     {% endif %}                    

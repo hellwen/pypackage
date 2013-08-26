@@ -31,6 +31,15 @@ class LoginForm(Form):
 
     submit = SubmitField(_("Login"))
 
+class ChangePasswordForm(Form):
+    next = HiddenField()
+
+    password = PasswordField(_('Old Password'), validators=[
+        required(message=_("Password required"))])
+    newpassword = PasswordField(_('New Password'), validators=[
+        required(message=_("Password required"))])
+    confirm  = PasswordField(_('Repeat Password'), validators=[
+        required(message=_("Password required"))])
 
 class UserForm(Form):
     next = HiddenField()

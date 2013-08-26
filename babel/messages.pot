@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-08-15 21:38+0800\n"
+"POT-Creation-Date: 2013-08-26 22:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 0.9.6\n"
+"Generated-By: Babel 1.3\n"
 
 #: ../pypackage/__init__.py:78
 msgid "Please login to see this page"
@@ -33,135 +33,148 @@ msgstr ""
 msgid "Sorry, an error has occurred"
 msgstr ""
 
-#: ../pypackage/base.py:185
+#: ../pypackage/base.py:184
 msgid "Failed to create model. %(error)"
 msgstr ""
 
-#: ../pypackage/base.py:199
+#: ../pypackage/base.py:198
 #, python-format
 msgid "Failed to update model. %(error)s"
 msgstr ""
 
-#: ../pypackage/base.py:216
+#: ../pypackage/base.py:215
 #, python-format
 msgid "Failed to delete model. %(error)s"
 msgstr ""
 
-#: ../pypackage/base.py:250
+#: ../pypackage/base.py:249
 msgid "Created successfully."
 msgstr ""
 
-#: ../pypackage/forms/account.py:25
+#: ../pypackage/forms/account.py:26
 #: ../pypackage/templates/account/login.html:61
 msgid "User"
 msgstr ""
 
-#: ../pypackage/forms/account.py:26
+#: ../pypackage/forms/account.py:27
 msgid "You must provide an username"
 msgstr ""
 
-#: ../pypackage/forms/account.py:27 ../pypackage/forms/account.py:40
+#: ../pypackage/forms/account.py:28 ../pypackage/forms/account.py:50
 #: ../pypackage/templates/account/login.html:66
-#: ../pypackage/views/account.py:71 ../pypackage/views/account.py:95
+#: ../pypackage/views/account.py:72 ../pypackage/views/account.py:96
 msgid "Password"
 msgstr ""
 
-#: ../pypackage/forms/account.py:28
+#: ../pypackage/forms/account.py:29
 msgid "You must provide an password"
 msgstr ""
 
-#: ../pypackage/forms/account.py:29
+#: ../pypackage/forms/account.py:30
 #: ../pypackage/templates/account/login.html:72
 msgid "Remember me"
 msgstr ""
 
-#: ../pypackage/forms/account.py:31 ../pypackage/templates/layout.html:65
+#: ../pypackage/forms/account.py:32 ../pypackage/templates/layout.html:70
 msgid "Login"
 msgstr ""
 
-#: ../pypackage/forms/account.py:37 ../pypackage/forms/account.py:66
-msgid "User name"
+#: ../pypackage/forms/account.py:37
+msgid "Old Password"
 msgstr ""
 
-#: ../pypackage/forms/account.py:38 ../pypackage/forms/account.py:67
-msgid "User name required"
-msgstr ""
-
-#: ../pypackage/forms/account.py:41
+#: ../pypackage/forms/account.py:38 ../pypackage/forms/account.py:40
+#: ../pypackage/forms/account.py:42 ../pypackage/forms/account.py:51
 msgid "Password required"
 msgstr ""
 
-#: ../pypackage/forms/account.py:42
+#: ../pypackage/forms/account.py:39
+msgid "New Password"
+msgstr ""
+
+#: ../pypackage/forms/account.py:41
+msgid "Repeat Password"
+msgstr ""
+
+#: ../pypackage/forms/account.py:47 ../pypackage/forms/account.py:76
+msgid "User name"
+msgstr ""
+
+#: ../pypackage/forms/account.py:48 ../pypackage/forms/account.py:77
+msgid "User name required"
+msgstr ""
+
+#: ../pypackage/forms/account.py:52
 msgid "Password again"
 msgstr ""
 
-#: ../pypackage/forms/account.py:43
+#: ../pypackage/forms/account.py:53
 msgid "Passwords don't match"
 msgstr ""
 
-#: ../pypackage/forms/account.py:45 ../pypackage/forms/account.py:70
-#: ../pypackage/views/account.py:75 ../pypackage/views/account.py:99
+#: ../pypackage/forms/account.py:55 ../pypackage/forms/account.py:80
+#: ../pypackage/views/account.py:76 ../pypackage/views/account.py:100
 msgid "Supper User"
 msgstr ""
 
-#: ../pypackage/forms/account.py:47 ../pypackage/forms/account.py:72
-#: ../pypackage/templates/hr/main.html:7 ../pypackage/views/account.py:73
-#: ../pypackage/views/account.py:74 ../pypackage/views/account.py:97
-#: ../pypackage/views/account.py:98
+#: ../pypackage/forms/account.py:57 ../pypackage/forms/account.py:82
+#: ../pypackage/templates/hr/_sidebar.html:11 ../pypackage/views/account.py:74
+#: ../pypackage/views/account.py:75 ../pypackage/views/account.py:98
+#: ../pypackage/views/account.py:99
 msgid "Employee"
 msgstr ""
 
-#: ../pypackage/forms/account.py:49 ../pypackage/forms/account.py:74
-#: ../pypackage/views/account.py:76 ../pypackage/views/account.py:77
-#: ../pypackage/views/account.py:100 ../pypackage/views/account.py:101
+#: ../pypackage/forms/account.py:59 ../pypackage/forms/account.py:84
+#: ../pypackage/views/account.py:77 ../pypackage/views/account.py:78
+#: ../pypackage/views/account.py:101 ../pypackage/views/account.py:102
 msgid "Principal Group"
 msgstr ""
 
-#: ../pypackage/forms/account.py:52 ../pypackage/forms/account.py:77
-#: ../pypackage/forms/hr.py:23 ../pypackage/forms/hr.py:31
-#: ../pypackage/views/account.py:78 ../pypackage/views/account.py:102
+#: ../pypackage/forms/account.py:62 ../pypackage/forms/account.py:87
+#: ../pypackage/forms/hr.py:25 ../pypackage/forms/hr.py:33
+#: ../pypackage/views/account.py:79 ../pypackage/views/account.py:103
 #: ../pypackage/views/hr.py:30 ../pypackage/views/hr.py:37
 #: ../pypackage/views/hr.py:77 ../pypackage/views/hr.py:85
 msgid "Description"
 msgstr ""
 
-#: ../pypackage/forms/account.py:54 ../pypackage/forms/account.py:79
-#: ../pypackage/views/account.py:79 ../pypackage/views/account.py:103
+#: ../pypackage/forms/account.py:64 ../pypackage/forms/account.py:89
+#: ../pypackage/views/account.py:80 ../pypackage/views/account.py:104
 #: ../pypackage/views/sd.py:47 ../pypackage/views/sd.py:62
 msgid "Active"
 msgstr ""
 
-#: ../pypackage/forms/account.py:60
+#: ../pypackage/forms/account.py:70
 msgid "This username is taken"
 msgstr ""
 
-#: ../pypackage/forms/base.py:10 ../pypackage/views/base.py:86
+#: ../pypackage/forms/base.py:12 ../pypackage/views/base.py:86
 #: ../pypackage/views/base.py:96
 msgid "Item ID"
 msgstr ""
 
-#: ../pypackage/forms/base.py:11 ../pypackage/forms/base.py:13
-#: ../pypackage/forms/base.py:15 ../pypackage/forms/base.py:22
-#: ../pypackage/forms/base.py:24
+#: ../pypackage/forms/base.py:13 ../pypackage/forms/base.py:15
+#: ../pypackage/forms/base.py:17 ../pypackage/forms/base.py:24
+#: ../pypackage/forms/base.py:26
 msgid "You must provide"
 msgstr ""
 
-#: ../pypackage/forms/base.py:12 ../pypackage/views/base.py:87
+#: ../pypackage/forms/base.py:14 ../pypackage/views/base.py:87
 #: ../pypackage/views/base.py:97
 msgid "Item Order"
 msgstr ""
 
-#: ../pypackage/forms/base.py:14 ../pypackage/views/base.py:88
+#: ../pypackage/forms/base.py:16 ../pypackage/views/base.py:88
 #: ../pypackage/views/base.py:98
 msgid "Item Name"
 msgstr ""
 
-#: ../pypackage/forms/base.py:21 ../pypackage/views/base.py:34
+#: ../pypackage/forms/base.py:23 ../pypackage/views/base.py:34
 #: ../pypackage/views/base.py:44
 msgid "Group ID"
 msgstr ""
 
-#: ../pypackage/forms/base.py:23 ../pypackage/views/base.py:35
+#: ../pypackage/forms/base.py:25 ../pypackage/views/base.py:35
 #: ../pypackage/views/base.py:45
 msgid "Group Name"
 msgstr ""
@@ -174,219 +187,219 @@ msgstr ""
 msgid "Invalid Choice: could not coerce"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:21
+#: ../pypackage/forms/hr.py:23
 msgid "Dept Name"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:22
+#: ../pypackage/forms/hr.py:24
 msgid "You must provide an department name"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:29
+#: ../pypackage/forms/hr.py:31
 msgid "Job Name"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:30
+#: ../pypackage/forms/hr.py:32
 msgid "You must provide an job name"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:37 ../pypackage/views/hr.py:122
+#: ../pypackage/forms/hr.py:39 ../pypackage/views/hr.py:122
 #: ../pypackage/views/hr.py:152
 msgid "Employee Code"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:38
+#: ../pypackage/forms/hr.py:40
 msgid "You must provide an employee code"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:39 ../pypackage/views/hr.py:123
+#: ../pypackage/forms/hr.py:41 ../pypackage/views/hr.py:123
 #: ../pypackage/views/hr.py:153
 msgid "Employee Name"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:40
+#: ../pypackage/forms/hr.py:42
 msgid "You must provide an employee name"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:41
+#: ../pypackage/forms/hr.py:43
 msgid "Work Email"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:42
+#: ../pypackage/forms/hr.py:44
 msgid "Work Phone"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:43
+#: ../pypackage/forms/hr.py:45
 msgid "Work Mobile"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:44
+#: ../pypackage/forms/hr.py:46
 msgid "Office Location"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:45 ../pypackage/templates/hr/main.html:10
+#: ../pypackage/forms/hr.py:47 ../pypackage/templates/hr/_sidebar.html:29
 #: ../pypackage/views/hr.py:76 ../pypackage/views/hr.py:84
 #: ../pypackage/views/hr.py:124 ../pypackage/views/hr.py:154
 msgid "Department"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:46
+#: ../pypackage/forms/hr.py:48
 msgid "You must choices a Department"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:47 ../pypackage/templates/hr/main.html:9
+#: ../pypackage/forms/hr.py:49 ../pypackage/templates/hr/_sidebar.html:21
 #: ../pypackage/views/hr.py:30 ../pypackage/views/hr.py:37
 #: ../pypackage/views/hr.py:124 ../pypackage/views/hr.py:154
 msgid "Job"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:48
-msgid "You must choices a Job"
-msgstr ""
-
-#: ../pypackage/forms/hr.py:49 ../pypackage/views/hr.py:123
-#: ../pypackage/views/hr.py:153
-msgid "Gender"
-msgstr ""
-
 #: ../pypackage/forms/hr.py:50
-msgid "You must choices a Gender"
+msgid "You must choices a Job"
 msgstr ""
 
 #: ../pypackage/forms/hr.py:51 ../pypackage/views/hr.py:123
 #: ../pypackage/views/hr.py:153
-msgid "ID Card"
+msgid "Gender"
 msgstr ""
 
 #: ../pypackage/forms/hr.py:52
+msgid "You must choices a Gender"
+msgstr ""
+
+#: ../pypackage/forms/hr.py:53 ../pypackage/views/hr.py:123
+#: ../pypackage/views/hr.py:153
+msgid "ID Card"
+msgstr ""
+
+#: ../pypackage/forms/hr.py:54
 msgid "Home Address"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:53
+#: ../pypackage/forms/hr.py:55
 msgid "Date of Birth (eg:2012-01-01)"
 msgstr ""
 
-#: ../pypackage/forms/hr.py:56
+#: ../pypackage/forms/hr.py:58
 msgid "Reamrk"
 msgstr ""
 
-#: ../pypackage/forms/im.py:16 ../pypackage/views/im.py:60
+#: ../pypackage/forms/im.py:18 ../pypackage/views/im.py:63
 msgid "Inventory Type"
 msgstr ""
 
-#: ../pypackage/forms/im.py:18 ../pypackage/views/im.py:58
+#: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:61
 msgid "Building#"
 msgstr ""
 
-#: ../pypackage/forms/im.py:19 ../pypackage/views/im.py:59
+#: ../pypackage/forms/im.py:21 ../pypackage/views/im.py:62
 msgid "Floor#"
 msgstr ""
 
-#: ../pypackage/forms/im.py:20 ../pypackage/views/im.py:61
-#: ../pypackage/views/im.py:383
+#: ../pypackage/forms/im.py:22 ../pypackage/views/im.py:64
+#: ../pypackage/views/im.py:387
 msgid "Location Name"
 msgstr ""
 
-#: ../pypackage/forms/im.py:21 ../pypackage/forms/im.py:45
-#: ../pypackage/forms/im.py:61 ../pypackage/forms/mm.py:19
-#: ../pypackage/forms/sd.py:14 ../pypackage/views/im.py:62
-#: ../pypackage/views/im.py:142 ../pypackage/views/im.py:189
-#: ../pypackage/views/im.py:268 ../pypackage/views/im.py:301
+#: ../pypackage/forms/im.py:23 ../pypackage/forms/im.py:47
+#: ../pypackage/forms/im.py:63 ../pypackage/forms/mm.py:21
+#: ../pypackage/forms/sd.py:15 ../pypackage/views/im.py:65
+#: ../pypackage/views/im.py:145 ../pypackage/views/im.py:192
+#: ../pypackage/views/im.py:271 ../pypackage/views/im.py:304
 #: ../pypackage/views/mm.py:32 ../pypackage/views/mm.py:56
 #: ../pypackage/views/sd.py:46 ../pypackage/views/sd.py:61
 msgid "Remark"
 msgstr ""
 
-#: ../pypackage/forms/im.py:36 ../pypackage/forms/im.py:55
-#: ../pypackage/views/im.py:134 ../pypackage/views/im.py:182
-#: ../pypackage/views/im.py:261 ../pypackage/views/im.py:294
+#: ../pypackage/forms/im.py:38 ../pypackage/forms/im.py:57
+#: ../pypackage/views/im.py:137 ../pypackage/views/im.py:185
+#: ../pypackage/views/im.py:264 ../pypackage/views/im.py:297
 msgid "Bill No"
 msgstr ""
 
-#: ../pypackage/forms/im.py:37 ../pypackage/forms/im.py:56
-#: ../pypackage/views/im.py:135 ../pypackage/views/im.py:183
-#: ../pypackage/views/im.py:262 ../pypackage/views/im.py:295
+#: ../pypackage/forms/im.py:39 ../pypackage/forms/im.py:58
+#: ../pypackage/views/im.py:138 ../pypackage/views/im.py:186
+#: ../pypackage/views/im.py:265 ../pypackage/views/im.py:298
 msgid "Manual Bill No"
 msgstr ""
 
-#: ../pypackage/forms/im.py:38
+#: ../pypackage/forms/im.py:40
 msgid "Warehouse Voucher Date (eg:2012-01-01)"
 msgstr ""
 
-#: ../pypackage/forms/im.py:40 ../pypackage/views/im.py:137
-#: ../pypackage/views/im.py:185
+#: ../pypackage/forms/im.py:42 ../pypackage/views/im.py:140
+#: ../pypackage/views/im.py:188
 msgid "Delivery Workshop"
 msgstr ""
 
-#: ../pypackage/forms/im.py:42
+#: ../pypackage/forms/im.py:44
 msgid "You must choices a Workshop"
 msgstr ""
 
-#: ../pypackage/forms/im.py:43 ../pypackage/views/im.py:138
+#: ../pypackage/forms/im.py:45 ../pypackage/views/im.py:141
 msgid "Delivery Person"
 msgstr ""
 
-#: ../pypackage/forms/im.py:44 ../pypackage/forms/im.py:60
-#: ../pypackage/views/im.py:139 ../pypackage/views/im.py:186
-#: ../pypackage/views/im.py:265 ../pypackage/views/im.py:298
+#: ../pypackage/forms/im.py:46 ../pypackage/forms/im.py:62
+#: ../pypackage/views/im.py:142 ../pypackage/views/im.py:189
+#: ../pypackage/views/im.py:268 ../pypackage/views/im.py:301
 msgid "Store Person"
 msgstr ""
 
-#: ../pypackage/forms/im.py:57
+#: ../pypackage/forms/im.py:59
 msgid "Delivery Voucher Date (eg:2012-01-01)"
 msgstr ""
 
-#: ../pypackage/forms/im.py:59 ../pypackage/views/im.py:264
-#: ../pypackage/views/im.py:297
+#: ../pypackage/forms/im.py:61 ../pypackage/views/im.py:267
+#: ../pypackage/views/im.py:300
 msgid "Picker"
 msgstr ""
 
-#: ../pypackage/forms/mm.py:14 ../pypackage/views/mm.py:28
+#: ../pypackage/forms/mm.py:16 ../pypackage/views/mm.py:28
 #: ../pypackage/views/mm.py:52
 msgid "Product Code"
 msgstr ""
 
-#: ../pypackage/forms/mm.py:15 ../pypackage/views/im.py:340
-#: ../pypackage/views/im.py:380 ../pypackage/views/mm.py:29
+#: ../pypackage/forms/mm.py:17 ../pypackage/views/im.py:343
+#: ../pypackage/views/im.py:384 ../pypackage/views/mm.py:29
 #: ../pypackage/views/mm.py:53
 msgid "Product Name"
 msgstr ""
 
-#: ../pypackage/forms/mm.py:16 ../pypackage/templates/sd/main.html:7
+#: ../pypackage/forms/mm.py:18 ../pypackage/templates/sd/_sidebar.html:11
 #: ../pypackage/views/mm.py:30 ../pypackage/views/mm.py:54
 msgid "Customer"
 msgstr ""
 
-#: ../pypackage/forms/mm.py:18 ../pypackage/views/im.py:341
-#: ../pypackage/views/im.py:381 ../pypackage/views/mm.py:31
+#: ../pypackage/forms/mm.py:20 ../pypackage/views/im.py:344
+#: ../pypackage/views/im.py:385 ../pypackage/views/mm.py:31
 #: ../pypackage/views/mm.py:55
 msgid "Spec"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:12 ../pypackage/views/sd.py:44
+#: ../pypackage/forms/sd.py:13 ../pypackage/views/sd.py:44
 #: ../pypackage/views/sd.py:59
 msgid "Customer Code"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:13 ../pypackage/views/im.py:342
-#: ../pypackage/views/im.py:382 ../pypackage/views/sd.py:45
+#: ../pypackage/forms/sd.py:14 ../pypackage/views/im.py:345
+#: ../pypackage/views/im.py:386 ../pypackage/views/sd.py:45
 #: ../pypackage/views/sd.py:60
 msgid "Customer Name"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:19 ../pypackage/forms/sd.py:25
+#: ../pypackage/forms/sd.py:20 ../pypackage/forms/sd.py:26
 msgid "Name"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:20
+#: ../pypackage/forms/sd.py:21
 msgid "Address"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:26
+#: ../pypackage/forms/sd.py:27
 msgid "Title"
 msgstr ""
 
-#: ../pypackage/forms/sd.py:27
+#: ../pypackage/forms/sd.py:28
 msgid "Phone"
 msgstr ""
 
@@ -398,71 +411,66 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../pypackage/templates/create.html:12 ../pypackage/templates/edit.html:12
-#: ../pypackage/templates/list.html:8 ../pypackage/templates/view.html:7
-#: ../pypackage/templates/im/inventory.html:11
+#: ../pypackage/templates/create.html:25 ../pypackage/templates/edit.html:25
+#: ../pypackage/templates/list.html:21 ../pypackage/templates/view.html:20
+#: ../pypackage/templates/im/inventory.html:25
 msgid "List"
 msgstr ""
 
-#: ../pypackage/templates/create.html:15 ../pypackage/templates/list.html:12
+#: ../pypackage/templates/create.html:28 ../pypackage/templates/list.html:25
 msgid "Create"
 msgstr ""
 
-#: ../pypackage/templates/create.html:20
+#: ../pypackage/templates/create.html:33
 msgid "Save and Add"
 msgstr ""
 
-#: ../pypackage/templates/edit.html:15 ../pypackage/templates/view.html:13
+#: ../pypackage/templates/edit.html:28 ../pypackage/templates/view.html:26
 msgid "Edit"
 msgstr ""
 
-#: ../pypackage/templates/layout.html:30
-msgid "Home"
-msgstr ""
-
-#: ../pypackage/templates/layout.html:31
-msgid "Human Resources"
-msgstr ""
-
-#: ../pypackage/templates/layout.html:32
-msgid "Sales Distribution"
-msgstr ""
-
-#: ../pypackage/templates/layout.html:33
-msgid "Warehouse"
-msgstr ""
-
-#: ../pypackage/templates/layout.html:34
-msgid "Material"
-msgstr ""
-
-#: ../pypackage/templates/layout.html:35
-#: ../pypackage/templates/account/main.html:7
-msgid "Account"
-msgstr ""
-
-#: ../pypackage/templates/layout.html:36 ../pypackage/templates/im/main.html:12
-msgid "Base"
-msgstr ""
-
-#: ../pypackage/templates/layout.html:55
+#: ../pypackage/templates/layout.html:53
 msgid "Setting"
 msgstr ""
 
-#: ../pypackage/templates/layout.html:57
+#: ../pypackage/templates/layout.html:56
+#: ../pypackage/templates/account/setting.html:14
+msgid "Change Password"
+msgstr ""
+
+#: ../pypackage/templates/layout.html:60
 msgid "Logout"
 msgstr ""
 
-#: ../pypackage/templates/list.html:71
+#: ../pypackage/templates/list.html:36
+msgid "Print"
+msgstr ""
+
+#: ../pypackage/templates/list.html:88
 msgid "You sure you want to delete this item?"
 msgstr ""
 
-#: ../pypackage/templates/list.html:107
+#: ../pypackage/templates/list.html:124
 msgid "Please select at least one model."
 msgstr ""
 
-#: ../pypackage/templates/view.html:10
+#: ../pypackage/templates/view.html:23
 msgid "View"
+msgstr ""
+
+#: ../pypackage/templates/account/_sidebar.html:4
+msgid "Acctounts"
+msgstr ""
+
+#: ../pypackage/templates/account/_sidebar.html:10
+#: ../pypackage/templates/macros/_menu.html:48
+msgid "Account"
+msgstr ""
+
+#: ../pypackage/templates/account/change_password.html:26
+#: ../pypackage/templates/macros/_forms.html:115
+#: ../pypackage/templates/macros/lib.html:134
+msgid "Submit"
 msgstr ""
 
 #: ../pypackage/templates/account/login.html:58
@@ -473,16 +481,12 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: ../pypackage/templates/account/main.html:6
-msgid "Acctounts"
-msgstr ""
-
-#: ../pypackage/templates/base/main.html:6
-#: ../pypackage/templates/hr/main.html:8
+#: ../pypackage/templates/base/_sidebar.html:4
+#: ../pypackage/templates/hr/_sidebar.html:14
 msgid "Bases"
 msgstr ""
 
-#: ../pypackage/templates/base/main.html:7
+#: ../pypackage/templates/base/_sidebar.html:10
 msgid "Item Group"
 msgstr ""
 
@@ -514,32 +518,37 @@ msgstr ""
 msgid "500, An Error Has Occurred"
 msgstr ""
 
-#: ../pypackage/templates/hr/main.html:6
+#: ../pypackage/templates/hr/_sidebar.html:4
 msgid "HR"
 msgstr ""
 
-#: ../pypackage/templates/im/main.html:6 ../pypackage/templates/mm/main.html:6
-#: ../pypackage/templates/sd/main.html:6
-msgid "Main"
+#: ../pypackage/templates/im/_sidebar.html:4
+#: ../pypackage/templates/macros/_menu.html:32
+msgid "Warehouse"
 msgstr ""
 
-#: ../pypackage/templates/im/main.html:7
+#: ../pypackage/templates/im/_sidebar.html:10
 msgid "Warehouse Voucher"
 msgstr ""
 
-#: ../pypackage/templates/im/main.html:8
+#: ../pypackage/templates/im/_sidebar.html:18
 msgid "Inventory by location"
 msgstr ""
 
-#: ../pypackage/templates/im/main.html:9
+#: ../pypackage/templates/im/_sidebar.html:26
 msgid "Inventory"
 msgstr ""
 
-#: ../pypackage/templates/im/main.html:10
+#: ../pypackage/templates/im/_sidebar.html:34
 msgid "Delivery Voucher"
 msgstr ""
 
-#: ../pypackage/templates/im/main.html:13
+#: ../pypackage/templates/im/_sidebar.html:38
+#: ../pypackage/templates/macros/_menu.html:56
+msgid "Base"
+msgstr ""
+
+#: ../pypackage/templates/im/_sidebar.html:45
 msgid "Inventory Locatioin"
 msgstr ""
 
@@ -547,14 +556,27 @@ msgstr ""
 msgid "With selected"
 msgstr ""
 
-#: ../pypackage/templates/macros/_forms.html:115
-#: ../pypackage/templates/macros/lib.html:134
-msgid "Submit"
-msgstr ""
-
 #: ../pypackage/templates/macros/_forms.html:120
 #: ../pypackage/templates/macros/lib.html:139
 msgid "Cancel"
+msgstr ""
+
+#: ../pypackage/templates/macros/_menu.html:8
+msgid "Home"
+msgstr ""
+
+#: ../pypackage/templates/macros/_menu.html:16
+msgid "Human Resources"
+msgstr ""
+
+#: ../pypackage/templates/macros/_menu.html:24
+#: ../pypackage/templates/sd/_sidebar.html:4
+msgid "Sales Distribution"
+msgstr ""
+
+#: ../pypackage/templates/macros/_menu.html:40
+#: ../pypackage/templates/mm/_sidebar.html:4
+msgid "Material"
 msgstr ""
 
 #: ../pypackage/templates/macros/_page.html:7
@@ -565,33 +587,41 @@ msgstr ""
 msgid "older"
 msgstr ""
 
-#: ../pypackage/templates/mm/main.html:7 ../pypackage/views/im.py:98
-#: ../pypackage/views/im.py:225
+#: ../pypackage/templates/mm/_sidebar.html:11 ../pypackage/views/im.py:101
+#: ../pypackage/views/im.py:228
 msgid "Product"
 msgstr ""
 
-#: ../pypackage/templates/widgets/inline_list_base.html:18
+#: ../pypackage/templates/widgets/inline_list_base.html:12
 msgid "Delete?"
 msgstr ""
 
-#: ../pypackage/templates/widgets/inline_list_base.html:27
+#: ../pypackage/templates/widgets/inline_list_base.html:38
 msgid "Add"
 msgstr ""
 
-#: ../pypackage/views/account.py:42
+#: ../pypackage/views/account.py:43
 msgid "Sorry, invalid login"
 msgstr ""
 
-#: ../pypackage/views/account.py:66 ../pypackage/views/account.py:119
+#: ../pypackage/views/account.py:67 ../pypackage/views/account.py:120
 msgid "Auth"
 msgstr ""
 
-#: ../pypackage/views/account.py:70 ../pypackage/views/account.py:94
+#: ../pypackage/views/account.py:71 ../pypackage/views/account.py:95
 msgid "User Name"
 msgstr ""
 
-#: ../pypackage/views/account.py:72 ../pypackage/views/account.py:96
+#: ../pypackage/views/account.py:73 ../pypackage/views/account.py:97
 msgid "Password Again"
+msgstr ""
+
+#: ../pypackage/views/account.py:154
+msgid "New Passwords don't match"
+msgstr ""
+
+#: ../pypackage/views/account.py:156
+msgid "Old Password error"
 msgstr ""
 
 #: ../pypackage/views/base.py:28 ../pypackage/views/base.py:36
@@ -599,47 +629,47 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
-#: ../pypackage/views/im.py:105 ../pypackage/views/im.py:232
+#: ../pypackage/views/im.py:108 ../pypackage/views/im.py:235
 msgid "Inventory Location"
 msgstr ""
 
-#: ../pypackage/views/im.py:110 ../pypackage/views/im.py:237
-#: ../pypackage/views/im.py:343 ../pypackage/views/im.py:384
+#: ../pypackage/views/im.py:113 ../pypackage/views/im.py:240
+#: ../pypackage/views/im.py:346 ../pypackage/views/im.py:388
 msgid "Quantity"
 msgstr ""
 
-#: ../pypackage/views/im.py:118 ../pypackage/views/im.py:140
-#: ../pypackage/views/im.py:187 ../pypackage/views/im.py:245
-#: ../pypackage/views/im.py:266 ../pypackage/views/im.py:299
+#: ../pypackage/views/im.py:121 ../pypackage/views/im.py:143
+#: ../pypackage/views/im.py:190 ../pypackage/views/im.py:248
+#: ../pypackage/views/im.py:269 ../pypackage/views/im.py:302
 msgid "Products"
 msgstr ""
 
-#: ../pypackage/views/im.py:136 ../pypackage/views/im.py:184
+#: ../pypackage/views/im.py:139 ../pypackage/views/im.py:187
 msgid "Warehouse Voucher Date"
 msgstr ""
 
-#: ../pypackage/views/im.py:141 ../pypackage/views/im.py:188
-#: ../pypackage/views/im.py:267 ../pypackage/views/im.py:300
+#: ../pypackage/views/im.py:144 ../pypackage/views/im.py:191
+#: ../pypackage/views/im.py:270 ../pypackage/views/im.py:303
 msgid "Status"
 msgstr ""
 
-#: ../pypackage/views/im.py:149
+#: ../pypackage/views/im.py:152
 msgid "Delete"
 msgstr ""
 
-#: ../pypackage/views/im.py:149
+#: ../pypackage/views/im.py:152
 msgid "Confirm"
 msgstr ""
 
-#: ../pypackage/views/im.py:150
+#: ../pypackage/views/im.py:153
 msgid "Confirmation Delete ?"
 msgstr ""
 
-#: ../pypackage/views/im.py:151
+#: ../pypackage/views/im.py:154
 msgid "Confirmation Complete ?"
 msgstr ""
 
-#: ../pypackage/views/im.py:263 ../pypackage/views/im.py:296
+#: ../pypackage/views/im.py:266 ../pypackage/views/im.py:299
 msgid "Delivery Voucher Date"
 msgstr ""
 

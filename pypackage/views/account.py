@@ -6,14 +6,15 @@
     :license: BSD, see LICENSE for more details.
 """
 
-from flask import Blueprint, request, flash, redirect, url_for, \
-    render_template
+from flask import Blueprint, request, flash, redirect, g\
+    , url_for, render_template
 from flask.ext.babel import lazy_gettext as _
 from flask.ext.login import login_user, logout_user, login_required
 
 from pypackage.extensions import db
 from pypackage.models import User, Employee, PrincipalGroup
-from pypackage.forms import LoginForm, UserForm, UserEditForm
+from pypackage.forms import LoginForm, UserForm, UserEditForm\
+    , ChangePasswordForm
 from pypackage.base import BaseForm
 
 
@@ -136,3 +137,23 @@ def user_delete(id):
 @login_required
 def user_action():
     return useradmin.action_view()
+
+
+@account.route("/change_password/", methods=("GET", "POST"))
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        if g.user.check_password(request.form['password']):
+            if request.form['newpassword'] ==\
+                request.form['confirm']:
+                g.user.password = request.form['newpassword']
+                db.session.commit()
+                return redirect(url_for('account.setting'))
+            else:
+                flash(_("New Passwords don't match"), "error")
+        else:
+            flash(_("Old Password error"), "error")
+
+    return render_template("account/change_password.html", form=form)
+
