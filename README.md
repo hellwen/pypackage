@@ -1,15 +1,19 @@
 pypackage
 =========
 
-=install pythonbrew:
+==install pythonbrew:
+
 sudo esay_install pip
 
 sudo esay_install pythonbrew
 
-=create env:
+==create env:
+
 pythonbrew venv create pypackage
 
-=install package:
+==install package:
+
 pip install -r requirements.txt
+
 
 
