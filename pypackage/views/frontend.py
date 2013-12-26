@@ -10,7 +10,6 @@ from flask import Blueprint, render_template
 
 frontend = Blueprint("frontend", __name__, url_prefix="/")
 
-
 @frontend.route("/index/", methods=("GET", "POST"))
 @frontend.route("/", methods=("GET", "POST"))
 def index():
