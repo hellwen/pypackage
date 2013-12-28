@@ -2,7 +2,7 @@
 
 ##Install
 
-###Pythonbre
+###Pythonbrew
 
         sudo esay_install pip
         sudo esay_install pythonbrew
@@ -17,7 +17,7 @@
 
 ###Custom the Configuration
         
-        pypress/config.cfg
+        pypackage/config.cfg
 
 ###Sync database
 
