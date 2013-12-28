@@ -4,17 +4,16 @@
 
 ###Pythonbre
 
-  sudo esay_install pip
-
-  sudo esay_install pythonbrew
+        sudo esay_install pip
+        sudo esay_install pythonbrew
 
 ###Create env
 
-pythonbrew venv create pypackage
+        pythonbrew venv create pypackage
 
 ###Prerequisite
 
-  pip install -r requirements.txt
+        pip install -r requirements.txt
 
 ###Custom the Configuration
         
