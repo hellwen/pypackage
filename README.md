@@ -1,19 +1,43 @@
-pypackage
-=========
+##PyPackage
 
-==install pythonbrew:
+##Install
 
-sudo esay_install pip
+###Pythonbre
 
-sudo esay_install pythonbrew
+  sudo esay_install pip
 
-==create env:
+  sudo esay_install pythonbrew
+
+###Create env
 
 pythonbrew venv create pypackage
 
-==install package:
+###Prerequisite
 
-pip install -r requirements.txt
+  pip install -r requirements.txt
 
+###Custom the Configuration
+        
+        pypress/config.cfg
+
+###Sync database
+
+        python manage.py createall
+
+###Run
+
+        python manage.py runserver
+
+##Example
+
+###Create User
+
+Admin:
+
+        python manage.py createadmin
+
+###Generate Admin active code
+
+        python manage.py createcode -r admin
 
 
