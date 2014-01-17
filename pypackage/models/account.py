@@ -56,6 +56,8 @@ class UserQuery(BaseQuery):
 
 
 class User(db.Model):
+    __tablename__ = 'users'
+
     query_class = UserQuery
 
     id = db.Column(db.Integer, primary_key=True)
