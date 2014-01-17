@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 #coding=utf-8
 import sys
-from flask import Blueprint, render_template, g
+from flask import Blueprint, render_template, g, request, session, redirect
 from flask.ext.babel import gettext as _
 
 from pypackage.models import Employee, Department, Job, Item
@@ -9,6 +9,9 @@ from pypackage.forms import EmployeeForm, DepartmentForm, JobForm
 
 from pypackage.extensions import db, login_required
 from pypackage.base import BaseForm
+
+from flask import url_for
+from flask.ext.weasyprint import HTML, render_pdf
 
 
 hr = Blueprint('hr', __name__,
@@ -38,30 +41,37 @@ def job_list():
     column_labels = dict(job_name=_("Job"), description=_("Description"))
     return jobadmin.list_view(column_labels=column_labels)
 
+@hr.route('/job/list.pdf')
+@login_required
+def job_list_pdf():
+    html = job_list()
+    return render_pdf(HTML(string=html))
 
 @hr.route("/job/view/id=<int:id>", methods=("GET", "POST"))
 @login_required
 def job_view(id):
     return jobadmin.show_view(id)
 
-
 @hr.route("/job/create/", methods=("GET", "POST"))
 @login_required
 def job_create():
     return jobadmin.create_view()
-
 
 @hr.route("/job/edit/id=<int:id>/", methods=("GET", "POST"))
 @login_required
 def job_edit(id):
     return jobadmin.edit_view(id)
 
+@hr.route('/job/edit/id=<int:id>/pdf')
+@login_required
+def job_edit_pdf(id):
+    html = job_edit(id)
+    return render_pdf(HTML(string=html))
 
 @hr.route("/job/delete/id=<int:id>/", methods=("GET", "POST"))
 @login_required
 def job_delete(id):
     return jobadmin.delete_view(id)
-
 
 @hr.route("/job/action/", methods=("GET", "POST"))
 @login_required
@@ -86,6 +96,11 @@ def department_list():
         description=_("Description"))
     return deptadmin.list_view(column_labels=column_labels)
 
+@hr.route('/department/list.pdf')
+@login_required
+def department_list_pdf():
+    html = department_list()
+    return render_pdf(HTML(string=html))
 
 @hr.route("/department/id=<int:id>", methods=("GET", "POST"))
 @login_required
@@ -115,6 +130,7 @@ def department_delete(id):
 @login_required
 def department_action():
     return deptadmin.action_view()
+
 
 
 class EmployeeAdmin(BaseForm):
@@ -155,6 +171,11 @@ def employee_list():
         department=_("Department"), job=_("Job"))
     return employeeadmin.list_view(column_labels=column_labels)
 
+@hr.route('/employee/list.pdf')
+@login_required
+def employee_list_pdf():
+    html = employee_list()
+    return render_pdf(HTML(string=html))
 
 @hr.route("/employee/view/<int:id>/", methods=("GET", "POST"))
 @login_required
@@ -184,4 +205,4 @@ def employee_delete(id):
 @login_required
 def employee_action():
     return employeeadmin.action_view()
-    
+

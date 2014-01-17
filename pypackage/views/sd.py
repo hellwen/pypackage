@@ -10,6 +10,8 @@ from pypackage.forms import CustomerForm, CustomerShippingForm, CustomerContactF
 from pypackage.extensions import db, login_required
 from pypackage.base import BaseForm, InlineBaseForm
 
+from flask.ext.weasyprint import HTML, render_pdf
+
 
 sd = Blueprint('sd', __name__,
     url_prefix="/sd",
@@ -62,6 +64,11 @@ def customer_list():
         active=_("Active"))
     return customeradmin.list_view(column_labels=column_labels)
 
+@sd.route('/customer/list.pdf')
+@login_required
+def customer_list_pdf():
+    html = customer_list()
+    return render_pdf(HTML(string=html))
 
 @sd.route("/customer/view/<int:id>/", methods=("GET", "POST"))
 @login_required

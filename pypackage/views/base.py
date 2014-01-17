@@ -9,6 +9,8 @@ from pypackage.models import ItemGroup, Item
 from pypackage.forms import ItemGroupForm, ItemForm
 from pypackage.base import BaseForm, InlineBaseForm
 
+from flask.ext.weasyprint import HTML, render_pdf
+
 
 base = Blueprint('base', __name__, url_prefix="/base")
 
@@ -46,6 +48,11 @@ def itemgroup_list():
         items=_("Items"))
     return itemgroupadmin.list_view(column_labels=column_labels)
 
+@base.route('/itemgroup/list.pdf')
+@login_required
+def itemgroup_list_pdf():
+    html = itemgroup_list()
+    return render_pdf(HTML(string=html))
 
 @base.route("/itemgroup/view/id=<int:id>", methods=("GET", "POST"))
 def itemgroup_view(id):
@@ -98,6 +105,11 @@ def item_list():
         item_name=_("Item Name"))
     return itemadmin.list_view(column_labels=column_labels)
 
+@base.route('/item/list.pdf')
+@login_required
+def item_list_pdf():
+    html = item_list()
+    return render_pdf(HTML(string=html))
 
 @base.route("/item/view/id=<int:id>", methods=("GET", "POST"))
 @login_required

@@ -10,6 +10,8 @@ from pypackage.forms import ProductForm
 from pypackage.extensions import db, login_required
 from pypackage.base import BaseForm
 
+from flask.ext.weasyprint import HTML, render_pdf
+
 
 mm = Blueprint('mm', __name__,
     url_prefix="/mm",
@@ -56,6 +58,11 @@ def product_list():
         remark=_("Remark"))
     return productadmin.list_view(column_labels=column_labels)
 
+@mm.route('/product/list.pdf')
+@login_required
+def product_list_pdf():
+    html = product_list()
+    return render_pdf(HTML(string=html))
 
 @mm.route("/product/view/<int:id>/", methods=("GET", "POST"))
 @login_required

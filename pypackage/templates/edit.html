@@ -25,7 +25,7 @@
             <a href="{{ url_for('.' + admin_view.endpoint + '_list', url=return_url) }}">{{ _('List') }}</a>
         </li>
         <li class="active">
-            <a href="#">{{ _('Edit') }}</a>
+            <a href="#">{{ _('Edit') + ' ' + admin_view.get_i18_model_name() }}</a>
         </li>
     </ul>
 

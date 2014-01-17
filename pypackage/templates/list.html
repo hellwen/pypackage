@@ -16,26 +16,29 @@
 
 {% block body %}
     {% block model_menu_bar %}
-    <ul class="nav nav-pills">
-        <li class="active">
-            <a href="javascript:void(0)">{{ _('List') }} ({{ admin_view.count }})</a>
-        </li>
-        {% if admin_view.can_create %}
-        <li>
-            <a href="{{ url_for('.' + admin_view.endpoint + '_create', id=0, url=return_url) }}">{{ _('Create') }}</a>
-        </li>
-        {% endif %}
+    <div id="modelbar">
+        <ul class="nav nav-pills">
+            <li class="active">
+                <a href="javascript:void(0)">{{
+                  admin_view.get_i18_model_name() + ' ' + _('List') }} ({{ admin_view.count }})</a>
+            </li>
+            {% if admin_view.can_create %}
+            <li>
+                <a href="{{ url_for('.' + admin_view.endpoint + '_create', id=0, url=return_url) }}">{{ _('Create') }}</a>
+            </li>
+            {% endif %}
 
-        {% if admin_view.actions %}
-        <li class="dropdown">
-            {{ _actions.dropdown(admin_view.actions) }}
-        </li>
-        {% endif %}
+            {% if admin_view.actions %}
+            <li class="dropdown">
+                {{ _actions.dropdown(admin_view.actions) }}
+            </li>
+            {% endif %}
 
-        <li>
-            <a href="javascript:window.print();">{{ _("Print") }}</a>
-        </li>        
-    </ul>
+            <li>
+                <a href="{{ url_for('.' + admin_view.endpoint + '_list_pdf') }}">{{ _("Print") }}</a>
+            </li>
+        </ul>
+    </div>
     {% endblock %}
 
     {% if filter_groups %}
@@ -49,12 +52,12 @@
             <tr>
                 {% block list_header scoped %}
                     {% if admin_view.actions %}
-                    <th class="span1">
+                    <th class="title-check" width="1px">
                         <input type="checkbox" name="rowtoggle" class="action-rowtoggle" />
                     </th>
                     {% endif %}
                     {%- if admin_view.can_edit or admin_view.can_delete -%}
-                    <th class="span1">_____</th>
+                    <th class="title-button" width="1px">_____</th>
                     {% endif %}
                     {% set column = 0 %}
                     {% for c in admin_view.list_columns %}
@@ -72,11 +75,11 @@
         <tr>
             {% block list_row scoped %}
                 {% if admin_view.actions %}
-                <td>
+                <td class="content-check">
                     <input type="checkbox" name="rowid" class="action-checkbox" value="{{ row.id }}" />
                 </td>
                 {% endif %}
-                <td>
+                <td class="content-button">
                     {% block list_row_actions scoped %}
                         {%- if admin_view.can_edit -%}
                         <a class="icon" href="{{ url_for('.' + admin_view.endpoint + '_edit', id=row.id, url=return_url) }}">

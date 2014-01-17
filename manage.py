@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 #coding=utf-8
 import os
+
 from flask.ext.script import Server, Shell, Manager, prompt_bool
 
 from pypackage import create_app
+
 from pypackage.extensions import db
 
 from pypackage.models import User
 
-if os.environ.get('PRD_ENV') is None:
-    manager = Manager(create_app('config.dev.cfg'))
-else:
-    manager = Manager(create_app('config.prd.cfg'))
+env = os.environ.get('PRD_ENV', 'dev')
+app = create_app('pypackage.settings.%sConfig' % env.capitalize(), env=env)
 
+manager = Manager(app)
 
 # 添加shell中支持的环境
 def _make_context():
@@ -26,10 +27,6 @@ manager.add_command("runserver", Server('0.0.0.0', port=8000))
 def syncdb():
     "Creates database tables"
     db.create_all()
-    # db.session.execute(" \
-    #         create unique index idx_items on items(group_id, item_id) \
-    #         ")
-
 
 @manager.command
 def dropall():

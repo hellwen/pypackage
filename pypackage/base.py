@@ -4,7 +4,7 @@
 import logging
 
 from flask import request, redirect, url_for, render_template, flash
-from flask.ext.babel import gettext as _
+from flask.ext.babel import lazy_gettext as _
 # from flask.ext.wtf import Form, HiddenField, required,\
 #     TextAreaField, TextField, IntegerField, DateField
 
@@ -89,6 +89,20 @@ class BaseForm(object):
         self.model = model
         self.form_class = form_class
         self.endpoint = model.__name__.lower()
+
+        self.i18_model = {'department': _('Department')\
+                , 'job': _('Job')\
+                , 'warehousevoucher': _('Warehouse Voucher')\
+                , 'deliveryvoucher': _('Delivery Voucher')\
+                , 'inventorylocation': _('Inventory Location')\
+                , 'product': _('Product')\
+                , 'user': _('User')\
+                , 'itemgroup': _('Item Group')\
+                , 'customer': _('Customer')\
+                , 'employee': _('Employee')}
+
+    def get_i18_model_name(self):
+        return self.i18_model[self.endpoint]
 
     def get_field_categorys(self):
         return [(tab[0]) for tab in self.fieldsets if tab[0]]

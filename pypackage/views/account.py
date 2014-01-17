@@ -17,6 +17,7 @@ from pypackage.forms import LoginForm, UserForm, UserEditForm\
     , ChangePasswordForm
 from pypackage.base import BaseForm
 
+from flask.ext.weasyprint import HTML, render_pdf, make_flask_url_dispatcher
 
 account = Blueprint("account", __name__, url_prefix="/account")
 
@@ -104,6 +105,11 @@ def user_list():
         active=_("Active"))
     return useradmin.list_view(column_labels=column_labels)
 
+@account.route('/user/list.pdf')
+@login_required
+def user_list_pdf():
+    html = user_list()
+    return render_pdf(HTML(string=html))
 
 @account.route("/user/create/", methods=("GET", "POST"))
 @login_required

@@ -7,19 +7,24 @@ from flask import Flask, request, flash, redirect, jsonify, url_for, g,\
 from flask.ext.babel import Babel, lazy_gettext as _
 
 from pypackage.extensions import db, login_manager, current_user
-from pypackage.views import frontend, account, hr, base, im, sd, mm
+
 from pypackage.models import User
 
+from flask_assets import Environment
+from webassets.loaders import PythonLoader as PythonAssetsLoader
+from pypackage import assets
 
-DEFAULT_APP_NAME = 'pypackage'
+
+# init flask assets
+assets_env = Environment()
 
 
-def create_app(config=None, blueprints=None):
+def create_app(object_name=None, env="dev", blueprints=None):
 
-    app = Flask(DEFAULT_APP_NAME)
+    app = Flask(__name__)
 
-    if config is not None:
-        app.config.from_pyfile(config)
+    app.config.from_object(object_name)
+    app.config['ENV'] = env
 
     configure_extensions(app)
     configure_errorhandlers(app)
@@ -34,6 +39,11 @@ def configure_extensions(app):
 
     db.init_app(app)
     login_manager.setup_app(app)
+
+    assets_env.init_app(app)
+    assets_loader = PythonAssetsLoader(assets)
+    for name, bundle in assets_loader.load_bundles().iteritems():
+        assets_env.register(name, bundle)
 
     @login_manager.user_loader
     def load_user(userid):
@@ -99,6 +109,8 @@ def configure_errorhandlers(app):
 
 def configure_blueprints(app):
 
+    from pypackage.views import frontend, account, hr, base, im, sd, mm
+
     app.register_blueprint(frontend)
     app.register_blueprint(account)
     app.register_blueprint(base)
@@ -108,6 +120,8 @@ def configure_blueprints(app):
     app.register_blueprint(mm)
 
 
-def configure_modules(app, modules):
-    for module, url_prefix in modules:
-        app.register_module(module, url_prefix=url_prefix)
+if __name__ == '__main__':
+    env = os.environ.get('PRD_ENV', 'dev')
+    app = create_app('pypackage.settings.%sConfig' % env.capitalize(), env=env)
+
+    app.run()

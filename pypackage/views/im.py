@@ -21,6 +21,8 @@ from pypackage.base import BaseForm, InlineBaseForm
 
 from pypackage.forms.form import Select2Field
 
+from flask.ext.weasyprint import HTML, render_pdf
+
 im = Blueprint('im', __name__,
     url_prefix="/im",
     static_folder='static')
@@ -65,6 +67,11 @@ def inventorylocation_list():
         remark=_("Remark"))
     return inventorylocationadmin.list_view(column_labels=column_labels)
 
+@im.route('/inventorylocation/list.pdf')
+@login_required
+def inventorylocation_list_pdf():
+    html = inventorylocation_list()
+    return render_pdf(HTML(string=html))
 
 @im.route("/inventorylocation/view/<int:id>/", methods=("GET", "POST"))
 @login_required
@@ -192,6 +199,11 @@ def warehousevoucher_list():
         remark=_("Remark"))
     return warehousevoucheradmin.list_view(column_labels=column_labels)
 
+@im.route('/warehousevoucher/list.pdf')
+@login_required
+def warehousevoucher_list_pdf():
+    html = warehousevoucher_list()
+    return render_pdf(HTML(string=html))
 
 @im.route("/warehousevoucher/view/<int:id>/", methods=("GET", "POST"))
 @login_required
@@ -304,6 +316,11 @@ def deliveryvoucher_list():
         remark=_("Remark"))
     return deliveryvoucheradmin.list_view(column_labels=column_labels)
 
+@im.route('/deliveryvoucher/list.pdf')
+@login_required
+def deliveryvoucher_list_pdf():
+    html = deliveryvoucher_list()
+    return render_pdf(HTML(string=html))
 
 @im.route("/deliveryvoucher/view/<int:id>/", methods=("GET", "POST"))
 @login_required
