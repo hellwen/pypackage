@@ -1,0 +1,18 @@
+.navbar
+,#menubar
+,#sidebar
+,#modelbar {
+  display: none
+}
+
+.model-list .title-check
+,.model-list .title-button
+,.model-list .content-check
+,.model-list .content-button {
+  display: none
+}
+
+
+.container-fluid .content {
+  margin-right: 20px 
+}
