@@ -10,7 +10,7 @@ from pypackage.extensions import db
 
 from pypackage.models import User
 
-env = os.environ.get('PRD_ENV', 'dev')
+env = os.environ.get('PYPACKAGE_ENV', 'Dev')
 app = create_app('pypackage.settings.%sConfig' % env.capitalize(), env=env)
 
 manager = Manager(app)
