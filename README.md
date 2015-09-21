@@ -2,14 +2,9 @@
 
 ##Install
 
-###Pythonbrew
+###pyenv
 
-        sudo esay_install pip
-        sudo esay_install pythonbrew
-
-###Create env
-
-        pythonbrew venv create pypackage
+        pyenv virtualenv pypackage
 
 ###Prerequisite
 
