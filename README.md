@@ -8,6 +8,7 @@
 
 ###Prerequisite
 
+        sudo pacman -S libxml2 libxslt
         pip install -r requirements.txt
 
 ###Custom the Configuration
